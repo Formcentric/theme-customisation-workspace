@@ -7,6 +7,7 @@ import transformToIIFE from './utils/transformToIIFE.ts';
 import buildPlugin from './utils/buildPlugin.ts';
 import themeWatcher from './utils/themeWatcher.ts';
 import copy from 'rollup-plugin-copy';
+import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -44,6 +45,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
+      react(),
       themeWatcher(),
       buildPlugin(),
       selectiveReloadPlugin(),

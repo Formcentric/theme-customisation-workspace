@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'ArchivoExpanded';
+  font-weight: 500;
+  font-style: normal;
+  src: url('assets/fonts/ArchivoExpanded-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-weight: 400;
+  font-style: normal;
+  src: url('assets/fonts/Archivo-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-weight: 500; /* Medium */
+  font-style: normal;
+  src: url('assets/fonts/Archivo-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+a:visited {
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 1.5em !important; /* Total width including `border-width` of scrollbar thumb */
+  height: 1.5em !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 1em !important;
+  border: 0.5em solid rgba(0, 0, 0, 0) !important; /* Transparent border together with `background-clip: padding-box` does the trick */
+  background-clip: padding-box !important;
+  -webkit-border-radius: 1em !important;
+  background-color: rgba(181, 178, 203, 0.7) !important;
+  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025) !important;
+}
+::-webkit-scrollbar-button {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent !important;
+}
+
+p {
+  color: #473F7D;
+}

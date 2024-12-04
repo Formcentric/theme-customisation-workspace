@@ -26,7 +26,7 @@ Run this command to create a custom theme. The first argument is the name of the
 The script will copy an existing fc-theme into your ```src/themes``` folder.
 
 ```
-    pnpm fc-create-theme [fc-themeName] [custom-themename]
+    pnpm fc-create-theme [fc-theme-name] [custom-theme-name]
 ```
 
 ## customizing
