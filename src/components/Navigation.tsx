@@ -32,7 +32,7 @@ const Logo = styled.a`
 const Title = styled.div`
   color: rgb(71 63 125);
   font-family: ArchivoExpanded;
-  margin: 0 2rem 1.4rem 1rem;
+  margin: 2rem 2rem 1.4rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,7 +43,7 @@ const ThemeDir = styled.div`
 `;
 
 const Themes = styled.div`
-  max-height: 40vh;
+  max-height: 50vh;
   overflow-y: auto;
 `;
 
@@ -58,18 +58,20 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
   color: ${(props) => (props.$selected ? '#0a0052' : 'inherit')};
   font-weight: ${(props) => (props.$selected ? '500' : '400')};
   transition: 300ms ease;
+  margin: 0.2rem 0;
 
   &:before {
     content: '';
     height: 50px;
-    width: ${(props) => (props.$selected ? '6px' : '0')};
-    background: #46b079;
+    width: 5px;
+    background: ${(props) =>
+      props.$selected ? '#46b079' : 'transparent'};
     border-radius: 0px 6px 6px 0px;
     transition: 300ms ease;
   }
 
   &:hover:before {
-    width: 6px;
+    width: 5px;
     background: ${(props) =>
       props.$selected ? '#46b079' : '#B5B2CB'};
   }
@@ -84,7 +86,6 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
 
 const Divider = styled.div`
   border: 0.5px solid #dadae5;
-  margin: 2rem 1rem;
 `;
 
 const Link = styled.a`
@@ -93,6 +94,8 @@ const Link = styled.a`
   font-family: Archivo;
   padding: 1rem;
   gap: 0.4rem;
+  margin-left: 0.4rem;
+  margin-top: auto;
   text-decoration: none;
 `;
 
@@ -111,24 +114,26 @@ const Navigation = ({
         <img src={logo} width={22} />
         <p>FORMCENTRIC</p>
       </Logo>
-      <Divider />
+      {themes.length > 0 && (
+        <ThemeDir>
+          <Title>Custom Themes</Title>
+          <Divider />
+          <Themes>
+            {themes.map((item) => (
+              <ThemeItem
+                key={item}
+                onClick={() => handleThemeChange(item, true)}
+                $selected={selectedTheme === item}
+              >
+                {item}
+              </ThemeItem>
+            ))}
+          </Themes>
+        </ThemeDir>
+      )}
       <ThemeDir>
-        <Title>Custom Themes</Title>
-        <Themes>
-          {themes.map((item) => (
-            <ThemeItem
-              key={item}
-              onClick={() => handleThemeChange(item, true)}
-              $selected={selectedTheme === item}
-            >
-              {item}
-            </ThemeItem>
-          ))}
-        </Themes>
-      </ThemeDir>
-      <Divider />
-      <ThemeDir>
-        <Title>Formcentric Themes</Title>
+        <Title>Official Themes</Title>
+        <Divider />
         <Themes>
           {fcThemes.map((item) => (
             <ThemeItem
