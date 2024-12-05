@@ -25,7 +25,7 @@ export const FormPreview = ({
         data-fc-theme={selectedTheme}
         style={{
           height: 'calc(100vh -4rem)',
-          boxShadow: '0px 0px 20px 6px rgba(181, 178, 203, 0.2)',
+          boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
           borderRadius: 6,
           overflow: 'hidden',
         }}
