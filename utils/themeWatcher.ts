@@ -41,7 +41,6 @@ export default function themeWatcher(): Plugin {
         try {
           console.log('Building themes...');
           triggerBuild();
-          console.log('Build completed successfully.');
         } catch (err) {
           console.error('Error during build:', err);
         }
