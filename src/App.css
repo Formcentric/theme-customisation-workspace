@@ -22,32 +22,18 @@
   font-display: swap;
 }
 
-a:visited {
-  color: inherit;
+* {
+  box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
-  width: 1.5em !important; /* Total width including `border-width` of scrollbar thumb */
-  height: 1.5em !important;
+.fc-form form,
+.fc-form .fc-success,
+.fc-form .fc-viewError {
+    margin: 0 auto;
+    max-width: 60rem;
+    width: 100%;
 }
 
-::-webkit-scrollbar-track {
-  background-color: transparent !important;
-}
-
-::-webkit-scrollbar-thumb {
-  height: 1em !important;
-  border: 0.5em solid rgba(0, 0, 0, 0) !important; /* Transparent border together with `background-clip: padding-box` does the trick */
-  background-clip: padding-box !important;
-  -webkit-border-radius: 1em !important;
-  background-color: rgba(181, 178, 203, 0.7) !important;
-  -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025) !important;
-}
-::-webkit-scrollbar-button {
-  width: 0 !important;
-  height: 0 !important;
-  display: none !important;
-}
-::-webkit-scrollbar-corner {
-  background-color: transparent !important;
+.fc-form {
+  height: calc(100vh - 4rem) !important;
 }

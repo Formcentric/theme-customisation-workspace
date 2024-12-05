@@ -1,24 +1,27 @@
 import styled, { css } from 'styled-components';
-import logo from '../assets/img/favicon.ico';
 import fcThemes from '../util/fcThemesList.json';
 import themes from '../util/themesList.json';
+import logo from '../assets/img/favicon.ico';
 
 const NavWrapper = styled.div`
-  min-width: 300px;
-  background: #f7f8fd;
+  width: 350px;
+  background: #f0f2fc;
   height: 100vh;
-  padding: 2rem 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  color: rgb(71 63 125);
+  box-shadow: 0 4px 
+  z-index: 2;
+  grid-column: 1/2;
 `;
 
 const Logo = styled.a`
-  padding: 0 1rem;
+  padding: 2rem 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
   text-decoration: none;
 
   > p {
@@ -29,7 +32,7 @@ const Logo = styled.a`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.p`
   color: rgb(71 63 125);
   font-family: ArchivoExpanded;
   margin: 2rem 2rem 1.4rem 1rem;
@@ -45,6 +48,32 @@ const ThemeDir = styled.div`
 const Themes = styled.div`
   max-height: 50vh;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 1.5em !important;
+    height: 1.5em !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 1em !important;
+    border: 0.5em solid rgba(0, 0, 0, 0) !important;
+    background-clip: padding-box !important;
+    -webkit-border-radius: 1em !important;
+    background-color: rgba(181, 178, 203, 0.7) !important;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025) !important;
+  }
+  &::-webkit-scrollbar-button {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+  }
+  &::-webkit-scrollbar-corner {
+    background-color: transparent !important;
+  }
 `;
 
 const ThemeItem = styled.div<{ $selected?: boolean }>`
@@ -59,21 +88,24 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
   font-weight: ${(props) => (props.$selected ? '500' : '400')};
   transition: 300ms ease;
   margin: 0.2rem 0;
+  padding: 0.8rem 1rem;
+  position: relative;
 
   &:before {
     content: '';
-    height: 50px;
-    width: 5px;
+    position: absolute;
+    left: 0;
+    height: 40px;
+    width: 4px;
     background: ${(props) =>
       props.$selected ? '#46b079' : 'transparent'};
     border-radius: 0px 6px 6px 0px;
     transition: 300ms ease;
   }
 
-  &:hover:before {
-    width: 5px;
-    background: ${(props) =>
-      props.$selected ? '#46b079' : '#B5B2CB'};
+  &:hover {
+    font-weight: 500;
+    color: #0a0052;
   }
 
   ${(props) =>
@@ -86,17 +118,50 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
 
 const Divider = styled.div`
   border: 0.5px solid #dadae5;
+  margin: 0 1rem;
 `;
 
-const Link = styled.a`
-  display: flex;
-  align-items: center;
-  font-family: Archivo;
-  padding: 1rem;
-  gap: 0.4rem;
-  margin-left: 0.4rem;
+const Menu = styled.div`
   margin-top: auto;
-  text-decoration: none;
+  margin-bottom: 2rem;
+  a:visited {
+    color: inherit;
+  }
+
+  > div {
+  }
+`;
+
+const MenuItem = styled.a`
+  padding: 1rem;
+  font-size: 14px;
+  display: block;
+  font-family: ArchivoExpanded;
+  cursor: pointer;
+  transition: 200ms ease;
+
+  > span {
+    padding-bottom: 0.2rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      left: 0;
+      border-bottom: solid 2px transparent;
+    }
+
+    &:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      left: 0;
+      border-bottom: solid 2px #ffffff;
+    }
+  }
 `;
 
 interface NavigationP {
@@ -104,7 +169,7 @@ interface NavigationP {
   handleThemeChange: (themeName: string, custom?: boolean) => void;
 }
 
-const Navigation = ({
+const Sidebar = ({
   selectedTheme,
   handleThemeChange,
 }: NavigationP) => {
@@ -145,16 +210,27 @@ const Navigation = ({
             </ThemeItem>
           ))}
         </Themes>
+        <Divider />
       </ThemeDir>
-      <Divider />
-      <Link
-        href="https://help.formcentric.com/de/cloud/erste-schritte/"
-        target="_blank"
-      >
-        Documentation
-      </Link>
+
+      <Menu>
+        <Title>Ressources</Title>
+        <Divider />
+        <MenuItem
+          href="https://help.formcentric.com/de/cloud/erste-schritte/"
+          target="_blank"
+        >
+          <span>Formapp Docs</span>
+        </MenuItem>
+        <MenuItem
+          href="https://help.formcentric.com/de/cloud/erste-schritte/"
+          target="_blank"
+        >
+          <span>Cloud Docs</span>
+        </MenuItem>
+      </Menu>
     </NavWrapper>
   );
 };
 
-export default Navigation;
+export default Sidebar;

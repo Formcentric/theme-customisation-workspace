@@ -1,14 +1,17 @@
 import { useLayoutEffect } from 'react';
-import Navigation from './components/Navigation';
 import { FormPreview } from './components/FormPreview';
 import './App.css';
 import styled from 'styled-components';
 import { useThemeStore } from './themeStore';
+import Sidebar from './components/Sidebar';
 
 const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 350px 1fr;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
+  background: #f0f2fc;
 `;
 
 function App() {
@@ -50,6 +53,7 @@ function App() {
     const stylesheets = document.querySelectorAll(
       'link[formcentric-source], style[formcentric-source]'
     );
+
     stylesheets.forEach((stylesheet) => {
       stylesheet?.parentNode?.removeChild(stylesheet);
     });
@@ -57,7 +61,7 @@ function App() {
 
   return (
     <Wrapper>
-      <Navigation
+      <Sidebar
         handleThemeChange={handleThemeChange}
         selectedTheme={selectedTheme}
       />

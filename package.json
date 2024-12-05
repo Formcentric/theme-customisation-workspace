@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./generateThemeList.cjs && vite build && vite",
+    "dev": "vite build && node ./generateThemeList.cjs && vite",
     "build": "vite build",
     "css": "pnpm sass --no-source-map dist/themes && pnpm postcss dist/themes/**/partials/_dependencies.scss --config postcss.config.cjs --no-map --replace && pnpm postcss dist/themes/**/*.css --config postcss.config.js --no-map --replace",
     "fc-create-theme": "sh -c 'pnpm exec fc-create-theme \"$0\" themes/\"$1\"'"
