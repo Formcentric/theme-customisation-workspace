@@ -20,8 +20,16 @@ const generateThemesList = (dirPath, outputFile) => {
     return fs.statSync(fullPath).isDirectory();
   });
 
-  fs.writeFileSync(outputFile, JSON.stringify(folders, null, 2));
-  console.log(`Themes list generated for ${dirPath}:`, folders);
+  const filteredFolders = folders.filter((item) => item !== 'utils');
+
+  fs.writeFileSync(
+    outputFile,
+    JSON.stringify(filteredFolders, null, 2)
+  );
+  console.log(
+    `Themes list generated for ${dirPath}:`,
+    filteredFolders
+  );
 };
 
 // Generate JSON files for both directories
