@@ -20,7 +20,9 @@ export default function buildPlugin(): Plugin {
         process.exit(0); // Exit successfully
       }
 
-      exec('node ./preprocess.cjs && pnpm css');
+      exec(
+        'node ./preprocess.cjs && node ./generateThemeList.cjs && pnpm css'
+      );
     },
   };
 }
