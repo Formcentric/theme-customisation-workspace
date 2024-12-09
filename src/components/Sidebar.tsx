@@ -46,7 +46,7 @@ const ThemeDir = styled.div`
 `;
 
 const Themes = styled.div`
-  max-height: 50vh;
+  max-height: 30vh;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
