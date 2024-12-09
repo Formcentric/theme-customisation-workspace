@@ -1,9 +1,11 @@
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { FormPreview } from './components/FormPreview';
 import './App.css';
 import styled from 'styled-components';
 import { useThemeStore } from './themeStore';
 import Sidebar from './components/Sidebar';
+import fcThemes from './util/fcThemesList.json';
+import themes from './util/themesList.json';
 
 const Wrapper = styled.div`
   display: grid;
@@ -25,6 +27,13 @@ function App() {
   };
 
   useLayoutEffect(() => addFormcentricScript(), []);
+
+  useEffect(() => {
+    const isCustomTheme = themes.includes(selectedTheme);
+    const isFcTheme = fcThemes.includes(selectedTheme);
+
+    if (!isFcTheme && !isCustomTheme) handleThemeChange(themes[0]);
+  }, []);
 
   const { selectedTheme, themeDir, setSelectedTheme, setThemeDir } =
     useThemeStore((s) => s);
