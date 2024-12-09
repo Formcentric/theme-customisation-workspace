@@ -4,6 +4,7 @@ import chokidar from 'chokidar';
 import fs from 'fs-extra';
 import path from 'path';
 import transformToIIFE from './transformToIIFE';
+import themeList from '../src/util/themesList.json';
 
 /**
  * A custom Vite plugin that watches files in `src/themes`
@@ -156,12 +157,18 @@ export default function themeWatcherPlugin(): Plugin {
           } else if (filePath.includes('_variables.json')) {
             console.log(`File changed: ${filePath}`);
             console.log('Copying variables.json...');
-
             copyVariablesFile(filePath);
           }
         } catch (err) {
           console.error('Error during build:', err);
         }
+      });
+
+      watcher.on('unlinkDir', async (filePath) => {
+        const baseName = path.basename(filePath); // Get the name of the deleted directory
+
+        if (themeList.includes(baseName))
+          exec('node ./generateThemeList.cjs');
       });
 
       // Clean up the watcher when the server is stopped
