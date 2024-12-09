@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 export const useThemeStore = create(
   persist(
@@ -12,7 +12,6 @@ export const useThemeStore = create(
     }),
     {
       name: 'fc-theme-storage', // name of the item in the storage (must be unique)
-      storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
     }
   )
 );
