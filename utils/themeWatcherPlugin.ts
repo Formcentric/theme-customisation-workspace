@@ -137,15 +137,36 @@ export default function themeWatcherPlugin(): Plugin {
         ignoreInitial: true,
       });
 
+      const copyFolder = async (
+        changedPath: string,
+        folderName: string
+      ) => {
+        const relativePath = path.relative(themesDir, changedPath);
+        const themeName = relativePath.split('/')[0];
+        const themeDir = path.join(themesDir, themeName); // Theme directory
+        const distThemeDir = path.join(distDir, themeName);
+
+        await fs.remove(path.join(distThemeDir, folderName));
+
+        await fs.copy(
+          path.join(themeDir, folderName),
+          path.join(distThemeDir, folderName)
+        );
+      };
+
       // Watch for changes and trigger actions
       watcher.on('change', async (filePath) => {
         try {
+          // Changes to scss files
           if (filePath.includes('.scss')) {
             console.log(`File changed: ${filePath}`);
             console.log('Building styles.css...');
 
             buildStyles(filePath);
-          } else if (
+          }
+
+          // Changes to template files
+          if (
             filePath.includes('.js') &&
             !filePath.includes('.min.js') &&
             !filePath.includes('.json')
@@ -154,16 +175,71 @@ export default function themeWatcherPlugin(): Plugin {
             console.log('Building script.js...');
 
             buildJs(filePath);
-          } else if (filePath.includes('_variables.json')) {
+          }
+
+          // Changes to variables
+          if (filePath.includes('_variables.json')) {
             console.log(`File changed: ${filePath}`);
             console.log('Copying variables.json...');
             copyVariablesFile(filePath);
 
-            // I do this to force a reload of the page
+            // Forces a reload of the page by building the script.js again
             buildJs(filePath);
+          }
+
+          // changes fonts folder
+          if (filePath.includes('fonts')) {
+            console.log(`File changed in fonts folder`);
+            console.log('Copying fonts...');
+
+            copyFolder(filePath, 'fonts');
+          }
+
+          // changes img folder
+          if (filePath.includes('img')) {
+            console.log(`File changed in img folder`);
+            console.log('Copying images...');
+
+            copyFolder(filePath, 'img');
           }
         } catch (err) {
           console.error('Error during build:', err);
+        }
+      });
+
+      watcher.on('add', async (filePath) => {
+        // changes fonts folder
+        if (filePath.includes('fonts')) {
+          console.log(`File added in fonts folder`);
+          console.log('Copying fonts...');
+
+          copyFolder(filePath, 'fonts');
+        }
+
+        // changes img folder
+        if (filePath.includes('img')) {
+          console.log(`File added in img folder`);
+          console.log('Copying images...');
+
+          copyFolder(filePath, 'img');
+        }
+      });
+
+      watcher.on('unlink', async (filePath) => {
+        // deleted font
+        if (filePath.includes('fonts')) {
+          console.log(`File deleted from fonts folder`);
+          console.log('Copying fonts...');
+
+          copyFolder(filePath, 'fonts');
+        }
+
+        // deleted image
+        if (filePath.includes('img')) {
+          console.log(`File deleted from img folder`);
+          console.log('Copying images...');
+
+          copyFolder(filePath, 'img');
         }
       });
 
