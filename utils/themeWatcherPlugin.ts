@@ -147,8 +147,7 @@ export default function themeWatcherPlugin(): Plugin {
             buildStyles(filePath);
           } else if (
             filePath.includes('.js') &&
-            !filePath.includes('.min.js') &&
-            !filePath.includes('.json')
+            !filePath.includes('.min.js')
           ) {
             console.log(`File changed: ${filePath}`);
             console.log('Building script.js...');
