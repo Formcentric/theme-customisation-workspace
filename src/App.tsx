@@ -30,6 +30,7 @@ function App() {
     useThemeStore((s) => s);
 
   const handleThemeChange = (themeName: string, custom?: boolean) => {
+    if (themeName === selectedTheme) return;
     const themeFolder = custom ? '/dist/themes' : '/src/fc-themes';
     setSelectedTheme(themeName);
     setThemeDir(themeFolder);

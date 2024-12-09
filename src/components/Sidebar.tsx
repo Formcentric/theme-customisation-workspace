@@ -90,6 +90,7 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
   margin: 0.2rem 0;
   padding: 0.8rem 1rem;
   position: relative;
+  user-select: none;
 
   &:before {
     content: '';
@@ -124,6 +125,7 @@ const Divider = styled.div`
 const Menu = styled.div`
   margin-top: auto;
   margin-bottom: 2rem;
+
   a:visited {
     color: inherit;
   }
