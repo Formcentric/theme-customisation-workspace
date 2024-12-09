@@ -8,8 +8,6 @@ export default function buildPlugin(): Plugin {
     name: 'build-plugin',
     apply: 'build',
     buildStart() {
-      exec('node ./generateThemeList.cjs');
-
       const themesDir = path.resolve('src/themes');
 
       // Filter for subdirectories only
@@ -22,9 +20,7 @@ export default function buildPlugin(): Plugin {
         process.exit(0); // Exit successfully
       }
 
-      exec(
-        'node ./preprocess.cjs && node ./generateThemeList.cjs && pnpm css'
-      );
+      exec('node ./preprocess.cjs');
     },
   };
 }
