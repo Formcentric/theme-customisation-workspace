@@ -67,11 +67,6 @@ export default function themeWatcher(): Plugin {
         }
       };
 
-      // Create a watcher using chokidar
-      const watcher = chokidar.watch(themesDir, {
-        ignoreInitial: true,
-      });
-
       const buildStyles = async (changedPath: string) => {
         const relativePath = path.relative(themesDir, changedPath);
         const themeName = relativePath.split('/')[0];
@@ -123,18 +118,26 @@ export default function themeWatcher(): Plugin {
         }
       };
 
+      // Create a watcher using chokidar
+      const watcher = chokidar.watch(themesDir, {
+        ignoreInitial: true,
+      });
+
       // Watch for changes and trigger actions
       watcher.on('change', async (filePath) => {
-        console.log(`File changed: ${filePath}`);
         try {
           if (filePath.includes('.scss')) {
+            console.log(`File changed: ${filePath}`);
             console.log('Building styles.css...');
+
             buildStyles(filePath);
           } else if (
             filePath.includes('.js') &&
             !filePath.includes('.min.js')
           ) {
+            console.log(`File changed: ${filePath}`);
             console.log('Building script.js...');
+
             buildJs(filePath);
           }
         } catch (err) {
