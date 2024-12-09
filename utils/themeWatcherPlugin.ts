@@ -147,7 +147,8 @@ export default function themeWatcherPlugin(): Plugin {
             buildStyles(filePath);
           } else if (
             filePath.includes('.js') &&
-            !filePath.includes('.min.js')
+            !filePath.includes('.min.js') &&
+            !filePath.includes('.json')
           ) {
             console.log(`File changed: ${filePath}`);
             console.log('Building script.js...');
@@ -157,6 +158,9 @@ export default function themeWatcherPlugin(): Plugin {
             console.log(`File changed: ${filePath}`);
             console.log('Copying variables.json...');
             copyVariablesFile(filePath);
+
+            // I do this to force a reload of the page
+            buildJs(filePath);
           }
         } catch (err) {
           console.error('Error during build:', err);
