@@ -11,7 +11,7 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  color: rgb(71 63 125);
+  color: #473F7D;
   box-shadow: 0 4px 
   z-index: 2;
   grid-column: 1/2;
@@ -25,7 +25,7 @@ const Logo = styled.a`
   text-decoration: none;
 
   > p {
-    color: rgb(71 63 125);
+    color: #473f7d;
     font-family: ArchivoExpanded;
     font-weigth: 500;
     font-size: 20px;
@@ -33,7 +33,7 @@ const Logo = styled.a`
 `;
 
 const Title = styled.p`
-  color: rgb(71 63 125);
+  color: #473f7d;
   font-family: ArchivoExpanded;
   margin: 2rem 2rem 1.4rem 1rem;
   display: flex;
@@ -77,7 +77,7 @@ const Themes = styled.div`
 `;
 
 const ThemeItem = styled.div<{ $selected?: boolean }>`
-  color: rgb(71 63 125);
+  color: #473f7d;
   font-family: Archivo;
   font-size: 18px;
   cursor: pointer;
@@ -96,10 +96,10 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
     position: absolute;
     left: 0;
     height: 40px;
-    width: 4px;
+    width: 6px;
     background: ${(props) =>
-      props.$selected ? '#46b079' : 'transparent'};
-    border-radius: 0px 6px 6px 0px;
+      props.$selected ? '#B5B2CB' : 'transparent'};
+    border-radius: 0px 90px 90px 0px;
     transition: 300ms ease;
   }
 
