@@ -2,7 +2,10 @@ const fs = require('fs-extra');
 const path = require('path');
 
 // Define directories and output files
-const fcThemesDir = path.join(__dirname, 'src/fc-themes');
+const fcThemesDir = path.join(
+  __dirname,
+  'node_modules/@formcentric/client/dist/themes'
+);
 const themesDir = path.join(__dirname, 'src/themes');
 const fcOutputFile = path.join(
   __dirname,
