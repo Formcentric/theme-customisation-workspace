@@ -118,6 +118,19 @@ export default function themeWatcherPlugin(): Plugin {
         }
       };
 
+      const copyVariablesFile = async (changedPath: string) => {
+        const relativePath = path.relative(themesDir, changedPath);
+        const themeName = relativePath.split('/')[0];
+        const themeDir = path.join(themesDir, themeName); // Theme directory
+        const outputFile = path.join(themeDir, '_variables.json');
+        const distThemeDir = path.join(distDir, themeName);
+
+        await fs.copyFile(
+          outputFile,
+          path.join(distThemeDir, '_variables.json')
+        );
+      };
+
       // Create a watcher using chokidar
       const watcher = chokidar.watch(themesDir, {
         ignoreInitial: true,
@@ -133,12 +146,18 @@ export default function themeWatcherPlugin(): Plugin {
             buildStyles(filePath);
           } else if (
             filePath.includes('.js') &&
-            !filePath.includes('.min.js')
+            !filePath.includes('.min.js') &&
+            !filePath.includes('.json')
           ) {
             console.log(`File changed: ${filePath}`);
             console.log('Building script.js...');
 
             buildJs(filePath);
+          } else if (filePath.includes('_variables.json')) {
+            console.log(`File changed: ${filePath}`);
+            console.log('Copying variables.json...');
+
+            copyVariablesFile(filePath);
           }
         } catch (err) {
           console.error('Error during build:', err);
