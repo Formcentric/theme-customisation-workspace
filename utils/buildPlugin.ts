@@ -8,6 +8,8 @@ export default function buildPlugin(): Plugin {
     name: 'build-plugin',
     apply: 'build',
     buildStart() {
+      exec('node ./generateThemeList.cjs');
+
       const themesDir = path.resolve('src/themes');
 
       // Filter for subdirectories only

@@ -65,7 +65,6 @@ export default defineConfig(({ mode }) => {
             rename: 'fc-themes',
           },
         ],
-        hook: 'buildStart',
       }),
     ],
     server: {
