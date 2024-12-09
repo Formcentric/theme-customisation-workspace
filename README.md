@@ -13,17 +13,12 @@
 ```
 
 ## testing FC themes
-The official themes will be copied to ```src/fc-themes``` when starting the development server. To test out included Formcentric themes change the fc-theme data-attribute of the formapp div inside ```src/index.html```. 
-
-```
-    data-fc-theme-dir="/src/fc-themes"
-    data-fc-theme="<themeName>"
-```
+The official themes will be copied to ```src/fc-themes``` when starting the development server. Use the sidebar to switch between themes and find one that you want to use for your custom theme.
 
 ## creating a custom theme
-Run this command to create a custom theme. The first argument is the name of the official theme you want to customize and the second argument specifies a name for your custom theme. 
+Run this command to create a custom theme. The first argument is the name of the official theme you want to customize and the second argument specifies a new name for your custom theme. 
 
-The script will copy an existing fc-theme into your ```src/themes``` folder.
+The script will copy an existing fc-theme into your ```src/themes``` folder. It will show up in the sidebar under custom themes.
 
 ```
     pnpm fc-create-theme [fc-theme-name] [custom-theme-name]
