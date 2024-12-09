@@ -12,7 +12,6 @@ import react from '@vitejs/plugin-react';
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const cloudMode = env.VITE_FC_MODE === 'cloud';
 
   const themes: string[] = sync('*', {
     cwd: 'src/themes',
@@ -70,7 +69,7 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       port: Number(env.VITE_FC_PORT),
-      ...(cloudMode && {
+      ...(env.VITE_FC_CLOUD && {
         proxy: {
           '/headless-server': {
             target: env.VITE_FC_URL,
