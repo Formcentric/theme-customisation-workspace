@@ -9,9 +9,9 @@ import transformToIIFE from './transformToIIFE';
  * A custom Vite plugin that watches files in `src/themes`
  * and triggers the Vite build process when changes are detected.
  */
-export default function themeWatcher(): Plugin {
+export default function themeWatcherPlugin(): Plugin {
   return {
-    name: 'theme-watcher', // Name of the plugin
+    name: 'theme-watcher-plugin', // Name of the plugin
     apply: 'serve', // Apply only during the development server
     configureServer(server) {
       // Path to watch: all .js files in the `src` directory

@@ -5,7 +5,7 @@ import path from 'path';
 import selectiveReloadPlugin from './utils/selectiveReloadPlugin.ts';
 import transformToIIFE from './utils/transformToIIFE.ts';
 import buildPlugin from './utils/buildPlugin.ts';
-import themeWatcher from './utils/themeWatcher.ts';
+import themeWatcherPlugin from './utils/themeWatcherPlugin.ts';
 import copy from 'rollup-plugin-copy';
 import react from '@vitejs/plugin-react';
 
@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
-      themeWatcher(),
+      themeWatcherPlugin(),
       buildPlugin(),
       selectiveReloadPlugin(),
       copy({
@@ -65,6 +65,7 @@ export default defineConfig(({ mode }) => {
             rename: 'fc-themes',
           },
         ],
+        hook: 'buildStart',
       }),
     ],
     server: {

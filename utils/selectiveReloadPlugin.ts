@@ -2,7 +2,7 @@ import { Plugin } from 'vite';
 
 export default function selectiveReloadPlugin(): Plugin {
   return {
-    name: 'vite-plugin-selective-reload',
+    name: 'selective-reload-plugin',
     apply: 'serve', // Only applies during dev
     handleHotUpdate({ file, server }) {
       // Check if the file is a `script.js` in the desired directory
