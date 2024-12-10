@@ -208,6 +208,13 @@ export default function themeWatcherPlugin(): Plugin {
       });
 
       watcher.on('add', async (filePath) => {
+        const relativePath = path.relative(themesDir, filePath);
+        const themeName = relativePath.split('/')[0];
+        const distThemeDir = path.join(distDir, themeName); // Theme directory
+
+        // case: a theme has been created while the dev server was running
+        if (!fs.existsSync(distThemeDir)) return;
+
         // changes fonts folder
         if (filePath.includes('fonts')) {
           console.log(`File added in fonts folder`);
