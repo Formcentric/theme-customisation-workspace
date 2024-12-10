@@ -7,16 +7,26 @@ import selectiveReloadPlugin from './utils/selectiveReloadPlugin.ts';
 import themeWatcherPlugin from './utils/themeWatcherPlugin.ts';
 import transformToIIFE from './utils/transformToIIFE.ts';
 import buildPlugin from './utils/buildPlugin.ts';
-import config from './config/formcentricConfig.json';
+import localConfig from './config/localConfig.json';
+import cloudConfig from './config/cloudConfig.json';
 
+type FcEnv = 'local' | 'cloud';
 // https://vite.dev/config/
 export default defineConfig(() => {
-  const { fcUrl, fcProxyDomain, fcCloud, devServerPort } = config;
+  const fcEnv: FcEnv = (process.env.VITE_FC_ENV as FcEnv) || 'cloud';
 
   const themes: string[] = sync('*', {
     cwd: 'src/themes',
     ignore: ['.*'],
   });
+
+  const clientAttributes: Record<FcEnv, unknown> = {
+    cloud: {},
+    local: {
+      'data-fc-data-url': localConfig.fcDataUrl,
+      'data-fc-form-definition': localConfig.fcFormDefinition,
+    },
+  };
 
   return {
     build: {
@@ -67,21 +77,23 @@ export default defineConfig(() => {
         hook: 'buildStart',
       }),
     ],
+    define: {
+      FC_CLIENT_ATTRIBUTES: JSON.stringify(clientAttributes[fcEnv]),
+    },
     server: {
-      port: devServerPort,
-      ...(fcCloud && {
+      port: 1234,
+      ...(fcEnv === 'cloud' && {
         proxy: {
           '/headless-server': {
-            target: fcUrl,
+            target: cloudConfig.fcUrl,
             headers: {
-              Referer: fcProxyDomain,
-              Origin: fcProxyDomain,
               'Sec-Fetch-Mode': 'cors',
               'Sec-Fetch-Site': 'cross-site',
             },
             changeOrigin: true,
             secure: false,
-            rewrite: (path) => path.replace(/^\/headless-server/, ''),
+            rewrite: (path: string) =>
+              path.replace(/^\/headless-server/, ''),
             // enables proxy logs -----------------------------------------------------------
             // configure: (proxy: any, _options: any) => {
             //   proxy.on('proxyReq', function (proxyReq: any, req: any) {

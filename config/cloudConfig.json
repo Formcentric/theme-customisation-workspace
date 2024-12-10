@@ -1,7 +1,5 @@
 {
-    "fcCloud": true,
     "fcEmbedId": "a40a1000-3f23-4e1e-9bb2-82487ecc1d9a",
     "fcUrl": "https://form.formcentric.com/headless-server/",
-    "fcProxyDomain": "formcentric.com",
     "devServerPort":1234
 }

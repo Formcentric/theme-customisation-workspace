@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import config from '../../config/formcentricConfig.json';
+import config from '../../config/cloudConfig.json';
 
 interface FormPreviewP {
   selectedTheme: string;
@@ -25,6 +25,7 @@ export const FormPreview = ({
         data-fc-formapp-url="/src/assets/formapp.js"
         data-fc-theme-dir={themeFolder}
         data-fc-theme={selectedTheme}
+        {...FC_CLIENT_ATTRIBUTES}
         style={{
           height: 'calc(100vh -4rem)',
           boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
