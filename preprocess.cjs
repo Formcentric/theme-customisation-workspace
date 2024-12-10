@@ -12,7 +12,7 @@ async function preprocess() {
     await fs.copy(themesDir, distThemesDir, {
       filter: (src) => {
         // Exclude .gitignore
-        return !src.endsWith('.gitignore');
+        return !src.endsWith('.gitkeep');
       },
     });
   } catch (error) {

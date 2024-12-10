@@ -7,7 +7,11 @@
     pnpm i
 ```
 ## env file
-To successfully render forms you will need to create an env file. See .env.sample:
+To successfully render forms you will need to create an env file.
+```
+cp .env.sampel .env
+```
+
 ```
 # Configure the port the development server will use
 VITE_FC_PORT=1234
