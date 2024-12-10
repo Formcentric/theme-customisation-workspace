@@ -1,18 +1,15 @@
-# Formcentric theme-customization-workspace
-### Create custom themes based on official formcentric themes
+# Formcentric Theme Customization Workspace
+
+### Create custom themes based on official Formcentric themes
 
 ## Table of Contents
-- [Formcentric theme-customization-workspace](#formcentric-theme-customization-workspace)
-    - [Create custom themes based on official formcentric themes](#create-custom-themes-based-on-official-formcentric-themes)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Form Configuration](#form-configuration)
-    - [For Formcentric cloud users:](#for-formcentric-cloud-users)
-    - [For users with a self-hosted headless server:](#for-users-with-a-self-hosted-headless-server)
-  - [Creating a custom theme](#creating-a-custom-theme)
-  - [Customization](#customization)
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Form Configuration](#form-configuration)
+4. [Creating a Custom Theme](#creating-a-custom-theme)
+5. [Customization](#customization)
 
+---
 ## Installation
 
 ```bash
