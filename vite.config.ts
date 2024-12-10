@@ -1,17 +1,17 @@
-import { defineConfig, loadEnv } from 'vite';
-import process from 'process';
+import react from '@vitejs/plugin-react';
+import copy from 'rollup-plugin-copy';
+import { defineConfig } from 'vite';
 import { sync } from 'glob';
 import path from 'path';
 import selectiveReloadPlugin from './utils/selectiveReloadPlugin.ts';
+import themeWatcherPlugin from './utils/themeWatcherPlugin.ts';
 import transformToIIFE from './utils/transformToIIFE.ts';
 import buildPlugin from './utils/buildPlugin.ts';
-import themeWatcherPlugin from './utils/themeWatcherPlugin.ts';
-import copy from 'rollup-plugin-copy';
-import react from '@vitejs/plugin-react';
+import config from './config/formcentricConfig.json';
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+export default defineConfig(() => {
+  const { fcUrl, fcProxyDomain, fcCloud, devServerPort } = config;
 
   const themes: string[] = sync('*', {
     cwd: 'src/themes',
@@ -68,14 +68,14 @@ export default defineConfig(({ mode }) => {
       }),
     ],
     server: {
-      port: Number(env.VITE_FC_PORT),
-      ...(env.VITE_FC_CLOUD && {
+      port: devServerPort,
+      ...(fcCloud && {
         proxy: {
           '/headless-server': {
-            target: env.VITE_FC_URL,
+            target: fcUrl,
             headers: {
-              Referer: env.VITE_FC_PROXY_URL,
-              Origin: env.VITE_FC_PROXY_URL,
+              Referer: fcProxyDomain,
+              Origin: fcProxyDomain,
               'Sec-Fetch-Mode': 'cors',
               'Sec-Fetch-Site': 'cross-site',
             },

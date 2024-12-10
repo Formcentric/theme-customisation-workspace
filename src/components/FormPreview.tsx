@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import config from '../../config/formcentricConfig.json';
 
 interface FormPreviewP {
   selectedTheme: string;
@@ -16,10 +17,11 @@ export const FormPreview = ({
   selectedTheme,
   themeFolder,
 }: FormPreviewP) => {
+  const { fcEmbedId } = config;
   return (
     <FormWrapper>
       <div
-        data-fc-id="6e78c3d0-9bb2-4584-b820-d2f46923346c"
+        data-fc-id={fcEmbedId}
         data-fc-formapp-url="/src/assets/formapp.js"
         data-fc-theme-dir={themeFolder}
         data-fc-theme={selectedTheme}
