@@ -11,7 +11,7 @@ async function preprocess() {
     await fs.remove(distThemesDir);
     await fs.copy(themesDir, distThemesDir, {
       filter: (src) => {
-        // Exclude .gitignore
+        // Exclude .gitkeep
         return !src.endsWith('.gitkeep');
       },
     });

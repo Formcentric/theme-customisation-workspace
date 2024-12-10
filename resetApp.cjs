@@ -42,18 +42,18 @@ function resetApp() {
     }
   });
 
-  // Clean subfolders in src/themes but keep src/themes and .gitignore
+  // Clean subfolders in src/themes but keep src/themes and .gitkeep
   const themesPath = path.resolve(__dirname, 'src/themes');
   if (fs.existsSync(themesPath)) {
     fs.readdirSync(themesPath).forEach((file) => {
       const currentPath = path.join(themesPath, file);
       if (fs.lstatSync(currentPath).isDirectory()) {
         deleteFolderRecursive(currentPath);
-      } else if (file !== '.gitignore') {
+      } else if (file !== '.gitkeep') {
         fs.unlinkSync(currentPath);
       }
     });
-    console.log(`Cleaned: src/themes (kept .gitignore)`);
+    console.log(`Cleaned: src/themes (kept .gitkeep)`);
   } else {
     console.log(`Not found: src/themes`);
   }
