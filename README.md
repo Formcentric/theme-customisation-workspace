@@ -5,9 +5,8 @@
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Form Configuration](#form-configuration)
-4. [Creating a Custom Theme](#creating-a-custom-theme)
-5. [Customization](#customization)
+3. [Creating a Custom Theme](#creating-a-custom-theme)
+4. [Customization](#customization)
 
 ---
 ## Installation
@@ -17,60 +16,32 @@ pnpm i
 ```
 
 ## Usage
+### For Formcentric cloud users:
 ```bash
-pnpm dev
+pnpm dev-cloud
 ```
+#### Changing forms
+You can change the preview form by using the dropdown in the sidebar. If you need to test your design with your custom form you can by adjusting the ```./config/cloudConfig.json``` file. The fcForms property holds the forms the sidebar dropdown will render. Add new objects for your own forms or remove existing ones.
 
-The official formcentric themes will be copied to ```src/fc-themes``` when starting the development server. Use the sidebar to switch between themes and find one that you want to use for your custom theme.
-
-## Form Configuration
-The configuration for rendering a *Formcentric* form is located in ```./config/formcentricConfig.json```. Using the default config will render an example form. If you want to use your own form you need to adjust the config file:
-
-Default configuration:
 ```
 {
-    "fcCloud": true,
-    "fcEmbedId": "a40a1000-3f23-4e1e-9bb2-82487ecc1d9a",
-    "fcUrl": "https://form.formcentric.com/headless-server/",
-    "fcProxyDomain": "formcentric.com",
-    "devServerPort":1234
-}
+    "id":  "<form-embed-id>", // see the screenshot below 
+    "name": "Contact form" // this is used by the dropdown as a display name
+},        
 ```
-<br>
 
-### For Formcentric cloud users:
-- Set **fcEmbedId** to the embed Id of your form
-<br>
-<br>
 <img src="./assets/embed-id.png" alt="finding a form embed-id in the fc-cloud" width="800"/>
 
-<br>
-
-- Set **fcProxyDomain** to a domain you added here https://editor.formcentric.com/settings/tenant
-<br>
-<br>
-<img src="./assets/proxy-domain.png" alt="setting a domain inside the admin-center of fc-cloud" width="800"/>
-<br>
-<br>
 
 ### For users with a self-hosted headless server:
-- Set **fcCloud** to false
-- Set **fcEmbedId** to the embed Id of your form
-- Set **fcUrl** to the url of your self-hosted headless-server
-- **fcProxyDomain** can be left as is or removed; will be ignored for self-hosted users 
+1. Check if the URL of your headless-server matches the predefined URL in ```./config/localConfig.json``` (http://localhost:8080) and adjust it if needed.
 
-<br>
+2. Start the development server using
 
-**Example config:**
-
-```
-{
-    "fcCloud": false,
-    "fcEmbedId": <form-embed-id>,
-    "fcUrl": <your-headless-server-url>,
-    "devServerPort":1234
-}
-```
+    ```bash
+    pnpm dev-local
+    ```
+3. Set your form definition either in ```./config/localConfig.json``` or paste it inside the input field of our user interface (located in the sidebar below the *Formcentric* logo). <br>**NOTE:** If you decide to use the input the definition will only be saved in the apps localstorage. To permanently use the form definition adjust the **fcFormDefinition** property of the localConfig.json file.
 
 ## Creating a custom theme
 Run this command to create a custom theme. The first argument specifies the name of the official theme you want to customize and the second argument specifies the name (which is also the foldername) of your custom theme. 

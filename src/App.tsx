@@ -18,28 +18,42 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const unmountFormappInstances = () => {
-    const scripts = document.querySelectorAll('.script_formcentric');
-    scripts.forEach((script) =>
-      script?.parentNode?.removeChild(script)
-    );
+  const unmountFormappInstances = async () => {
+    try {
+      const scripts = document.querySelectorAll(
+        '.script_formcentric'
+      );
 
-    // Remove stylesheets with the attribute 'formcentric-source'
-    const stylesheets = document.querySelectorAll(
-      'link[formcentric-source], style[formcentric-source]'
-    );
+      scripts.forEach((script) =>
+        script?.parentNode?.removeChild(script)
+      );
 
-    stylesheets.forEach((stylesheet) => {
-      stylesheet?.parentNode?.removeChild(stylesheet);
-    });
+      const fcScript = document.querySelector(
+        '.script_formcentric_js'
+      );
+      if (fcScript) fcScript?.parentNode?.removeChild(fcScript);
+
+      // Remove stylesheets with the attribute 'formcentric-source'
+      const stylesheets = document.querySelectorAll(
+        'link[formcentric-source], style[formcentric-source]'
+      );
+
+      stylesheets.forEach((stylesheet) => {
+        stylesheet?.parentNode?.removeChild(stylesheet);
+      });
+    } catch {
+      console.log('error');
+    }
   };
 
   const addFormcentricScript = () => {
+    const fcScript = document.querySelector('.script_formcentric_js');
+    if (fcScript) fcScript?.parentNode?.removeChild(fcScript);
+
     // Dynamically load the Formcentric script
     const script = document.createElement('script');
-    script.className = 'script_formcentric';
-    script.src = '/src/assets/formcentric.js'; // Public path for the script
-    script.defer = true;
+    script.className = 'script_formcentric_js';
+    script.src = '/src/assets/formcentric.js';
     document.body.appendChild(script);
   };
 
@@ -65,8 +79,8 @@ function App() {
       setSelectedCloudForm(cloudConfig.fcForms[0].id);
   }, []);
 
-  const reloadFormapp = () => {
-    unmountFormappInstances();
+  const reloadFormapp = async () => {
+    await unmountFormappInstances();
     addFormcentricScript();
   };
 

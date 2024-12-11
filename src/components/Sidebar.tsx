@@ -19,6 +19,7 @@ const NavWrapper = styled.div`
   box-shadow: 0 4px 
   z-index: 2;
   grid-column: 1/2;
+ border-right: 1px solid rgba(71, 63, 125, 0.1);
 `;
 
 const Logo = styled.a`
@@ -122,7 +123,7 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
 `;
 
 const Divider = styled.div`
-  border: 0.5px solid #dadae5;
+  border-bottom: 1px solid rgba(71, 63, 125, 0.2);
   margin: 0 1rem;
 `;
 
