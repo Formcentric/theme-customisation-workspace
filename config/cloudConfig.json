@@ -1,5 +1,18 @@
 {
-    "fcEmbedId": "a40a1000-3f23-4e1e-9bb2-82487ecc1d9a",
+    "fcForms": [
+        {
+            "id":  "f8f1a406-4edd-406d-9188-ee771a0a6dc9",
+            "name": "Kontaktformular"
+        },
+        {
+            "id":  "b5dca327-fd71-48a3-b7ac-b4f2980a4e9b",
+            "name": "Stimmungsumfrage"
+        },
+        {
+            "id":  "c88c94d2-7a41-41cb-b87a-c9aacc34d8e7",
+            "name": "Beschwerdeformular"
+        }
+    ],
     "fcUrl": "https://form.formcentric.com/headless-server/",
     "devServerPort":1234
 }

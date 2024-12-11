@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 import fcThemes from '../util/fcThemesList.json';
 import themes from '../util/themesList.json';
 import logo from '../assets/img/favicon.ico';
+import FormDropdown, { Option } from './FormDropdown';
+import { useThemeStore } from '../themeStore';
+import { debounce } from 'lodash';
+import { useCallback, useState } from 'react';
 
 const NavWrapper = styled.div`
   width: 350px;
@@ -166,21 +170,77 @@ const MenuItem = styled.a`
   }
 `;
 
-interface NavigationP {
+const FormChooser = styled.div`
+  padding: 0 1rem;
+`;
+
+const FormDefInput = styled.input`
+  font-family: 'Archivo';
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #dadae5;
+  border-radius: 6px;
+
+  &:focus {
+    border-color: #b5b2cb;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #b5b2cb;
+  }
+`;
+
+interface SidebarP {
   selectedTheme: string;
+  formOptions: Option[];
   handleThemeChange: (themeName: string, custom?: boolean) => void;
+  handleFormChange: (id: string) => void;
 }
 
 const Sidebar = ({
   selectedTheme,
+  formOptions,
   handleThemeChange,
-}: NavigationP) => {
+  handleFormChange,
+}: SidebarP) => {
+  const isCloud = FC_ENV === 'cloud';
+  const formDefinition = useThemeStore((s) => s.formDefinition);
+  const [definition, setDefinition] = useState(formDefinition);
+
+  const debouncedFormChange = useCallback(
+    debounce(handleFormChange, 500),
+    []
+  );
+
+  const handleFormDefinitionChange = (value: string) => {
+    setDefinition(value);
+    debouncedFormChange(value);
+  };
+
   return (
     <NavWrapper>
       <Logo href="https://formcentric.com/" target="_blank">
         <img src={logo} width={22} />
         <p>FORMCENTRIC</p>
       </Logo>
+      <Title>Preview Form</Title>
+      <FormChooser>
+        {isCloud ? (
+          <FormDropdown
+            options={formOptions}
+            handleChange={handleFormChange}
+          />
+        ) : (
+          <FormDefInput
+            value={definition}
+            onChange={(e) =>
+              handleFormDefinitionChange(e.target.value)
+            }
+            placeholder="Enter a form definition"
+          ></FormDefInput>
+        )}
+      </FormChooser>
       {themes.length > 0 && (
         <ThemeDir>
           <Title>Custom Themes</Title>

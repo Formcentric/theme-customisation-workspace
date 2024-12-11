@@ -6,6 +6,7 @@ import { useThemeStore } from './themeStore';
 import Sidebar from './components/Sidebar';
 import fcThemes from './util/fcThemesList.json';
 import themes from './util/themesList.json';
+import cloudConfig from '../config/cloudConfig.json';
 
 const Wrapper = styled.div`
   display: grid;
@@ -17,43 +18,7 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const addFormcentricScript = () => {
-    // Dynamically load the Formcentric script
-    const script = document.createElement('script');
-    script.className = 'script_formcentric';
-    script.src = '/src/assets/formcentric.js'; // Public path for the script
-    script.defer = true;
-    document.body.appendChild(script);
-  };
-
-  useLayoutEffect(() => addFormcentricScript(), []);
-
-  useEffect(() => {
-    const isCustomTheme = themes.includes(selectedTheme);
-    const isFcTheme = fcThemes.includes(selectedTheme);
-
-    if (!isFcTheme && !isCustomTheme) handleThemeChange(themes[0]);
-  }, []);
-
-  const { selectedTheme, themeDir, setSelectedTheme, setThemeDir } =
-    useThemeStore((s) => s);
-
-  const handleThemeChange = (themeName: string, custom?: boolean) => {
-    if (themeName === selectedTheme) return;
-    const themeFolder = custom ? '/dist/themes' : '/src/fc-themes';
-    setSelectedTheme(themeName);
-    setThemeDir(themeFolder);
-    unmountFormappInstances();
-    addFormcentricScript();
-  };
-
   const unmountFormappInstances = () => {
-    // @ts-ignore
-    const instances = window.formcentric?.formapp?.instances;
-    if (instances) {
-      Object.values(instances).forEach((i) => i.stop());
-    }
-
     const scripts = document.querySelectorAll('.script_formcentric');
     scripts.forEach((script) =>
       script?.parentNode?.removeChild(script)
@@ -69,14 +34,71 @@ function App() {
     });
   };
 
+  const addFormcentricScript = () => {
+    // Dynamically load the Formcentric script
+    const script = document.createElement('script');
+    script.className = 'script_formcentric';
+    script.src = '/src/assets/formcentric.js'; // Public path for the script
+    script.defer = true;
+    document.body.appendChild(script);
+  };
+
+  const {
+    selectedTheme,
+    themeDir,
+    setSelectedTheme,
+    setThemeDir,
+    selectedCloudForm,
+    setSelectedCloudForm,
+    setFormDefinition,
+  } = useThemeStore((s) => s);
+
+  useLayoutEffect(() => addFormcentricScript(), []);
+
+  useEffect(() => {
+    const isCustomTheme = themes.includes(selectedTheme);
+    const isFcTheme = fcThemes.includes(selectedTheme);
+
+    if (!isFcTheme && !isCustomTheme) handleThemeChange(themes[0]);
+
+    if (FC_ENV === 'cloud' && !selectedCloudForm)
+      setSelectedCloudForm(cloudConfig.fcForms[0].id);
+  }, []);
+
+  const reloadFormapp = () => {
+    unmountFormappInstances();
+    addFormcentricScript();
+  };
+
+  const handleThemeChange = (themeName: string, custom?: boolean) => {
+    if (themeName === selectedTheme) return;
+    const themeFolder = custom ? '/dist/themes' : '/src/fc-themes';
+    setSelectedTheme(themeName);
+    setThemeDir(themeFolder);
+    reloadFormapp();
+  };
+
+  const handleFormChange = (form: string) => {
+    if (FC_ENV === 'cloud') {
+      setSelectedCloudForm(form);
+    } else {
+      setFormDefinition(form);
+    }
+
+    location.reload();
+  };
+
   return (
     <Wrapper>
       <Sidebar
-        handleThemeChange={handleThemeChange}
         selectedTheme={selectedTheme}
+        handleThemeChange={handleThemeChange}
+        formOptions={cloudConfig.fcForms}
+        handleFormChange={handleFormChange}
       />
       <FormPreview
         selectedTheme={selectedTheme}
+        selectedForm={selectedCloudForm}
         themeFolder={themeDir}
       />
     </Wrapper>

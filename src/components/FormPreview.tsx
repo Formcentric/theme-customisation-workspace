@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import config from '../../config/cloudConfig.json';
 
 interface FormPreviewP {
   selectedTheme: string;
+  selectedForm: string;
   themeFolder: string;
 }
 
@@ -15,13 +15,13 @@ const FormWrapper = styled.div`
 
 export const FormPreview = ({
   selectedTheme,
+  selectedForm,
   themeFolder,
 }: FormPreviewP) => {
-  const { fcEmbedId } = config;
   return (
     <FormWrapper>
       <div
-        data-fc-id={fcEmbedId}
+        data-fc-id={selectedForm}
         data-fc-formapp-url="/src/assets/formapp.js"
         data-fc-theme-dir={themeFolder}
         data-fc-theme={selectedTheme}

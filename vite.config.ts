@@ -78,6 +78,7 @@ export default defineConfig(() => {
       }),
     ],
     define: {
+      FC_ENV: JSON.stringify(fcEnv),
       FC_CLIENT_ATTRIBUTES: JSON.stringify(clientAttributes[fcEnv]),
     },
     server: {

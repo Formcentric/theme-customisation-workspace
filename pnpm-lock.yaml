@@ -67,6 +67,9 @@ devDependencies:
   http-proxy-middleware:
     specifier: ^3.0.3
     version: 3.0.3
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   path:
     specifier: ^0.12.7
     version: 0.12.7
@@ -2217,6 +2220,10 @@ packages:
 
   /lodash.uniq@4.5.0:
     resolution: {integrity: sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==}
+    dev: true
+
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /loose-envify@1.4.0:

@@ -29,6 +29,7 @@
     "glob": "^11.0.0",
     "globals": "^15.11.0",
     "http-proxy-middleware": "^3.0.3",
+    "lodash": "^4.17.21",
     "path": "^0.12.7",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
