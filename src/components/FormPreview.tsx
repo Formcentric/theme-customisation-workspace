@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { animate, useAnimate } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { useAnimate } from 'motion/react';
+import { useEffect } from 'react';
 
 interface FormPreviewP {
   selectedTheme: string;
@@ -35,8 +35,6 @@ export const FormPreview = ({
   selectedForm,
   themeFolder,
 }: FormPreviewP) => {
-  const FormContainerRef = useRef(null);
-  const LoadingIndicatorRef = useRef(null);
   const [form, animateForm] = useAnimate();
   const [loader, animateLoader] = useAnimate();
 
