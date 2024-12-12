@@ -101,7 +101,7 @@ function App() {
       setFormDefinition(form);
     }
 
-    location.reload();
+    setTimeout(() => location.reload(), 400);
   };
 
   return (
