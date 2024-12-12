@@ -33,6 +33,8 @@ function App() {
       );
       if (fcScript) fcScript?.parentNode?.removeChild(fcScript);
 
+      window.formcentric = {};
+
       // Remove stylesheets with the attribute 'formcentric-source'
       const stylesheets = document.querySelectorAll(
         'link[formcentric-source], style[formcentric-source]'
@@ -42,7 +44,7 @@ function App() {
         stylesheet?.parentNode?.removeChild(stylesheet);
       });
     } catch {
-      console.log('error');
+      console.log('formapp could not be unmounted');
     }
   };
 
