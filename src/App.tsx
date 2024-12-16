@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { FormPreview } from './components/FormPreview'
 import './App.css'
 import styled from 'styled-components'
-import { useThemeStore } from './themeStore'
+import { ThemeData, useThemeStore } from './themeStore'
 import Sidebar from './components/Sidebar'
 import fcThemes from './util/fcThemesList.json'
 import themes from './util/themesList.json'
@@ -27,6 +27,41 @@ const Wrapper = styled.div`
 
 function App() {
     const formDefinition = useThemeStore(s => s.formDefinition)
+    const setThemeData = useThemeStore(s => s.setThemeData)
+
+    useEffect(() => {
+        // Fetch definition.json for each theme dynamically
+        const fetchThemes = async () => {
+            const loadedThemes: (ThemeData | null)[] = await Promise.all(
+                fcThemes.map(async themeName => {
+                    try {
+                        // Dynamic import for the definition.json of each theme
+                        const definition = await import(`./fc-themes/${themeName}/definition.json`)
+
+                        // Dynamic import for the preview image
+                        const image = await import(`./fc-themes/${themeName}/img/preview-image.png`)
+
+                        return {
+                            id: definition.theme,
+                            name: definition.labels.en,
+                            description: definition.descriptions.en,
+                            previewImageSrc: image.default,
+                        }
+                    } catch (error) {
+                        console.error(`Error loading definition.json for theme ${themeName}`, error)
+                        return null // Handle missing or broken definitions
+                    }
+                }),
+            )
+
+            // Filter out any null results (failed imports)
+            const filteredThemes = loadedThemes.filter(theme => theme !== null)
+
+            setThemeData(filteredThemes)
+        }
+
+        fetchThemes()
+    }, [])
 
     const unmountFormappInstances = async () => {
         try {

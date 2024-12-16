@@ -1,13 +1,22 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+export interface ThemeData {
+    id: string
+    name: string
+    description: string
+    previewImageSrc: string
+}
+
 interface ThemeStore {
+    themeData: ThemeData[]
     selectedTheme: string
     themeDir: string
     selectedCloudForm: string
     formDefinition: string
-    setSelectedTheme: (selectedTheme: string) => void
+    setThemeData: (themeData: ThemeData[]) => void
     setThemeDir: (themeDir: string) => void
+    setSelectedTheme: (selectedTheme: string) => void
     setSelectedCloudForm: (selectedCloudForm: string) => void
     setFormDefinition: (formDefinition: string) => void
 }
@@ -15,10 +24,12 @@ interface ThemeStore {
 export const useThemeStore = create<ThemeStore>()(
     persist(
         set => ({
-            selectedTheme: 'oslo',
+            themeData: [],
             themeDir: '/src/fc-themes',
+            selectedTheme: '',
             selectedCloudForm: '',
             formDefinition: '',
+            setThemeData: themeData => set({ themeData }),
             setSelectedTheme: selectedTheme => set({ selectedTheme }),
             setThemeDir: themeDir => set({ themeDir }),
             setFormDefinition: formDefinition => set({ formDefinition }),

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
-import themes from '../util/fcThemesList.json'
 import styled from 'styled-components'
+import { useThemeStore } from '../themeStore'
 
 const Themes = styled.div`
     display: grid;
@@ -55,45 +54,18 @@ interface ThemesPreviewP {
 }
 
 export const ThemesPreview = ({ handleThemeChange }: ThemesPreviewP) => {
-    const [themeData, setThemeData] = useState<unknown[]>([])
-
-    useEffect(() => {
-        // Fetch definition.json for each theme dynamically
-        const fetchThemes = async () => {
-            const loadedThemes: unknown[] = await Promise.all(
-                themes.map(async themeName => {
-                    try {
-                        // Dynamic import for the definition.json of each theme
-                        const definition = await import(`../fc-themes/${themeName}/definition.json`)
-
-                        // Dynamic import for the preview image
-                        const image = await import(`../fc-themes/${themeName}/img/preview-image.png`)
-
-                        return { ...definition, id: themeName, previewImageSrc: image.default }
-                    } catch (error) {
-                        console.error(`Error loading definition.json for theme ${themeName}`, error)
-                        return null // Handle missing or broken definitions
-                    }
-                }),
-            )
-
-            // Filter out any null results (failed imports)
-            setThemeData(loadedThemes.filter(theme => theme !== null))
-        }
-
-        fetchThemes()
-    }, [])
+    const themeData = useThemeStore(s => s.themeData)
 
     return (
         <Themes>
             {themeData.map(theme => (
                 <ThemeCard
-                    key={theme.theme}
-                    onClick={() => handleThemeChange(theme.theme, false)}
+                    key={theme.id}
+                    onClick={() => handleThemeChange(theme.id, false)}
                 >
                     <ThemeInfo>
-                        <h2>{theme.labels.en}</h2>
-                        <p>{theme.descriptions.en}</p>
+                        <h2>{theme.name}</h2>
+                        <p>{theme.description}</p>
                     </ThemeInfo>
                     <PreviewImg
                         src={theme.previewImageSrc}

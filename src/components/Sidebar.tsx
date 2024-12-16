@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import fcThemes from '../util/fcThemesList.json'
 import themes from '../util/themesList.json'
 import logo from '../assets/img/favicon.ico'
 import FormDropdown, { Option } from './FormDropdown'
@@ -19,7 +18,7 @@ const NavWrapper = styled.div`
   box-shadow: 0 4px 
   z-index: 2;
   grid-column: 1/2;
- border-right: 1px solid rgba(71, 63, 125, 0.1);
+  border-right: 1px solid rgba(71, 63, 125, 0.1);
 `
 
 const Logo = styled.a`
@@ -203,6 +202,8 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
     const formDefinition = useThemeStore(s => s.formDefinition)
     const [definition, setDefinition] = useState(formDefinition)
 
+    const themeData = useThemeStore(s => s.themeData)
+
     const debouncedFormChange = useCallback(debounce(handleFormChange, 500), [])
 
     const handleFormDefinitionChange = (value: string) => {
@@ -304,13 +305,13 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                 </Title>
                 <Divider />
                 <Themes>
-                    {fcThemes.map(item => (
+                    {themeData.map(item => (
                         <ThemeItem
-                            key={item}
-                            onClick={() => handleThemeChange(item)}
-                            $selected={selectedTheme === item}
+                            key={item.id}
+                            onClick={() => handleThemeChange(item.id)}
+                            $selected={selectedTheme === item.id}
                         >
-                            {item}
+                            {item.name}
                         </ThemeItem>
                     ))}
                 </Themes>
