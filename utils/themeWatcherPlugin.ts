@@ -137,23 +137,6 @@ export default function themeWatcherPlugin(): Plugin {
         ignoreInitial: true,
       });
 
-      const copyFolder = async (
-        changedPath: string,
-        folderName: string
-      ) => {
-        const relativePath = path.relative(themesDir, changedPath);
-        const themeName = relativePath.split('/')[0];
-        const themeDir = path.join(themesDir, themeName); // Theme directory
-        const distThemeDir = path.join(distDir, themeName);
-
-        await fs.remove(path.join(distThemeDir, folderName));
-
-        await fs.copy(
-          path.join(themeDir, folderName),
-          path.join(distThemeDir, folderName)
-        );
-      };
-
       // Watch for changes and trigger actions
       watcher.on('change', async (filePath) => {
         try {
@@ -186,67 +169,8 @@ export default function themeWatcherPlugin(): Plugin {
             // Forces a reload of the page by building the script.js again
             buildJs(filePath);
           }
-
-          // changes fonts folder
-          if (filePath.includes('fonts')) {
-            console.log(`File changed in fonts folder`);
-            console.log('Copying fonts...');
-
-            copyFolder(filePath, 'fonts');
-          }
-
-          // changes img folder
-          if (filePath.includes('img')) {
-            console.log(`File changed in img folder`);
-            console.log('Copying images...');
-
-            copyFolder(filePath, 'img');
-          }
         } catch (err) {
           console.error('Error during build:', err);
-        }
-      });
-
-      watcher.on('add', async (filePath) => {
-        const relativePath = path.relative(themesDir, filePath);
-        const themeName = relativePath.split('/')[0];
-        const distThemeDir = path.join(distDir, themeName); // Theme directory
-
-        // case: a theme has been created while the dev server was running
-        if (!fs.existsSync(distThemeDir)) return;
-
-        // changes fonts folder
-        if (filePath.includes('fonts')) {
-          console.log(`File added in fonts folder`);
-          console.log('Copying fonts...');
-
-          copyFolder(filePath, 'fonts');
-        }
-
-        // changes img folder
-        if (filePath.includes('img')) {
-          console.log(`File added in img folder`);
-          console.log('Copying images...');
-
-          copyFolder(filePath, 'img');
-        }
-      });
-
-      watcher.on('unlink', async (filePath) => {
-        // deleted font
-        if (filePath.includes('fonts')) {
-          console.log(`File deleted from fonts folder`);
-          console.log('Copying fonts...');
-
-          copyFolder(filePath, 'fonts');
-        }
-
-        // deleted image
-        if (filePath.includes('img')) {
-          console.log(`File deleted from img folder`);
-          console.log('Copying images...');
-
-          copyFolder(filePath, 'img');
         }
       });
 
