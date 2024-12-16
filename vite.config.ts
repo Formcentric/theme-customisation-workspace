@@ -7,7 +7,6 @@ import selectiveReloadPlugin from './utils/selectiveReloadPlugin.ts';
 import themeWatcherPlugin from './utils/themeWatcherPlugin.ts';
 import transformToIIFE from './utils/transformToIIFE.ts';
 import buildPlugin from './utils/buildPlugin.ts';
-import localConfig from './config/localConfig.json';
 import cloudConfig from './config/cloudConfig.json';
 
 type FcEnv = 'local' | 'cloud';
