@@ -20,6 +20,9 @@ src/assets/formcentric.js
 # env
 .env
 
+# util
+src/util/*.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
