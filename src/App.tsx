@@ -7,6 +7,14 @@ import Sidebar from './components/Sidebar';
 import fcThemes from './util/fcThemesList.json';
 import themes from './util/themesList.json';
 import cloudConfig from '../config/cloudConfig.json';
+import localConfig from '../config/localConfig.json';
+
+declare global {
+  interface Window {
+    formcentric: Record<string, unknown>;
+  }
+}
+
 
 const Wrapper = styled.div`
   display: grid;
@@ -18,6 +26,9 @@ const Wrapper = styled.div`
 `;
 
 function App() {
+  const formDefinition = useThemeStore((s) => s.formDefinition);
+
+
   const unmountFormappInstances = async () => {
     try {
       const scripts = document.querySelectorAll(
@@ -104,6 +115,27 @@ function App() {
     setTimeout(() => location.reload(), 400);
   };
 
+  const localFormDefinition = formDefinition
+  ? formDefinition
+  : localConfig.fcFormDefinition;
+
+const commonProps = {
+  'data-fc-formapp-url': '/src/assets/formapp.js',
+  'data-fc-theme-dir': themeDir,
+  'data-fc-theme': selectedTheme,
+};
+
+const environmentProps = {
+  cloud: {
+    'data-fc-id': selectedCloudForm,
+  },
+  local: {
+    'data-fc-id': 'FKDJDFSKJDFIOFDOI',
+    'data-fc-data-url': localConfig.fcDataUrl,
+    'data-fc-form-definition': localFormDefinition,
+  }
+}
+
   return (
     <Wrapper>
       <Sidebar
@@ -115,7 +147,7 @@ function App() {
       <FormPreview
         selectedTheme={selectedTheme}
         selectedForm={selectedCloudForm}
-        themeFolder={themeDir}
+        clientAttributes={{...commonProps, ...environmentProps[FC_ENV]}}
       />
     </Wrapper>
   );

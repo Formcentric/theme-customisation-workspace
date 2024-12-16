@@ -20,14 +20,6 @@ export default defineConfig(() => {
     ignore: ['.*'],
   });
 
-  const clientAttributes: Record<FcEnv, unknown> = {
-    cloud: {},
-    local: {
-      'data-fc-data-url': localConfig.fcDataUrl,
-      'data-fc-form-definition': localConfig.fcFormDefinition,
-    },
-  };
-
   return {
     build: {
       outDir: path.resolve('./dist/themes'),
@@ -79,7 +71,6 @@ export default defineConfig(() => {
     ],
     define: {
       FC_ENV: JSON.stringify(fcEnv),
-      FC_CLIENT_ATTRIBUTES: JSON.stringify(clientAttributes[fcEnv]),
     },
     server: {
       port: 3000,

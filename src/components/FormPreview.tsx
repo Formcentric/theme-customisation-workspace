@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { useAnimate } from 'motion/react';
 import { useEffect } from 'react';
-import { useThemeStore } from '../themeStore';
 
 interface FormPreviewP {
   selectedTheme: string;
   selectedForm: string;
-  themeFolder: string;
+  clientAttributes: Record<string, string>;
 }
 
 const FormWrapper = styled.div`
@@ -36,11 +35,10 @@ const Form = styled.div`
 export const FormPreview = ({
   selectedTheme,
   selectedForm,
-  themeFolder,
+  clientAttributes,
 }: FormPreviewP) => {
   const [form, animateForm] = useAnimate();
   const [loader, animateLoader] = useAnimate();
-  const formDefinition = useThemeStore((s) => s.formDefinition);
 
   const handleAnimations = () => {
     animateLoader(
@@ -66,33 +64,7 @@ export const FormPreview = ({
   useEffect(() => {
     handleAnimations();
   }, [selectedForm, selectedTheme]);
-
-  const localFormDefinition = formDefinition
-    ? formDefinition
-    : FC_CLIENT_ATTRIBUTES.fcFormDefinition;
-
-  const commonDivProps = {
-    ref: form,
-    'data-fc-formapp-url': '/src/assets/formapp.js',
-    'data-fc-theme-dir': themeFolder,
-    'data-fc-theme': selectedTheme,
-    style: {
-      boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
-      borderRadius: 6,
-      overflow: 'hidden',
-      background: '#fff',
-    },
-  };
-
-  const cloudProps = {
-    'data-fc-id': selectedForm,
-  };
-
-  const localProps = {
-    'data-fc-id': 'embedId',
-    'data-fc-data-url': FC_CLIENT_ATTRIBUTES.fcDataUrl,
-    'data-fc-form-definition': localFormDefinition,
-  };
+  
 
   return (
     <FormWrapper>
@@ -113,10 +85,7 @@ export const FormPreview = ({
         </svg>
       </LoadingWrapper>
       <Form>
-        <div
-          {...commonDivProps}
-          {...(FC_ENV === 'cloud' ? cloudProps : localProps)}
-        />
+        <div ref={form} style={{boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)', borderRadius: 6, overflow: 'hidden', background: '#fff'}} {...clientAttributes} />
       </Form>
     </FormWrapper>
   );
