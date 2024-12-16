@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
-import fcThemes from '../util/fcThemesList.json';
-import themes from '../util/themesList.json';
-import logo from '../assets/img/favicon.ico';
-import FormDropdown, { Option } from './FormDropdown';
-import { useThemeStore } from '../themeStore';
-import { debounce } from 'lodash';
-import { useCallback, useState } from 'react';
+import styled, { css } from 'styled-components'
+import fcThemes from '../util/fcThemesList.json'
+import themes from '../util/themesList.json'
+import logo from '../assets/img/favicon.ico'
+import FormDropdown, { Option } from './FormDropdown'
+import { useThemeStore } from '../themeStore'
+import { debounce } from 'lodash'
+import { useCallback, useState } from 'react'
 
 const NavWrapper = styled.div`
   width: 350px;
@@ -20,281 +20,276 @@ const NavWrapper = styled.div`
   z-index: 2;
   grid-column: 1/2;
  border-right: 1px solid rgba(71, 63, 125, 0.1);
-`;
+`
 
 const Logo = styled.a`
-  padding: 2rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  text-decoration: none;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
 
-  > p {
-    color: #473f7d;
-    font-family: ArchivoExpanded;
-    font-weigth: 500;
-    font-size: 20px;
-  }
-`;
+    > p {
+        color: #473f7d;
+        font-family: ArchivoExpanded;
+        font-weigth: 500;
+        font-size: 20px;
+    }
+`
 
 const Title = styled.p`
-  color: #473f7d;
-  font-family: ArchivoExpanded;
-  margin: 2rem 2rem 1.4rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+    color: #473f7d;
+    font-family: ArchivoExpanded;
+    margin: 2rem 2rem 1.4rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
 
 const ThemeDir = styled.div`
-  padding: 0 0 0 0;
-`;
+    padding: 0 0 0 0;
+`
 
 const Themes = styled.div`
-  max-height: 30vh;
-  overflow-y: auto;
+    max-height: 30vh;
+    overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 1.5em !important;
-    height: 1.5em !important;
-  }
+    &::-webkit-scrollbar {
+        width: 1.5em !important;
+        height: 1.5em !important;
+    }
 
-  &::-webkit-scrollbar-track {
-    background-color: transparent !important;
-  }
+    &::-webkit-scrollbar-track {
+        background-color: transparent !important;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    height: 1em !important;
-    border: 0.5em solid rgba(0, 0, 0, 0) !important;
-    background-clip: padding-box !important;
-    -webkit-border-radius: 1em !important;
-    background-color: rgba(181, 178, 203, 0.7) !important;
-    -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025) !important;
-  }
-  &::-webkit-scrollbar-button {
-    width: 0 !important;
-    height: 0 !important;
-    display: none !important;
-  }
-  &::-webkit-scrollbar-corner {
-    background-color: transparent !important;
-  }
-`;
+    &::-webkit-scrollbar-thumb {
+        height: 1em !important;
+        border: 0.5em solid rgba(0, 0, 0, 0) !important;
+        background-clip: padding-box !important;
+        -webkit-border-radius: 1em !important;
+        background-color: rgba(181, 178, 203, 0.7) !important;
+        -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025) !important;
+    }
+    &::-webkit-scrollbar-button {
+        width: 0 !important;
+        height: 0 !important;
+        display: none !important;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: transparent !important;
+    }
+`
 
 const ThemeItem = styled.div<{ $selected?: boolean }>`
-  color: #473f7d;
-  font-family: Archivo;
-  font-size: 18px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  color: ${(props) => (props.$selected ? '#0a0052' : 'inherit')};
-  font-weight: ${(props) => (props.$selected ? '500' : '400')};
-  transition: 300ms ease;
-  margin: 0.2rem 0;
-  padding: 0.8rem 1rem;
-  position: relative;
-  user-select: none;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    height: 40px;
-    width: 6px;
-    background: ${(props) =>
-      props.$selected ? '#B5B2CB' : 'transparent'};
-    border-radius: 0px 90px 90px 0px;
+    color: #473f7d;
+    font-family: Archivo;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    color: ${props => (props.$selected ? '#0a0052' : 'inherit')};
+    font-weight: ${props => (props.$selected ? '500' : '400')};
     transition: 300ms ease;
-  }
+    margin: 0.2rem 0;
+    padding: 0.8rem 1rem;
+    position: relative;
+    user-select: none;
 
-  &:hover {
-    font-weight: 500;
-    color: #0a0052;
-  }
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        height: 40px;
+        width: 6px;
+        background: ${props => (props.$selected ? '#B5B2CB' : 'transparent')};
+        border-radius: 0px 90px 90px 0px;
+        transition: 300ms ease;
+    }
 
-  ${(props) =>
-    props.$selected &&
-    css`
-      font-weight: 500;
-      color: #0a0052;
-    `}
-`;
+    &:hover {
+        font-weight: 500;
+        color: #0a0052;
+    }
+
+    ${props =>
+        props.$selected &&
+        css`
+            font-weight: 500;
+            color: #0a0052;
+        `}
+`
 
 const Divider = styled.div`
-  border-bottom: 1px solid rgba(71, 63, 125, 0.2);
-  margin: 0 1rem;
-`;
+    border-bottom: 1px solid rgba(71, 63, 125, 0.2);
+    margin: 0 1rem;
+`
 
 const Menu = styled.div`
-  margin-top: auto;
-  margin-bottom: 2rem;
+    margin-top: auto;
+    margin-bottom: 2rem;
 
-  a:visited {
-    color: inherit;
-  }
+    a:visited {
+        color: inherit;
+    }
 
-  > div {
-  }
-`;
+    > div {
+    }
+`
 
 const MenuItem = styled.a`
-  padding: 1rem;
-  font-size: 14px;
-  display: block;
-  font-family: ArchivoExpanded;
-  cursor: pointer;
-  transition: 200ms ease;
+    padding: 1rem;
+    font-size: 14px;
+    display: block;
+    font-family: ArchivoExpanded;
+    cursor: pointer;
+    transition: 200ms ease;
 
-  > span {
-    padding-bottom: 0.2rem;
-    position: relative;
+    > span {
+        padding-bottom: 0.2rem;
+        position: relative;
 
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      top: 100%;
-      left: 0;
-      border-bottom: solid 2px transparent;
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            left: 0;
+            border-bottom: solid 2px transparent;
+        }
+
+        &:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            left: 0;
+            border-bottom: solid 2px #ffffff;
+        }
     }
-
-    &:hover::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      top: 100%;
-      left: 0;
-      border-bottom: solid 2px #ffffff;
-    }
-  }
-`;
+`
 
 const FormChooser = styled.div`
-  padding: 0 1rem;
-`;
+    padding: 0 1rem;
+`
 
 const FormDefInput = styled.textarea`
-  font-family: 'Archivo';
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #dadae5;
-  border-radius: 6px;
+    font-family: 'Archivo';
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #dadae5;
+    border-radius: 6px;
 
-  &:focus {
-    border-color: #b5b2cb;
-    outline: none;
-  }
+    &:focus {
+        border-color: #b5b2cb;
+        outline: none;
+    }
 
-  &::placeholder {
-    color: #b5b2cb;
-  }
-`;
+    &::placeholder {
+        color: #b5b2cb;
+    }
+`
 
 interface SidebarP {
-  selectedTheme: string;
-  formOptions: Option[];
-  handleThemeChange: (themeName: string, custom?: boolean) => void;
-  handleFormChange: (id: string) => void;
+    selectedTheme: string
+    formOptions: Option[]
+    handleThemeChange: (themeName: string, custom?: boolean) => void
+    handleFormChange: (id: string) => void
 }
 
-const Sidebar = ({
-  selectedTheme,
-  formOptions,
-  handleThemeChange,
-  handleFormChange,
-}: SidebarP) => {
-  const isCloud = FC_ENV === 'cloud';
-  const formDefinition = useThemeStore((s) => s.formDefinition);
-  const [definition, setDefinition] = useState(formDefinition);
+const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChange }: SidebarP) => {
+    const isCloud = FC_ENV === 'cloud'
+    const formDefinition = useThemeStore(s => s.formDefinition)
+    const [definition, setDefinition] = useState(formDefinition)
 
-  const debouncedFormChange = useCallback(
-    debounce(handleFormChange, 500),
-    []
-  );
+    const debouncedFormChange = useCallback(debounce(handleFormChange, 500), [])
 
-  const handleFormDefinitionChange = (value: string) => {
-    setDefinition(value);
-    debouncedFormChange(value);
-  };
+    const handleFormDefinitionChange = (value: string) => {
+        setDefinition(value)
+        debouncedFormChange(value)
+    }
 
-  return (
-    <NavWrapper>
-      <Logo href="https://formcentric.com/" target="_blank">
-        <img src={logo} width={22} />
-        <p>FORMCENTRIC</p>
-      </Logo>
-      <Title>Preview Form</Title>
-      <FormChooser>
-        {isCloud ? (
-          <FormDropdown
-            options={formOptions}
-            handleChange={handleFormChange}
-          />
-        ) : (
-          <FormDefInput
-            value={definition}
-            rows={6}
-            onChange={(e) =>
-              handleFormDefinitionChange(e.target.value)
-            }
-            placeholder="Enter a form definition"
-          ></FormDefInput>
-        )}
-      </FormChooser>
-      {themes.length > 0 && (
-        <ThemeDir>
-          <Title>Custom Themes</Title>
-          <Divider />
-          <Themes>
-            {themes.map((item) => (
-              <ThemeItem
-                key={item}
-                onClick={() => handleThemeChange(item, true)}
-                $selected={selectedTheme === item}
-              >
-                {item}
-              </ThemeItem>
-            ))}
-          </Themes>
-        </ThemeDir>
-      )}
-      <ThemeDir>
-        <Title>Official Themes</Title>
-        <Divider />
-        <Themes>
-          {fcThemes.map((item) => (
-            <ThemeItem
-              key={item}
-              onClick={() => handleThemeChange(item)}
-              $selected={selectedTheme === item}
+    return (
+        <NavWrapper>
+            <Logo
+                href='https://formcentric.com/'
+                target='_blank'
             >
-              {item}
-            </ThemeItem>
-          ))}
-        </Themes>
-        <Divider />
-      </ThemeDir>
+                <img
+                    src={logo}
+                    width={22}
+                />
+                <p>FORMCENTRIC</p>
+            </Logo>
+            <Title>Preview Form</Title>
+            <FormChooser>
+                {isCloud ? (
+                    <FormDropdown
+                        options={formOptions}
+                        handleChange={handleFormChange}
+                    />
+                ) : (
+                    <FormDefInput
+                        value={definition}
+                        rows={6}
+                        onChange={e => handleFormDefinitionChange(e.target.value)}
+                        placeholder='Enter a form definition'
+                    ></FormDefInput>
+                )}
+            </FormChooser>
+            {themes.length > 0 && (
+                <ThemeDir>
+                    <Title>Custom Themes</Title>
+                    <Divider />
+                    <Themes>
+                        {themes.map(item => (
+                            <ThemeItem
+                                key={item}
+                                onClick={() => handleThemeChange(item, true)}
+                                $selected={selectedTheme === item}
+                            >
+                                {item}
+                            </ThemeItem>
+                        ))}
+                    </Themes>
+                </ThemeDir>
+            )}
+            <ThemeDir>
+                <Title>Official Themes</Title>
+                <Divider />
+                <Themes>
+                    {fcThemes.map(item => (
+                        <ThemeItem
+                            key={item}
+                            onClick={() => handleThemeChange(item)}
+                            $selected={selectedTheme === item}
+                        >
+                            {item}
+                        </ThemeItem>
+                    ))}
+                </Themes>
+                <Divider />
+            </ThemeDir>
 
-      <Menu>
-        <Title>Ressources</Title>
-        <Divider />
-        <MenuItem
-          href="https://help.formcentric.com/de/cloud/erste-schritte/"
-          target="_blank"
-        >
-          <span>Formapp Docs</span>
-        </MenuItem>
-        <MenuItem
-          href="https://help.formcentric.com/de/cloud/erste-schritte/"
-          target="_blank"
-        >
-          <span>Cloud Docs</span>
-        </MenuItem>
-      </Menu>
-    </NavWrapper>
-  );
-};
+            <Menu>
+                <Title>Ressources</Title>
+                <Divider />
+                <MenuItem
+                    href='https://help.formcentric.com/de/cloud/erste-schritte/'
+                    target='_blank'
+                >
+                    <span>Formapp Docs</span>
+                </MenuItem>
+                <MenuItem
+                    href='https://help.formcentric.com/de/cloud/erste-schritte/'
+                    target='_blank'
+                >
+                    <span>Cloud Docs</span>
+                </MenuItem>
+            </Menu>
+        </NavWrapper>
+    )
+}
 
-export default Sidebar;
+export default Sidebar

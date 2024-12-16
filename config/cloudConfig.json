@@ -1,15 +1,15 @@
 {
     "fcForms": [
         {
-            "id":  "1e389228-274a-4113-bd4b-61fcfbca3421",
+            "id": "1e389228-274a-4113-bd4b-61fcfbca3421",
             "name": "Contact form"
         },
         {
-            "id":  "2d2f6e6f-0513-410f-9909-aaf377b0b0f7",
+            "id": "2d2f6e6f-0513-410f-9909-aaf377b0b0f7",
             "name": "Event-Registration"
         },
         {
-            "id":  "af708800-f893-42d0-8b16-ee490b3eda3b",
+            "id": "af708800-f893-42d0-8b16-ee490b3eda3b",
             "name": "Application"
         }
     ],
