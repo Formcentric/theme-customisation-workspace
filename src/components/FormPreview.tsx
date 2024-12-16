@@ -107,6 +107,7 @@ export const FormPreview = ({
         ) : (
           <div
             ref={form}
+            data-fc-id={selectedForm}
             data-fc-formapp-url="/src/assets/formapp.js"
             data-fc-theme-dir={themeFolder}
             data-fc-theme={selectedTheme}
