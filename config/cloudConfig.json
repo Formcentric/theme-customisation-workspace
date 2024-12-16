@@ -1,16 +1,16 @@
 {
     "fcForms": [
         {
-            "id":  "f8f1a406-4edd-406d-9188-ee771a0a6dc9",
-            "name": "Kontaktformular"
+            "id":  "1e389228-274a-4113-bd4b-61fcfbca3421",
+            "name": "Contact form"
         },
         {
-            "id":  "b5dca327-fd71-48a3-b7ac-b4f2980a4e9b",
-            "name": "Stimmungsumfrage"
+            "id":  "2d2f6e6f-0513-410f-9909-aaf377b0b0f7",
+            "name": "Event-Registration"
         },
         {
-            "id":  "c88c94d2-7a41-41cb-b87a-c9aacc34d8e7",
-            "name": "Beschwerdeformular"
+            "id":  "af708800-f893-42d0-8b16-ee490b3eda3b",
+            "name": "Application"
         }
     ],
     "fcUrl": "https://form.formcentric.com/headless-server/",
