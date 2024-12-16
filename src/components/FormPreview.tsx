@@ -71,6 +71,29 @@ export const FormPreview = ({
     ? formDefinition
     : FC_CLIENT_ATTRIBUTES.fcFormDefinition;
 
+  const commonDivProps = {
+    ref: form,
+    'data-fc-formapp-url': '/src/assets/formapp.js',
+    'data-fc-theme-dir': themeFolder,
+    'data-fc-theme': selectedTheme,
+    style: {
+      boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
+      borderRadius: 6,
+      overflow: 'hidden',
+      background: '#fff',
+    },
+  };
+
+  const cloudProps = {
+    'data-fc-id': selectedForm,
+  };
+
+  const localProps = {
+    'data-fc-id': 'embedId',
+    'data-fc-data-url': FC_CLIENT_ATTRIBUTES.fcDataUrl,
+    'data-fc-form-definition': localFormDefinition,
+  };
+
   return (
     <FormWrapper>
       <LoadingWrapper>
@@ -90,37 +113,10 @@ export const FormPreview = ({
         </svg>
       </LoadingWrapper>
       <Form>
-        {FC_ENV === 'cloud' ? (
-          <div
-            ref={form}
-            data-fc-id={selectedForm}
-            data-fc-formapp-url="/src/assets/formapp.js"
-            data-fc-theme-dir={themeFolder}
-            data-fc-theme={selectedTheme}
-            style={{
-              boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
-              borderRadius: 6,
-              overflow: 'hidden',
-              background: '#fff',
-            }}
-          ></div>
-        ) : (
-          <div
-            ref={form}
-            data-fc-id={selectedForm}
-            data-fc-formapp-url="/src/assets/formapp.js"
-            data-fc-theme-dir={themeFolder}
-            data-fc-theme={selectedTheme}
-            data-fc-data-url={FC_CLIENT_ATTRIBUTES.fcDataUrl}
-            data-fc-form-definition={localFormDefinition}
-            style={{
-              boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
-              borderRadius: 6,
-              overflow: 'hidden',
-              background: '#fff',
-            }}
-          ></div>
-        )}
+        <div
+          {...commonDivProps}
+          {...(FC_ENV === 'cloud' ? cloudProps : localProps)}
+        />
       </Form>
     </FormWrapper>
   );
