@@ -8,6 +8,7 @@ import fcThemes from './util/fcThemesList.json'
 import themes from './util/themesList.json'
 import cloudConfig from '../config/cloudConfig.json'
 import localConfig from '../config/localConfig.json'
+import { ThemesPreview } from './components/ThemesPreview'
 
 declare global {
     interface Window {
@@ -76,7 +77,7 @@ function App() {
         const isCustomTheme = themes.includes(selectedTheme)
         const isFcTheme = fcThemes.includes(selectedTheme)
 
-        if (!isFcTheme && !isCustomTheme) handleThemeChange(themes[0])
+        if (!isFcTheme && !isCustomTheme && selectedTheme) handleThemeChange(themes[0])
 
         if (FC_ENV === 'cloud' && !selectedCloudForm) setSelectedCloudForm(cloudConfig.fcForms[0].id)
     }, [])
@@ -131,11 +132,15 @@ function App() {
                 formOptions={cloudConfig.fcForms}
                 handleFormChange={handleFormChange}
             />
-            <FormPreview
-                selectedTheme={selectedTheme}
-                selectedForm={selectedCloudForm}
-                clientAttributes={{ ...commonProps, ...environmentProps[FC_ENV] }}
-            />
+            {selectedTheme ? (
+                <FormPreview
+                    selectedTheme={selectedTheme}
+                    selectedForm={selectedCloudForm}
+                    clientAttributes={{ ...commonProps, ...environmentProps[FC_ENV] }}
+                />
+            ) : (
+                <ThemesPreview handleThemeChange={handleThemeChange} />
+            )}
         </Wrapper>
     )
 }
