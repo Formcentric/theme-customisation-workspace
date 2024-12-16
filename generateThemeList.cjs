@@ -29,10 +29,6 @@ const generateThemesList = (dirPath, outputFile) => {
     outputFile,
     JSON.stringify(filteredFolders, null, 2)
   );
-  console.log(
-    `Themes list generated for ${dirPath}:`,
-    filteredFolders
-  );
 };
 
 // Generate JSON files for both directories
