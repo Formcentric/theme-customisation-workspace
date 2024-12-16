@@ -49,11 +49,13 @@ Run this command to create a custom theme. The first argument specifies the name
 The script will copy an existing fc-theme into your ```src/themes``` folder. It will show up in the sidebar under custom themes.
 
 ```
-    pnpm fc-create-theme [fc-theme-name] [custom-theme-name]
+    pnpm create-theme [official-theme-name] [custom-theme-name]
 ```
 
 ## Customization
-- Tweak the theme by changing css variables in ```src/themes/[themeName]/_variables.json``` 
+You have full control over your own custom themes created with the fc-create-theme command. There are three main ways to customize a theme:
+
+- Make changes to css variables in ```src/themes/[themeName]/_variables.json``` 
 
 - To edit the css you can change the scss partials located in ```src/themes/[themeName]/partials``` 
 
