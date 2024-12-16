@@ -82,7 +82,7 @@ export default defineConfig(() => {
       FC_CLIENT_ATTRIBUTES: JSON.stringify(clientAttributes[fcEnv]),
     },
     server: {
-      port: 1234,
+      port: 3000,
       ...(fcEnv === 'cloud' && {
         proxy: {
           '/headless-server': {

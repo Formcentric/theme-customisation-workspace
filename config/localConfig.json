@@ -1,5 +1,4 @@
 {
     "fcDataUrl": "http://localhost:8080",
-    "fcFormDefinition": "",
-    "devServerPort":1234
+    "fcFormDefinition": ""
 }

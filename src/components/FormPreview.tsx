@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useAnimate } from 'motion/react';
 import { useEffect } from 'react';
+import { useThemeStore } from '../themeStore';
 
 interface FormPreviewP {
   selectedTheme: string;
@@ -39,6 +40,7 @@ export const FormPreview = ({
 }: FormPreviewP) => {
   const [form, animateForm] = useAnimate();
   const [loader, animateLoader] = useAnimate();
+  const formDefinition = useThemeStore((s) => s.formDefinition);
 
   const handleAnimations = () => {
     animateLoader(
@@ -65,6 +67,10 @@ export const FormPreview = ({
     handleAnimations();
   }, [selectedForm, selectedTheme]);
 
+  const localFormDefinition = formDefinition
+    ? formDefinition
+    : FC_CLIENT_ATTRIBUTES.fcFormDefinition;
+
   return (
     <FormWrapper>
       <LoadingWrapper>
@@ -84,21 +90,36 @@ export const FormPreview = ({
         </svg>
       </LoadingWrapper>
       <Form>
-        <div
-          ref={form}
-          data-fc-id={selectedForm}
-          data-fc-formapp-url="/src/assets/formapp.js"
-          data-fc-theme-dir={themeFolder}
-          data-fc-theme={selectedTheme}
-          {...FC_CLIENT_ATTRIBUTES}
-          style={{
-            boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
-            borderRadius: 6,
-            overflow: 'hidden',
-
-            background: '#fff',
-          }}
-        ></div>
+        {FC_ENV === 'cloud' ? (
+          <div
+            ref={form}
+            data-fc-id={selectedForm}
+            data-fc-formapp-url="/src/assets/formapp.js"
+            data-fc-theme-dir={themeFolder}
+            data-fc-theme={selectedTheme}
+            style={{
+              boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
+              borderRadius: 6,
+              overflow: 'hidden',
+              background: '#fff',
+            }}
+          ></div>
+        ) : (
+          <div
+            ref={form}
+            data-fc-formapp-url="/src/assets/formapp.js"
+            data-fc-theme-dir={themeFolder}
+            data-fc-theme={selectedTheme}
+            data-fc-data-url={FC_CLIENT_ATTRIBUTES.fcDataUrl}
+            data-fc-form-definition={localFormDefinition}
+            style={{
+              boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
+              borderRadius: 6,
+              overflow: 'hidden',
+              background: '#fff',
+            }}
+          ></div>
+        )}
       </Form>
     </FormWrapper>
   );

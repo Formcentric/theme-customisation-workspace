@@ -13,6 +13,5 @@
             "name": "Application"
         }
     ],
-    "fcUrl": "https://form.formcentric.com/headless-server/",
-    "devServerPort":1234
+    "fcUrl": "https://form.formcentric.com/headless-server/"
 }
