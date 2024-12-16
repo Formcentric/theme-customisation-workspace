@@ -15,7 +15,7 @@ interface ThemeStore {
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set) => ({
-      selectedTheme: 'san-diego',
+      selectedTheme: 'oslo',
       themeDir: '/src/fc-themes',
       selectedCloudForm: '',
       formDefinition: '',

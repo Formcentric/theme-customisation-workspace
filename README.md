@@ -53,6 +53,8 @@ The script will copy an existing fc-theme into your ```src/themes``` folder. It 
 ```
 
 ## Customization
-- Tweak the theme by changing properties in _variables.json 
+- Tweak the theme by changing css variables in ```src/themes/[themeName]/_variables.json``` 
+
 - To edit the css you can change the scss partials located in ```src/themes/[themeName]/partials``` 
+
 - To edit the html markup you can change the js template files located in ```src/themes/[themeName]/templates```
