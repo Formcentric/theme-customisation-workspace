@@ -175,7 +175,7 @@ const FormChooser = styled.div`
   padding: 0 1rem;
 `;
 
-const FormDefInput = styled.input`
+const FormDefInput = styled.textarea`
   font-family: 'Archivo';
   width: 100%;
   padding: 1rem;
@@ -235,6 +235,7 @@ const Sidebar = ({
         ) : (
           <FormDefInput
             value={definition}
+            rows={6}
             onChange={(e) =>
               handleFormDefinitionChange(e.target.value)
             }
