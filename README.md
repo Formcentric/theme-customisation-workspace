@@ -59,7 +59,7 @@ You have full control over custom themes created with the fc-create-theme comman
 There are three main ways to customize a theme:
 
 ### CSS Variables
-One of the best ways to start customizing is to tweak the css variables located in ```_variables.json```. 
+One of the best ways to start customizing is to tweak the css variables located in ```_variables.json```. If you want to create new variables to use in your scss you have to also add them in ```./variables/_fc-variables.scss```.
 
 **NOTE:** <br>
 To view the changes on the develpment server it is sufficient to make changes to the file mentioned above. If your target environment is CoreMedia it is necessary to adjust the variables in ```_variables.scss``` as well.
