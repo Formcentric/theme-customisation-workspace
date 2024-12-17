@@ -61,7 +61,7 @@ There are three main ways to customize a theme:
 One of the best ways to start customizing is to tweak the css variables located in ```_variables.json```. 
 
 **NOTE:** <br>
-To view the changes on the develpment server it is sufficient to make changes to the file mentioned above. Depending on your target environment it might be necessary to adjust the variables in ```_fc-variables.scss``` as well as ```_variables.scss``` also. 
+To view the changes on the develpment server it is sufficient to make changes to the file mentioned above. If your target environment is CoreMedia it is necessary to adjust the variables in ```_variables.scss``` as well.
 
 ### SCSS Partials
 When you need to make more specific style changes you have to adjust the scss files located in ```/partials```. Change existing partial files or add your own. When you decide to add a partial you have to import it in the ```styles.scss``` (root folder).

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import themes from '../util/themesList.json'
 import logo from '../assets/img/favicon.ico'
 import FormDropdown, { Option } from './FormDropdown'
@@ -108,16 +108,8 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
     }
 
     &:hover {
-        font-weight: 500;
         color: #0a0052;
     }
-
-    ${props =>
-        props.$selected &&
-        css`
-            font-weight: 500;
-            color: #0a0052;
-        `}
 `
 
 const Divider = styled.div`
@@ -144,6 +136,7 @@ const MenuItem = styled.a`
     font-family: ArchivoExpanded;
     cursor: pointer;
     transition: 200ms ease;
+    text-decoration: none;
 
     > span {
         padding-bottom: 0.2rem;
@@ -156,6 +149,7 @@ const MenuItem = styled.a`
             top: 100%;
             left: 0;
             border-bottom: solid 2px transparent;
+            transition: 200ms ease;
         }
 
         &:hover::after {
@@ -164,7 +158,7 @@ const MenuItem = styled.a`
             width: 100%;
             top: 100%;
             left: 0;
-            border-bottom: solid 2px #ffffff;
+            border-bottom: solid 2px #0a0052;
         }
     }
 `
