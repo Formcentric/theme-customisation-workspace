@@ -14,7 +14,7 @@ const ThemeCard = styled.div`
     box-shadow: 0 4px 20px rgba(10, 0, 82, 0.1);
     background: #f7f8fd;
     border-radius: 9px;
-    padding: 1rem;
+    padding: 1.4rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
