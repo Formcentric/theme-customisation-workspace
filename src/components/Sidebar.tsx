@@ -6,19 +6,17 @@ import { useThemeStore } from '../themeStore'
 import { debounce } from 'lodash'
 import { useCallback, useState } from 'react'
 
-const NavWrapper = styled.div`
-  width: 350px;
-  background: #f0f2fc;
-  height: 100vh;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  color: #473F7D;
-  box-shadow: 0 4px 
-  z-index: 2;
-  grid-column: 1/2;
-  border-right: 1px solid rgba(71, 63, 125, 0.1);
+const Wrapper = styled.div`
+    width: 350px;
+    background: #f0f2fc;
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    color: #473f7d;
+    grid-column: 1/2;
+    border-right: 1px solid rgba(71, 63, 125, 0.1);
 `
 
 const Logo = styled.a`
@@ -39,7 +37,7 @@ const Logo = styled.a`
 const Title = styled.p`
     color: #473f7d;
     font-family: ArchivoExpanded;
-    margin: 2rem 2rem 1.4rem 1rem;
+    margin: 2rem 1rem 1.4rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,7 +48,6 @@ const ThemeDir = styled.div`
 `
 
 const Themes = styled.div`
-    max-height: 30vh;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -64,10 +61,10 @@ const Themes = styled.div`
 
     &::-webkit-scrollbar-thumb {
         height: 1em !important;
-        border: 0.5em solid rgba(0, 0, 0, 0) !important;
+        border: 0.55em solid rgba(0, 0, 0, 0) !important;
         background-clip: padding-box !important;
         -webkit-border-radius: 1em !important;
-        background-color: rgba(181, 178, 203, 0.7) !important;
+        background-color: rgba(71, 63, 125, 0.2) !important;
         -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.025) !important;
     }
     &::-webkit-scrollbar-button {
@@ -206,7 +203,7 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
     }
 
     return (
-        <NavWrapper>
+        <Wrapper>
             <Logo
                 href='https://formcentric.com/'
                 target='_blank'
@@ -217,39 +214,44 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                 />
                 <p>FORMCENTRIC</p>
             </Logo>
-            <Title>Preview Form</Title>
-            <FormChooser>
-                {isCloud ? (
-                    <FormDropdown
-                        options={formOptions}
-                        handleChange={handleFormChange}
-                    />
-                ) : (
-                    <FormDefInput
-                        value={definition}
-                        rows={6}
-                        onChange={e => handleFormDefinitionChange(e.target.value)}
-                        placeholder='Enter a form definition'
-                    ></FormDefInput>
+            <div>
+                <Title>Preview Form</Title>
+                <FormChooser>
+                    {isCloud ? (
+                        <FormDropdown
+                            options={formOptions}
+                            handleChange={handleFormChange}
+                        />
+                    ) : (
+                        <FormDefInput
+                            value={definition}
+                            rows={6}
+                            onChange={e => handleFormDefinitionChange(e.target.value)}
+                            placeholder='Enter a form definition'
+                        ></FormDefInput>
+                    )}
+                </FormChooser>
+            </div>
+            <ThemeDir>
+                {themes.length > 0 && (
+                    <>
+                        <Title>Custom Themes</Title>
+                        <Divider />
+                    </>
                 )}
-            </FormChooser>
-            {themes.length > 0 && (
-                <ThemeDir>
-                    <Title>Custom Themes</Title>
-                    <Divider />
-                    <Themes>
-                        {themes.map(item => (
-                            <ThemeItem
-                                key={item}
-                                onClick={() => handleThemeChange(item, true)}
-                                $selected={selectedTheme === item}
-                            >
-                                {item}
-                            </ThemeItem>
-                        ))}
-                    </Themes>
-                </ThemeDir>
-            )}
+            </ThemeDir>
+            <Themes style={{ maxHeight: '30vh' }}>
+                {themes.length > 0 &&
+                    themes.map(item => (
+                        <ThemeItem
+                            key={item}
+                            onClick={() => handleThemeChange(item, true)}
+                            $selected={selectedTheme === item}
+                        >
+                            {item}
+                        </ThemeItem>
+                    ))}
+            </Themes>
             <ThemeDir>
                 <Title>
                     Official Themes
@@ -298,19 +300,20 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                     </svg>
                 </Title>
                 <Divider />
-                <Themes>
-                    {themeData.map(item => (
-                        <ThemeItem
-                            key={item.id}
-                            onClick={() => handleThemeChange(item.id)}
-                            $selected={selectedTheme === item.id}
-                        >
-                            {item.name}
-                        </ThemeItem>
-                    ))}
-                </Themes>
-                <Divider />
             </ThemeDir>
+
+            <Themes style={{ flex: 1 }}>
+                {themeData.map(item => (
+                    <ThemeItem
+                        key={item.id}
+                        onClick={() => handleThemeChange(item.id)}
+                        $selected={selectedTheme === item.id}
+                    >
+                        {item.name}
+                    </ThemeItem>
+                ))}
+            </Themes>
+            <Divider />
 
             <Menu>
                 <Title>Ressources</Title>
@@ -322,7 +325,7 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                     <span>Cloud Docs</span>
                 </MenuItem>
             </Menu>
-        </NavWrapper>
+        </Wrapper>
     )
 }
 
