@@ -37,10 +37,11 @@ const Logo = styled.a`
 const Title = styled.p`
     color: #473f7d;
     font-family: ArchivoExpanded;
-    margin: 2rem 1rem 1.4rem 1rem;
+    margin: 3rem 1rem 1rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 18px;
 `
 
 const ThemeDir = styled.div`
@@ -48,6 +49,19 @@ const ThemeDir = styled.div`
 `
 
 const Themes = styled.div`
+    background:
+        linear-gradient(#f0f2fc 30%, rgba(240, 242, 252, 0)) center top,
+        linear-gradient(rgba(240, 242, 252, 0), #f0f2fc 70%) center bottom,
+        radial-gradient(farthest-side at 50% 0, rgba(10, 0, 82, 0.1), rgba(10, 0, 82, 0)) center top,
+        radial-gradient(farthest-side at 50% 100%, rgba(10, 0, 82, 0.1), rgba(10, 0, 82, 0)) center bottom;
+
+    background-repeat: no-repeat;
+    background-size:
+        100% 40px,
+        100% 40px,
+        100% 14px,
+        100% 14px;
+    background-attachment: local, local, scroll, scroll;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
@@ -110,8 +124,9 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
 `
 
 const Divider = styled.div`
-    border-bottom: 1px solid rgba(71, 63, 125, 0.2);
-    margin: 0 1rem;
+    border-bottom: 1px solid rgba(71, 63, 125, 0.1);
+    margin: 0;
+    box-shadow: 0 -4px 20px rgba(71, 63, 125, 0.4);
 `
 
 const Menu = styled.div`
@@ -236,10 +251,10 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                 {themes.length > 0 && (
                     <>
                         <Title>Custom Themes</Title>
-                        <Divider />
                     </>
                 )}
             </ThemeDir>
+            <Divider />
             <Themes style={{ maxHeight: '30vh' }}>
                 {themes.length > 0 &&
                     themes.map(item => (
@@ -252,6 +267,7 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                         </ThemeItem>
                     ))}
             </Themes>
+            <Divider />
             <ThemeDir>
                 <Title>
                     Official Themes
@@ -299,9 +315,8 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                         />
                     </svg>
                 </Title>
-                <Divider />
             </ThemeDir>
-
+            <Divider />
             <Themes style={{ flex: 1 }}>
                 {themeData.map(item => (
                     <ThemeItem
@@ -314,10 +329,8 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                 ))}
             </Themes>
             <Divider />
-
             <Menu>
                 <Title>Ressources</Title>
-                <Divider />
                 <MenuItem
                     href='https://help.formcentric.com/en/cloud/quick-start/'
                     target='_blank'
