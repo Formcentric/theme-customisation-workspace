@@ -9,7 +9,7 @@ interface FormPreviewP {
 }
 
 const FormWrapper = styled.div`
-    margin: 2rem;
+    margin: 2rem 0;
     grid-column: 3/4;
     border-radius: 6px;
     position: relative;
