@@ -109,10 +109,10 @@ function App() {
     useLayoutEffect(() => addFormcentricScript(), [])
 
     useEffect(() => {
-        const isCustomTheme = themes.includes(selectedTheme)
+        const isCustomTheme = (themes as string[]).includes(selectedTheme)
         const isFcTheme = fcThemes.includes(selectedTheme)
 
-        if (!isFcTheme && !isCustomTheme && selectedTheme) handleThemeChange(themes[0])
+        if (!isFcTheme && !isCustomTheme && selectedTheme) handleThemeChange('')
 
         if (FC_ENV === 'cloud' && !selectedCloudForm) setSelectedCloudForm(cloudConfig.fcForms[0].id)
     }, [])
