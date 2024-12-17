@@ -112,7 +112,7 @@ function App() {
         const isCustomTheme = (themes as string[]).includes(selectedTheme)
         const isFcTheme = fcThemes.includes(selectedTheme)
 
-        if (!isFcTheme && !isCustomTheme && selectedTheme) handleThemeChange('')
+        if (!isFcTheme && !isCustomTheme && selectedTheme) setSelectedTheme('')
 
         if (FC_ENV === 'cloud' && !selectedCloudForm) setSelectedCloudForm(cloudConfig.fcForms[0].id)
     }, [])
