@@ -23,8 +23,8 @@ devDependencies:
     specifier: ^9.13.0
     version: 9.14.0
   '@formcentric/client':
-    specifier: 3.3.0-DEV.1
-    version: 3.3.0-DEV.1
+    specifier: 3.3.0-DEV.2
+    version: 3.3.0-DEV.2
   '@headlessui/react':
     specifier: ^2.2.0
     version: 2.2.0(react-dom@18.3.1)(react@18.3.1)
@@ -615,8 +615,8 @@ packages:
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
     dev: true
 
-  /@formcentric/client@3.3.0-DEV.1:
-    resolution: {integrity: sha512-GQ8vAbErgZFFL92mYOttKoaDsTrTJmdBtQ+dzWIElQRZDDNQ1Jpagby884fDm47/s1rplxMIY1wypJqs3j88QQ==, tarball: https://maven.monday-consulting.com:443/artifactory/api/npm/formcentric-npm/@formcentric/client/-/@formcentric/client-3.3.0-DEV.1.tgz}
+  /@formcentric/client@3.3.0-DEV.2:
+    resolution: {integrity: sha512-Ugwd8upBVn5IJQpNeypg3kIZjsTC2dy7ieJ1piHujHq0HysptjkO6h6vEIPyEpiA0Hbqtly/Yn7dAhFnrX+VzA==, tarball: https://maven.monday-consulting.com:443/artifactory/api/npm/formcentric-npm/@formcentric/client/-/@formcentric/client-3.3.0-DEV.2.tgz}
     hasBin: true
     dev: true
 
