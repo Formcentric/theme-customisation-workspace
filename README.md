@@ -5,8 +5,9 @@
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [Creating a Custom Theme](#creating-a-custom-theme)
+3. [Creating a custom theme](#creating-a-custom-theme)
 4. [Customization](#customization)
+5. [Reset workspace](#reset-workspace)
 
 ---
 ## Installation
@@ -72,7 +73,7 @@ Templates are basic functions which return HTML. They are called by the formapp 
 
 To change the markup of a form field find its template file and edit the HTML output.
 
-## Reset command
+## Reset workspace
 To reset the whole workspace you can run. After a confirmation the script will reinstall node_modules and remove all files which were copied or created on dev-server startup. Make sure you have no uncommited changes in your theme directory. 
 ```
 pnpm reset

@@ -149,7 +149,7 @@ export default function themeWatcherPlugin(): Plugin {
             watcher.on('unlinkDir', async filePath => {
                 const baseName = path.basename(filePath) // Get the name of the deleted directory
 
-                if (themeList.includes(baseName)) exec('node ./generateThemeList.cjs')
+                if ((themeList as string[]).includes(baseName)) exec('node ./generateThemeList.cjs')
             })
 
             // Clean up the watcher when the server is stopped
