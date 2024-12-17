@@ -20,7 +20,7 @@ pnpm i
 pnpm dev-cloud
 ```
 #### Changing forms
-You can change the preview form by using the dropdown in the sidebar. If you need to test your design with your custom form you can by adjusting the ```./config/cloudConfig.json``` file. The fcForms property holds the forms the sidebar dropdown will render. Add new objects for your own forms or remove existing ones.
+You can change the preview form by using the dropdown in the sidebar. If you need to test your design with your custom form you can by adjusting the ```./config/cloudConfig.json``` file. The ```fcForms``` array determines which forms will be rendered in the sidebar dropdown. Add new objects for your own forms or remove existing ones.
 
 ```
 {
@@ -40,10 +40,10 @@ You can change the preview form by using the dropdown in the sidebar. If you nee
     ```bash
     pnpm dev-local
     ```
-3. Set your form definition either in ```./config/localConfig.json``` or paste it inside the input field of our user interface (located in the sidebar below the *Formcentric* logo). <br>**NOTE:** If you decide to use the input the definition will only be saved in the apps localstorage. To permanently use the form definition adjust the **fcFormDefinition** property of the localConfig.json file.
+3. Set your form definition either in ```./config/localConfig.json``` or paste it inside the input field of our user interface (located in the sidebar below the *Formcentric* logo). <br>**NOTE:** If you decide to use the input the definition will only be saved in the apps localStorage. To permanently use the form definition adjust the **fcFormDefinition** property of the localConfig.json file.
 
 ## Creating a custom theme
-Run this command to create a custom theme. The first argument is required and specifies the name of the official theme you want to customize and the second optional argument specifies the name (which is also the foldername) of your custom theme. 
+Create a custom theme using the command below. The first argument is required and specifies the name of the official theme you want to customize and the second optional argument specifies the name (which is also the foldername) of your custom theme. 
 
 
 The script will copy an existing fc-theme into your ```src/themes``` folder. It will show up in the sidebar under custom themes.
@@ -53,7 +53,7 @@ The script will copy an existing fc-theme into your ```src/themes``` folder. It 
 ```
 
 ## Customization
-You have full control over your own custom themes created with the fc-create-theme command. The server automatically refreshes when making changes to scss, js files or the _variables.json file. When adding new fonts or images you have to manually start a build with ```pnpm build```.
+You have full control over custom themes created with the fc-create-theme command. The server automatically refreshes when making changes to scss, js files or the _variables.json file. When adding new fonts or images you have to manually start a build with ```pnpm build```.
 
 There are three main ways to customize a theme:
 
@@ -69,3 +69,12 @@ When you need to make more specific style changes you have to adjust the scss fi
 ### JavaScript Templates
 The HTML Markup is writting in JavaScript Templates inside the ```/templates``` folder. 
 Templates are basic functions which return HTML. They are called by the formapp and receive specific props which differ depending on the form element. A complete list of props will be available in our upcoming documentation.
+
+To change the markup of a form field find its template file and edit the HTML output.
+
+## Reset command
+To reset the whole workspace you can run. After a confirmation the script will reinstall node_modules and remove all files which were copied or created on dev-server startup. Make sure you have no uncommited changes in your theme directory. 
+```
+pnpm reset
+```
+

@@ -9,7 +9,7 @@
         "build": "vite build",
         "css": "sh -c 'pnpm exec sass --no-source-map \"$0\" && pnpm exec postcss \"$0\"/**/partials/_dependencies.scss --config postcss.config.cjs --no-map --replace && pnpm exec postcss \"$0\"/**/*.css --config postcss.config.js --no-map --replace'",
         "create-theme": "sh -c 'pnpm exec fc-create-theme \"$0\" themes/\"${1:-${0}-custom}\" && node ./generateThemeList.cjs && vite build'",
-        "reset": "node ./resetApp.cjs && pnpm i"
+        "reset": "node ./confirmReset.cjs"
     },
     "devDependencies": {
         "@eslint/js": "^9.13.0",
