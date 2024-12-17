@@ -6,7 +6,7 @@ const Themes = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1rem;
     width: calc(100vw - 350px);
-    padding: 2rem;
+    padding: 3rem 3rem 3rem 2rem;
     overflow: auto;
 `
 

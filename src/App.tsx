@@ -19,7 +19,7 @@ declare global {
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 350px 1fr minmax(30rem, 60rem) 2fr;
-    gap: 2rem;
+    gap: 1rem;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
