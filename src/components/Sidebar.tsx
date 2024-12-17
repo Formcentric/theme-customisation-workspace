@@ -319,12 +319,6 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                     href='https://help.formcentric.com/en/cloud/quick-start/'
                     target='_blank'
                 >
-                    <span>Formapp Docs</span>
-                </MenuItem>
-                <MenuItem
-                    href='https://help.formcentric.com/en/cloud/quick-start/'
-                    target='_blank'
-                >
                     <span>Cloud Docs</span>
                 </MenuItem>
             </Menu>
