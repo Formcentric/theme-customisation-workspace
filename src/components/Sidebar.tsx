@@ -52,8 +52,8 @@ const Themes = styled.div`
     background:
         linear-gradient(#f0f2fc 30%, rgba(240, 242, 252, 0)) center top,
         linear-gradient(rgba(240, 242, 252, 0), #f0f2fc 70%) center bottom,
-        radial-gradient(farthest-side at 50% 0, rgba(10, 0, 82, 0.1), rgba(10, 0, 82, 0)) center top,
-        radial-gradient(farthest-side at 50% 100%, rgba(10, 0, 82, 0.1), rgba(10, 0, 82, 0)) center bottom;
+        radial-gradient(farthest-side at 50% 0, rgba(10, 0, 82, 0.05), rgba(10, 0, 82, 0)) center top,
+        radial-gradient(farthest-side at 50% 100%, rgba(10, 0, 82, 0.05), rgba(10, 0, 82, 0)) center bottom;
 
     background-repeat: no-repeat;
     background-size:
@@ -126,7 +126,6 @@ const ThemeItem = styled.div<{ $selected?: boolean }>`
 const Divider = styled.div`
     border-bottom: 1px solid rgba(71, 63, 125, 0.1);
     margin: 0;
-    box-shadow: 0 -4px 20px rgba(71, 63, 125, 0.4);
 `
 
 const Menu = styled.div`
@@ -247,14 +246,15 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                     )}
                 </FormChooser>
             </div>
-            <ThemeDir>
-                {themes.length > 0 && (
-                    <>
+
+            {themes.length > 0 && (
+                <>
+                    <ThemeDir>
                         <Title>Custom Themes</Title>
-                    </>
-                )}
-            </ThemeDir>
-            <Divider />
+                    </ThemeDir>
+                    <Divider />
+                </>
+            )}
             <Themes style={{ maxHeight: '30vh' }}>
                 {themes.length > 0 &&
                     themes.map(item => (
@@ -267,7 +267,7 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                         </ThemeItem>
                     ))}
             </Themes>
-            <Divider />
+            {themes.length > 0 && <Divider />}
             <ThemeDir>
                 <Title>
                     Official Themes
