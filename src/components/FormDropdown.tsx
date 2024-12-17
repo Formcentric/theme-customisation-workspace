@@ -1,4 +1,4 @@
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
+import { Field, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { useThemeStore } from '../themeStore'
 
 export type Option = {
@@ -13,62 +13,68 @@ interface FormDropdownP {
 
 const FormDropdown = ({ options, handleChange }: FormDropdownP) => {
     const selectedCloudForm = useThemeStore(s => s.selectedCloudForm)
+    const selectedTheme = useThemeStore(s => s.selectedTheme)
     const currOption = options.filter(item => item.id === selectedCloudForm)[0]
 
     return (
-        <Listbox
-            value={selectedCloudForm}
-            onChange={handleChange}
+        <Field
+            disabled={!selectedTheme}
+            className={!selectedTheme ? 'form-dropdown--disabled' : ''}
         >
-            <ListboxButton className='listbox__btn'>
-                {currOption?.name || ''}
-                <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width='24'
-                    height='24'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    className='lucide lucide-chevron-down'
-                >
-                    <path d='m6 9 6 6 6-6' />
-                </svg>
-            </ListboxButton>
-            <ListboxOptions
-                anchor='bottom'
-                className='listbox__options'
-                style={{ background: '#fff' }}
-                transition
+            <Listbox
+                value={selectedCloudForm}
+                onChange={handleChange}
             >
-                {options.map(item => (
-                    <ListboxOption
-                        key={item.id}
-                        value={item.id}
-                        className='listbox__option'
-                        style={{ padding: '1rem' }}
+                <ListboxButton className='listbox__btn'>
+                    {currOption?.name || ''}
+                    <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        width='24'
+                        height='24'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        className='lucide lucide-chevron-down'
                     >
-                        {item.name}
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            width='20'
-                            height='20'
-                            viewBox='0 0 24 24'
-                            fill='none'
-                            stroke='currentColor'
-                            strokeWidth='2'
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            className='lucide lucide-check'
+                        <path d='m6 9 6 6 6-6' />
+                    </svg>
+                </ListboxButton>
+                <ListboxOptions
+                    anchor='bottom'
+                    className='listbox__options'
+                    style={{ background: '#fff' }}
+                    transition
+                >
+                    {options.map(item => (
+                        <ListboxOption
+                            key={item.id}
+                            value={item.id}
+                            className='listbox__option'
+                            style={{ padding: '1rem' }}
                         >
-                            <path d='M20 6 9 17l-5-5' />
-                        </svg>
-                    </ListboxOption>
-                ))}
-            </ListboxOptions>
-        </Listbox>
+                            {item.name}
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                width='20'
+                                height='20'
+                                viewBox='0 0 24 24'
+                                fill='none'
+                                stroke='currentColor'
+                                strokeWidth='2'
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                className='lucide lucide-check'
+                            >
+                                <path d='M20 6 9 17l-5-5' />
+                            </svg>
+                        </ListboxOption>
+                    ))}
+                </ListboxOptions>
+            </Listbox>
+        </Field>
     )
 }
 

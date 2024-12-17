@@ -38,6 +38,10 @@
   height: calc(100vh - 4rem) !important;
 }
 
+.form-dropdown--disabled .listbox__btn {
+  color: #DADAE5;
+}
+
 .listbox__btn {
   font-size: 1rem;
   background: #fff;
@@ -55,7 +59,7 @@
 }
 
 .listbox__btn svg {
-  transition: 300ms ease;
+  transition: 200ms ease;
 }
 
 .listbox__btn[data-open] {
