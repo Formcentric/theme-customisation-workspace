@@ -35,6 +35,7 @@ const ThemeCard = styled.div`
 
     & p {
         font-family: 'Archivo';
+        line-height: 1.4rem;
         color: #473f7d;
     }
 `
