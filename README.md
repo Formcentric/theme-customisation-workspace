@@ -68,4 +68,4 @@ When you need to make more specific style changes you have to adjust the scss fi
 
 ### JavaScript Templates
 The HTML Markup is writting in JavaScript Templates inside the ```/templates``` folder. 
-Templates are basic functions which return HTML. They are called by the formapp and receive specific props which differ depending on the form element. For a complete list of properties view our extensive documentation.
+Templates are basic functions which return HTML. They are called by the formapp and receive specific props which differ depending on the form element. A complete list of props will be available in our upcoming documentation.
