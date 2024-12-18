@@ -13,7 +13,7 @@ const Themes = styled.div`
 const ThemeCard = styled.div`
     box-shadow: 0 4px 20px rgba(10, 0, 82, 0.1);
     background: #f7f8fd;
-    border-radius: 9px;
+    border-radius: 16px;
     padding: 1.4rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@ const ThemeInfo = styled.div`
 
 const PreviewImg = styled.img`
     width: 100%;
-    border-radius: 12px;
+    border-radius: 9px;
     margin-top: 1rem;
 `
 
