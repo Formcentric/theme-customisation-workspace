@@ -35,7 +35,7 @@ export default defineConfig(() => {
                     entryFileNames: '[name].js',
                     plugins: [transformToIIFE()],
                 },
-                external: id => id.startsWith('src/fc-themes'),
+                external: (id: string) => id.startsWith('src/fc-themes'),
             },
         },
         plugins: [
