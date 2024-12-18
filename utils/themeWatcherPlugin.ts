@@ -111,6 +111,10 @@ export default function themeWatcherPlugin(): Plugin {
             // Create a watcher using chokidar
             const watcher = chokidar.watch(themesDir, {
                 ignoreInitial: true,
+                awaitWriteFinish: {
+                    stabilityThreshold: 200,
+                    pollInterval: 100,
+                },
             })
 
             // Watch for changes and trigger actions
@@ -142,7 +146,7 @@ export default function themeWatcherPlugin(): Plugin {
                         buildJs(filePath)
                     }
                 } catch (err) {
-                    console.error('Error during build:', err)
+                    console.error('Error when recompiling', err)
                 }
             })
 

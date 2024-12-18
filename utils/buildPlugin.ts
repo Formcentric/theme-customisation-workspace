@@ -1,4 +1,4 @@
-import { exec } from 'child_process'
+import { execSync } from 'child_process'
 import { Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
@@ -42,7 +42,7 @@ export default function buildPlugin(): Plugin {
                 }
             }
 
-            exec('node ./preprocess.cjs && pnpm css dist/themes')
+            execSync('node ./preprocess.cjs')
         },
     }
 }

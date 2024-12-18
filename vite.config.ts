@@ -1,5 +1,4 @@
 import react from '@vitejs/plugin-react'
-import copy from 'rollup-plugin-copy'
 import { defineConfig } from 'vite'
 import { sync } from 'glob'
 import path from 'path'
@@ -38,31 +37,7 @@ export default defineConfig(() => {
                 external: (id: string) => id.startsWith('src/fc-themes'),
             },
         },
-        plugins: [
-            react(),
-            themeWatcherPlugin(),
-            buildPlugin(),
-            selectiveReloadPlugin(),
-            copy({
-                targets: [
-                    {
-                        src: 'node_modules/@formcentric/client/dist/formapp.js',
-                        dest: 'src/assets',
-                    },
-                    {
-                        src: 'node_modules/@formcentric/client/dist/formcentric.js',
-                        dest: 'src/assets',
-                    },
-                    {
-                        src: 'node_modules/@formcentric/client/dist/themes',
-                        dest: 'src',
-                        rename: 'fc-themes',
-                    },
-                ],
-                hook: 'buildStart',
-                copyOnce: true,
-            }),
-        ],
+        plugins: [react(), themeWatcherPlugin(), buildPlugin(), selectiveReloadPlugin()],
         define: {
             FC_ENV: JSON.stringify(fcEnv),
         },
