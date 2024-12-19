@@ -1,5 +1,5 @@
 import { build, Plugin } from 'vite'
-import { exec } from 'child_process'
+import { exec, execSync } from 'child_process'
 import chokidar from 'chokidar'
 import fs from 'fs-extra'
 import path from 'path'
@@ -66,25 +66,8 @@ export default function themeWatcherPlugin(): Plugin {
                 const themeDir = path.join(themesDir, themeName) // Theme directory
                 const outputFile = path.join(themeDir, 'styles.css')
 
-                const runBuildCommand = async () => {
-                    return new Promise<void>((resolve, reject) => {
-                        exec(`pnpm css src/themes/${themeName}`, (error, stdout, stderr) => {
-                            if (error) {
-                                console.error(`Error running build script: ${error.message}`)
-                                return reject(error)
-                            }
-                            if (stderr) {
-                                console.error(`Build script stderr: ${stderr}`)
-                            }
-                            console.log(`Build script stdout:\n${stdout}`)
-                            resolve()
-                        })
-                    })
-                }
-
                 try {
-                    // Wait for the build command to complete
-                    await runBuildCommand()
+                    execSync(`pnpm css src/themes/${themeName}`)
 
                     // Ensure the destination directory exists
                     const distThemeDir = path.join(distDir, themeName)
