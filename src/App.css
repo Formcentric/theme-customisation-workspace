@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'ArchivoExpanded';
+  font-weight: 500;
+  font-style: normal;
+  src: url('assets/fonts/ArchivoExpanded-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-weight: 400;
+  font-style: normal;
+  src: url('assets/fonts/Archivo-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  font-weight: 500; /* Medium */
+  font-style: normal;
+  src: url('assets/fonts/Archivo-Medium.woff2') format('woff2');
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.fc-form form,
+.fc-form .fc-success,
+.fc-form .fc-viewError {
+    margin: 0 auto;
+    max-width: 60rem;
+    width: 100%;
+}
+
+.fc-form {
+  height: calc(100vh - 4rem) !important;
+}
+
+.form-dropdown--disabled .listbox__btn {
+  color: #DADAE5;
+}
+
+.listbox__btn {
+  font-size: 1rem;
+  background: #fff;
+  border: 1px solid #DADAE5;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  transition: 250ms ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Archivo';
+  color: #473F7D;
+  width: 100%;
+}
+
+.listbox__btn svg {
+  transition: 200ms ease;
+}
+
+.listbox__btn[data-open] {
+  border-color: #B5B2CB;
+}
+
+.listbox__btn[data-open] svg {
+  transform: rotate(180deg)
+}
+
+.listbox__options {
+  width: calc(350px - 2rem);
+  margin-top: 0.4rem;
+  border: 1px solid #B5B2CB;
+  border-radius: 6px;
+  font-family: 'Archivo';
+  color: #473F7D;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(10, 0, 82, 0.1);
+}
+
+.listbox__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listbox__option svg {
+  display: none;
+}
+
+.listbox__option:hover {
+  background-color: #F7F8FD;
+}
+
+.listbox__option[data-selected] {
+  color: #0A0052;
+  font-weight: 500;
+}
+
+.listbox__option[data-selected] svg {
+  display: block;
+}
