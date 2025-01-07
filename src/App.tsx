@@ -12,7 +12,21 @@ import { ThemesPreview } from './components/ThemesPreview'
 
 declare global {
     interface Window {
-        formcentric: Record<string, unknown>
+        formcentric: {
+            initFormcentric: () => void
+            formapp: {
+                instances: Record<
+                    string,
+                    {
+                        initElement: HTMLElement
+                        options: Record<string, unknown>
+                        stop: VoidFunction
+                        unmount: VoidFunction
+                    }
+                >
+                templates: Record<string, unknown>
+            }
+        }
     }
 }
 
@@ -68,12 +82,12 @@ function App() {
         try {
             const scripts = document.querySelectorAll('.script_formcentric')
 
-            scripts.forEach(script => script?.parentNode?.removeChild(script))
+            scripts.forEach(script => {
+                if (script.getAttribute('src')?.includes('script.js')) script?.parentNode?.removeChild(script)
+            })
 
             const fcScript = document.querySelector('.script_formcentric_js')
             if (fcScript) fcScript?.parentNode?.removeChild(fcScript)
-
-            window.formcentric = {}
 
             // Remove stylesheets with the attribute 'formcentric-source'
             const stylesheets = document.querySelectorAll('link[formcentric-source], style[formcentric-source]')
@@ -125,6 +139,8 @@ function App() {
 
     const handleThemeChange = (themeName: string, custom?: boolean) => {
         if (themeName === selectedTheme) return
+        Object.values(window?.formcentric?.formapp?.instances).forEach(instance => instance?.stop())
+
         const themeFolder = custom ? '/dist/themes' : '/src/fc-themes'
         setSelectedTheme(themeName)
         setThemeDir(themeFolder)
@@ -132,6 +148,8 @@ function App() {
     }
 
     const handleFormChange = (form: string) => {
+        Object.values(window?.formcentric?.formapp?.instances).forEach(instance => instance?.stop())
+
         if (FC_ENV === 'cloud') {
             setSelectedCloudForm(form)
         } else {
