@@ -1,6 +1,5 @@
 const fs = require('fs-extra')
 const path = require('path')
-const { sync } = require('glob')
 
 const themesDir = path.join(__dirname, 'src/themes')
 const distThemesDir = path.join(__dirname, 'dist/themes')
@@ -11,8 +10,8 @@ async function preprocess() {
         await fs.remove(distThemesDir)
         await fs.copy(themesDir, distThemesDir, {
             filter: src => {
-                // Exclude .gitkeep
-                return !src.endsWith('.gitkeep')
+                // Exclude .gitkeep and script.min.js
+                return !src.endsWith('.gitkeep') || !src.endsWith('script.min.js')
             },
         })
     } catch (error) {

@@ -16,6 +16,8 @@ dist-ssr
 src/fc-themes
 src/assets/formapp.js
 src/assets/formcentric.js
+# intermediate files
+script.min.js
 
 # env
 .env
