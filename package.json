@@ -9,7 +9,7 @@
         "build": "vite build",
         "css": "sh -c 'pnpm exec sass --no-source-map \"$0\" && pnpm exec postcss \"$0\"/**/*.css --config postcss.config.js --no-map --replace'",
         "create-theme": "pnpm tsx ./cli/scripts/createTheme.ts",
-        "reset": "pnpm tsx ./cli/scripts/confirmReset.ts"
+        "reset": "pnpm tsx ./cli/scripts/reset.ts"
     },
     "devDependencies": {
         "@eslint/js": "^9.13.0",

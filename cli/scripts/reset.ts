@@ -1,8 +1,8 @@
 import path from 'path'
-import { fs, logger } from '../modules'
+import { fs, interfaces, logger } from '../modules'
 import config from '../../config/workspace.config'
 
-function resetApp() {
+function reset() {
     // Delete specified files and folders
     config.reset.paths.forEach(target => {
         const targetPath = path.resolve(target)
@@ -31,4 +31,9 @@ function resetApp() {
     logger.success('Reset completed')
 }
 
-resetApp()
+interfaces.confirm({
+    question: 'Are you sure you want to reset the workspace?',
+    onYes: () => {
+        reset()
+    },
+})
