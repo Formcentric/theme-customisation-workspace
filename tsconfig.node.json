@@ -22,5 +22,5 @@
         "noFallthroughCasesInSwitch": true
     },
     "files": ["./types/global.d.ts"],
-    "include": ["vite.config.ts", "cli"]
+    "include": ["vite.config.ts", "utils", "cli", "config"]
 }
