@@ -41,6 +41,12 @@ export default defineConfig(() => {
         define: {
             FC_ENV: JSON.stringify(fcEnv),
         },
+        resolve: {
+            alias: {
+                // Alias the fs module to use browser version when bundling for frontend
+                '../cli/modules': '../cli/mocks',
+            },
+        },
         server: {
             port: 3000,
             ...(fcEnv === 'cloud' && {
