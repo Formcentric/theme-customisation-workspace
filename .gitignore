@@ -16,11 +16,6 @@ dist
 dist-ssr
 *.local
 
-#themes
-src/fc-themes
-# intermediate files
-script.min.js
-
 # env
 .env
 

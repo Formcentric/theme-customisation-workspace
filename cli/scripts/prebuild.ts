@@ -67,10 +67,13 @@ const merge = async (theme: string) => {
 }
 
 const prebuild = async () => {
+    const specificTheme = process.argv[2]
+
     try {
         // create dist directory if it doesn't exist
-        if (fs.exists(outputDir)) {
-            fs.deleteFolderRecursive(outputDir)
+        const checkOutputPath = specificTheme ? path.join(outputDir, specificTheme) : outputDir
+        if (fs.exists(checkOutputPath)) {
+            fs.deleteFolderRecursive(checkOutputPath)
         }
 
         if (!themes || themes.length === 0) {
@@ -78,53 +81,55 @@ const prebuild = async () => {
             process.exit(0)
         }
 
-        themes.forEach(async theme => {
-            try {
-                const themePath = path.join(themesDir, theme)
-                const outputPath = path.join(outputDir, theme)
-                const configPath = path.join(themePath, themeConfig)
+        themes
+            .filter(theme => (specificTheme ? theme === specificTheme : true))
+            .forEach(async theme => {
+                try {
+                    const themePath = path.join(themesDir, theme)
+                    const outputPath = path.join(outputDir, theme)
+                    const configPath = path.join(themePath, themeConfig)
 
-                if (!fs.exists(themePath)) {
-                    logger.error(`Theme directory not found: ${themePath}`)
-                    return
-                }
-
-                if (!fs.exists(configPath)) {
-                    logger.error(`Config file not found for theme ${theme}: ${configPath}`)
-                    return
-                }
-
-                const baseThemePath = getBaseTheme(theme)
-
-                if (baseThemePath) {
-                    if (!fs.exists(baseThemePath)) {
-                        logger.error(`Variant theme not found: ${baseThemePath}`)
+                    if (!fs.exists(themePath)) {
+                        logger.error(`Theme directory not found: ${themePath}`)
                         return
                     }
-                    await fs.copyDirectoryRecursive(baseThemePath, outputPath)
+
+                    if (!fs.exists(configPath)) {
+                        logger.error(`Config file not found for theme ${theme}: ${configPath}`)
+                        return
+                    }
+
+                    const baseThemePath = getBaseTheme(theme)
+
+                    if (baseThemePath) {
+                        if (!fs.exists(baseThemePath)) {
+                            logger.error(`Variant theme not found: ${baseThemePath}`)
+                            return
+                        }
+                        await fs.copyDirectoryRecursive(baseThemePath, outputPath)
+                    }
+
+                    await fs.copyDirectoryRecursive(themePath, outputPath, {
+                        filter: (file: string) => {
+                            const name = path.basename(file)
+                            return !name.includes('.gitkeep') && !name.includes(themeConfig)
+                        },
+                        overwrite: true,
+                    })
+
+                    await merge(theme)
+                    ps.spawn('pnpm', ['css', outputPath])
+
+                    logger.success(`Successfully built theme: ${theme}`)
+                } catch (themeError) {
+                    if (themeError instanceof Error) {
+                        logger.error(`Error processing theme ${theme}:`, themeError.message)
+                    } else {
+                        logger.error(`An unknown error occurred while processing theme ${theme}`)
+                    }
+                    // Continue with next theme instead of stopping the entire build
                 }
-
-                await fs.copyDirectoryRecursive(themePath, outputPath, {
-                    filter: (file: string) => {
-                        const name = path.basename(file)
-                        return !name.includes('.gitkeep') && !name.includes(themeConfig)
-                    },
-                    overwrite: true,
-                })
-
-                await merge(theme)
-                ps.spawn('pnpm', ['css', outputPath])
-
-                logger.success(`Successfully built theme: ${theme}`)
-            } catch (themeError) {
-                if (themeError instanceof Error) {
-                    logger.error(`Error processing theme ${theme}:`, themeError.message)
-                } else {
-                    logger.error(`An unknown error occurred while processing theme ${theme}`)
-                }
-                // Continue with next theme instead of stopping the entire build
-            }
-        })
+            })
         console.log('Build process completed')
     } catch (error) {
         console.error('Build process failed:', error)
