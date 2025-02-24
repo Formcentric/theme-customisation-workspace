@@ -4,8 +4,10 @@ const config = require('../../config/cli.config.json')
 
 async function createTheme(themeName, targetDir) {
     const finalTargetDir = targetDir || `${themeName}-custom`
+    const moduleThemePath = path.join(config.paths.moduelPath, themeName)
     const baseThemePath = path.join(config.paths.basePath, themeName)
     const themePath = path.join(config.paths.targetPath, finalTargetDir)
+    const templateEntry = path.join(config.paths.utilsPath, 'templateEntry.js')
 
     if (fs.exists(themePath)) {
         logger.error(`The theme directory "src/themes/${finalTargetDir}" already exists!`)
@@ -15,7 +17,9 @@ async function createTheme(themeName, targetDir) {
 
     try {
         logger.info(`Creating theme: ${themeName} at ${finalTargetDir}`)
+        fs.copyDirectoryRecursive(moduleThemePath, baseThemePath)
         fs.copyDirectoryRecursive(baseThemePath, themePath)
+        fs.copyFile(templateEntry, path.join(themePath, 'script.js'))
 
         logger.info('Generating theme list...')
         await ps.spawn('node', ['cli/scripts/generateThemeList.cjs'])

@@ -19,6 +19,23 @@ const deleteFile = filePath => {
     }
 }
 
+const cleanDirectory = (dirPath, preserveFiles = []) => {
+    if (exists(dirPath)) {
+        listDirectory(dirPath).forEach(file => {
+            const currentPath = path.join(dirPath, file)
+            if (!preserveFiles.includes(file)) {
+                if (isDirectory(currentPath)) {
+                    deleteFolderRecursive(currentPath)
+                } else {
+                    deleteFile(currentPath)
+                }
+            }
+        })
+        return true
+    }
+    return false
+}
+
 const deleteFolderRecursive = folderPath => {
     if (exists(folderPath)) {
         fs.rmSync(folderPath, { recursive: true, force: true })
@@ -60,6 +77,7 @@ module.exports = {
     listDirectory,
     createDirectory,
     deleteFile,
+    cleanDirectory,
     deleteFolderRecursive,
     copyDirectoryRecursive,
     copyFile,

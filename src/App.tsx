@@ -9,6 +9,7 @@ import themes from './util/themesList.json'
 import cloudConfig from '../config/cloudConfig.json'
 import localConfig from '../config/localConfig.json'
 import { ThemesPreview } from './components/ThemesPreview'
+import config from '../config/cli.config.json'
 
 declare global {
     interface Window {
@@ -43,6 +44,7 @@ const Wrapper = styled.div`
 function App() {
     const formDefinition = useThemeStore(s => s.formDefinition)
     const setThemeData = useThemeStore(s => s.setThemeData)
+    const modulePath = useThemeStore(s => s.modulePath)
 
     useEffect(() => {
         // Fetch definition.json for each theme dynamically
@@ -50,11 +52,16 @@ function App() {
             const loadedThemes: (ThemeData | null)[] = await Promise.all(
                 fcThemes.map(async themeName => {
                     try {
-                        // Dynamic import for the definition.json of each theme
-                        const definition = await import(`./fc-themes/${themeName}/definition.json`)
+                        // Using proper Vite dynamic import syntax
+                        const definition = await import(
+                            /* @vite-ignore */
+                            `${modulePath}/themes/${themeName}/definition.json`
+                        )
 
-                        // Dynamic import for the preview image
-                        const image = await import(`./fc-themes/${themeName}/img/preview-image.png`)
+                        const image = await import(
+                            /* @vite-ignore */
+                            `${modulePath}/themes/${themeName}/img/preview-image.png`
+                        )
 
                         return {
                             id: definition.theme,
@@ -64,7 +71,7 @@ function App() {
                         }
                     } catch (error) {
                         console.error(`Error loading definition.json for theme ${themeName}`, error)
-                        return null // Handle missing or broken definitions
+                        return null
                     }
                 }),
             )
@@ -107,7 +114,7 @@ function App() {
         // Dynamically load the Formcentric script
         const script = document.createElement('script')
         script.className = 'script_formcentric_js'
-        script.src = '/src/assets/formcentric.js'
+        script.src = modulePath + '/formcentric.js'
         document.body.appendChild(script)
     }
 
@@ -141,7 +148,7 @@ function App() {
         if (themeName === selectedTheme) return
         Object.values(window?.formcentric?.formapp?.instances).forEach(instance => instance?.stop())
 
-        const themeFolder = custom ? '/dist/themes' : '/src/fc-themes'
+        const themeFolder = custom ? config.paths.output : config.paths.moduelPath
         setSelectedTheme(themeName)
         setThemeDir(themeFolder)
         reloadFormapp()
@@ -162,7 +169,7 @@ function App() {
     const localFormDefinition = formDefinition ? formDefinition : localConfig.fcFormDefinition
 
     const commonProps = {
-        'data-fc-formapp-url': '/src/assets/formapp.js',
+        'data-fc-formapp-url': modulePath + '/formapp.js',
         'data-fc-theme-dir': themeDir,
         'data-fc-theme': selectedTheme,
     }

@@ -1,17 +1,16 @@
-import { execSync } from 'child_process'
 import { Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
+import fsex from 'fs-extra'
 import config from '../config/cli.config.json'
-
-console.log(config)
-
+import { execSync } from 'child_process'
 export default function buildPlugin(): Plugin {
     return {
         name: 'build-plugin',
         apply: 'build',
-        buildStart() {
+        async buildStart() {
             const themesDir = path.resolve(config.paths.targetPath)
+            const outputDir = path.resolve(config.paths.output)
 
             // Check if themes directory exists
             if (!fs.existsSync(themesDir)) {
@@ -24,6 +23,7 @@ export default function buildPlugin(): Plugin {
                 .readdirSync(themesDir, { withFileTypes: true })
                 .filter(entry => entry.isDirectory())
                 .map(entry => path.join(themesDir, entry.name)) // Get full paths
+            const themes = subfolders.map(folder => path.basename(folder))
 
             // Check each subfolder for required files
             const requiredFiles = ['script.js', 'styles.css']
@@ -45,7 +45,17 @@ export default function buildPlugin(): Plugin {
                 }
             }
 
-            execSync('node ./preprocess.cjs')
+            // copy themes to dist folder
+            await fsex.remove(outputDir)
+            await fsex.copy(themesDir, outputDir, {
+                filter: src => {
+                    // Exclude .gitkeep and script.min.js
+                    return !src.endsWith('.gitkeep') || !src.endsWith('script.min.js')
+                },
+            })
+            themes.forEach(theme => {
+                execSync(`pnpm css ${path.resolve(config.paths.output, theme)}`)
+            })
         },
     }
 }

@@ -21,7 +21,7 @@ const generateThemesList = (dirPath, outputFile) => {
 }
 
 // Generate JSON files for both directories
-generateThemesList(config.paths.basePath, config.output.fcThemesList)
+generateThemesList(config.paths.moduelPath, config.output.fcThemesList)
 generateThemesList(config.paths.targetPath, config.output.themesList)
 
 logger.success('Theme lists generated successfully')

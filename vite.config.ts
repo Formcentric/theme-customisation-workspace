@@ -4,7 +4,9 @@ import { sync } from 'glob'
 import path from 'path'
 import transformToIIFE from './utils/transformToIIFE.ts'
 import buildPlugin from './utils/buildPlugin.ts'
+import themeWatcherPlugin from './utils/themeWatcher.ts'
 import cloudConfig from './config/cloudConfig.json'
+import config from './config/cli.config.json'
 
 type FcEnv = 'local' | 'cloud'
 // https://vite.dev/config/
@@ -12,18 +14,18 @@ export default defineConfig(() => {
     const fcEnv: FcEnv = (process.env.VITE_FC_ENV as FcEnv) || 'cloud'
 
     const themes: string[] = sync('*', {
-        cwd: 'src/themes',
+        cwd: config.paths.targetPath,
         ignore: ['.*'],
     })
 
     return {
         build: {
-            outDir: path.resolve('./dist/themes'),
+            outDir: path.resolve(config.paths.output),
             target: 'es2015',
             emptyOutDir: false,
             rollupOptions: {
                 input: themes.reduce((entries: Record<string, string>, theme) => {
-                    entries[`${theme}/script`] = path.resolve('dist/themes', theme, 'script.js')
+                    entries[`${theme}/script`] = path.resolve(config.paths.output, theme, 'script.js')
 
                     return entries
                 }, {}),
@@ -32,13 +34,10 @@ export default defineConfig(() => {
                     entryFileNames: '[name].js',
                     plugins: [transformToIIFE()],
                 },
-                external: (id: string) => id.startsWith('src/fc-themes'),
-            },
-            watch: {
-                include: 'src/themes/**',
+                external: (id: string) => id.startsWith(config.paths.moduelPath),
             },
         },
-        plugins: [react(), buildPlugin()],
+        plugins: [react(), themeWatcherPlugin(), buildPlugin()],
         define: {
             FC_ENV: JSON.stringify(fcEnv),
         },

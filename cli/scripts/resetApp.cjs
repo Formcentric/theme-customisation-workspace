@@ -19,22 +19,14 @@ function resetApp() {
     })
 
     // Clean themes directory but keep .gitkeep
-    const themesPath = config.paths.targetPath
-    if (fs.exists(themesPath)) {
-        fs.listDirectory(themesPath).forEach(file => {
-            const currentPath = path.join(themesPath, file)
-            if (file !== '.gitkeep') {
-                if (fs.isDirectory(currentPath)) {
-                    fs.deleteFolderRecursive(currentPath)
-                } else {
-                    fs.deleteFile(currentPath)
-                }
-            }
-        })
-        logger.success(`Cleaned: src/themes (kept .gitkeep)`)
-    } else {
-        logger.warn(`Not found: src/themes`)
-    }
+    const emptyPaths = [config.paths.basePath, config.paths.targetPath]
+    emptyPaths.forEach(path => {
+        if (fs.cleanDirectory(path, ['.gitkeep'])) {
+            logger.success(`Cleaned: ${path} (kept .gitkeep)`)
+        } else {
+            logger.warn(`Not found: ${path}`)
+        }
+    })
 
     logger.success('Reset completed')
 }

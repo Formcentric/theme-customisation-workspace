@@ -1,5 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import config from '../config/cli.config.json'
+
+const modulePath = '/' + config.paths.moduelPath.replace('themes', '')
 
 export interface ThemeData {
     id: string
@@ -10,8 +13,9 @@ export interface ThemeData {
 
 interface ThemeStore {
     themeData: ThemeData[]
-    selectedTheme: string
+    modulePath: string
     themeDir: string
+    selectedTheme: string
     selectedCloudForm: string
     formDefinition: string
     setThemeData: (themeData: ThemeData[]) => void
@@ -25,7 +29,8 @@ export const useThemeStore = create<ThemeStore>()(
     persist(
         set => ({
             themeData: [],
-            themeDir: '/src/fc-themes',
+            modulePath: modulePath,
+            themeDir: modulePath + '/themes',
             selectedTheme: '',
             selectedCloudForm: '',
             formDefinition: '',

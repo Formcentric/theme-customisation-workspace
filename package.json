@@ -4,10 +4,10 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev-cloud": "node ./cli/scripts/copyAssets.cjs && node ./cli/scripts/generateThemeList.cjs && vite build && VITE_FC_ENV=cloud vite",
-        "dev-local": "node ./cli/scripts/copyAssets.cjs && node ./cli/scripts/generateThemeList.cjs && vite build && VITE_FC_ENV=local vite",
-        "build": "vite build && pnpm css dist/themes",
-        "css": "sh -c 'pnpm exec sass --no-source-map \"$0\" && pnpm exec postcss \"$0\"/**/partials/_dependencies.scss --config postcss.config.cjs --no-map --replace && pnpm exec postcss \"$0\"/**/*.css --config postcss.config.js --no-map --replace'",
+        "dev-cloud": "node ./cli/scripts/generateThemeList.cjs && vite build && VITE_FC_ENV=cloud vite",
+        "dev-local": "node ./cli/scripts/generateThemeList.cjs && vite build && VITE_FC_ENV=local vite",
+        "build": "vite build",
+        "css": "sh -c 'pnpm exec sass --no-source-map \"$0\" && pnpm exec postcss \"$0\"/**/*.css --config postcss.config.js --no-map --replace'",
         "create-theme": "node ./cli/scripts/createTheme.cjs",
         "reset": "node ./cli/scripts/confirmReset.cjs"
     },
