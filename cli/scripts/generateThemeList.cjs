@@ -1,6 +1,6 @@
 const path = require('path')
 const { fs, logger } = require('../modules/index.cjs')
-const config = require('../../config/cli.config.cjs')
+const config = require('../../config/cli.config.json')
 
 // Function to generate a list of folder names and write to a JSON file
 const generateThemesList = (dirPath, outputFile) => {

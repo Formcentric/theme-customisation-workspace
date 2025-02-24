@@ -1,6 +1,6 @@
 const path = require('path')
 const { fs, logger } = require('../modules/index.cjs')
-const config = require('../../config/cli.config.cjs')
+const config = require('../../config/cli.config.json')
 
 function resetApp() {
     // Delete specified files and folders

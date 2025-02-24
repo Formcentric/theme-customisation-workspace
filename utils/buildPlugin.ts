@@ -2,13 +2,16 @@ import { execSync } from 'child_process'
 import { Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
+import config from '../config/cli.config.json'
+
+console.log(config)
 
 export default function buildPlugin(): Plugin {
     return {
         name: 'build-plugin',
         apply: 'build',
         buildStart() {
-            const themesDir = path.resolve('src/themes')
+            const themesDir = path.resolve(config.paths.targetPath)
 
             // Check if themes directory exists
             if (!fs.existsSync(themesDir)) {

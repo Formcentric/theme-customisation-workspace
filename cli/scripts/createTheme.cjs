@@ -1,7 +1,6 @@
-const { execSync } = require('child_process')
 const path = require('path')
 const { logger, fs, ps } = require('../modules/index.cjs')
-const config = require('../../config/cli.config.cjs')
+const config = require('../../config/cli.config.json')
 
 async function createTheme(themeName, targetDir) {
     const finalTargetDir = targetDir || `${themeName}-custom`
