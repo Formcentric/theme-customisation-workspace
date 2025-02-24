@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Maintenance/Reset Workspace' />
+
+# Reset Workspace
+
+The reset command helps you clean up your workspace by:
+
+- Removing all custom themes
+- Clearing the base themes directory
+- Preserving essential `.gitkeep` files
+- Reinstalling dependencies
+
+To reset the workspace:
+
+```bash
+pnpm reset
+```
+
+You will be prompted to confirm before proceeding with the reset operation.
+
+## What Gets Reset
+
+The files and directories that will be affected can be configured in the `workspace.config.ts` file (see [Reset Configuration](/docs/getting-started-configuration--docs#reset-configuration)).
+
+## After Reset
+
+After running the reset command:
+
+1. The workspace will be restored to its initial state
+2. Dependencies will be automatically reinstalled
+3. You can start creating new themes from scratch

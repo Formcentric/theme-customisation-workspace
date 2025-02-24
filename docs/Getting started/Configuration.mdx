@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Getting started/Configuration' />
+
+## Cloud Configuration
+
+The cloud configuration file manages settings for FC Cloud users running `pnpm dev-cloud`. Specifically, which forms are available to test themes against.
+
+## Local Configuration
+
+The local configuration file manages settings for self-hosted users running `pnpm dev-local`. Specifically, the headless server url and the form definition to use for testing.
+
+## Workspace Configuration
+
+The workspace configuration file manages your theming environment, handling file paths, theme variants, and build settings.
+
+### Overview
+
+Your workspace configuration lives in `config/workspace.config.ts` and defines how your theming system behaves. Let's break down each section:
+
+### Path Configuration
+
+The `paths` object defines all important directories and files in your workspace:
+
+```ts
+paths: {
+    rootPath: '.',
+    configPath: 'config/cli.config.tson',
+    moduelPath: 'node_modules/@formcentric/client/dist/themes',
+    basePath: 'src/themes-base',
+    targetPath: 'src/themes',
+    utilsPath: 'node_modules/@formcentric/client/dist/themes/utils',
+    prettierConfigPath: '.prettierrc',
+    output: 'dist',
+}
+```
+
+### Variant Configuration
+
+The `variants` object defines how specific files in extended Formcentric themes will be read, merged and written during the build process:
+
+```ts
+variants: {
+    files: [],
+}
+```
+
+### Reset Configuration
+
+The `reset` object defines the files and directories that will be affected by the reset command:
+
+```ts
+reset: {
+    files: [],
+}
+```

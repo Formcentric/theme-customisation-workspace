@@ -1,0 +1,160 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Themes/Creating Themes' />
+
+# Creating a Custom Theme
+
+Create a custom theme using:
+
+```bash
+pnpm create-theme
+```
+
+## Theme Types
+
+When creating a new theme, choose between three theme types:
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Criteria</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Extended FC Theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Full FC Theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Custom Theme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Maintenance</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Low</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>High</span>
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Adjustability</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Moderate</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Moderate</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Complete</span>
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Implementation Time</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Short</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>Long</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+## Theme Structure
+
+A typical theme consists of the following key files and directories:
+
+### Core Files
+
+```
+themes-base/[theme-name]/
+├── definition.json      # Theme configuration and parameters
+├── _variables.json      # Theme-specific variables
+├── fonts/              # Font files used by the theme
+├── img/                # Theme images and assets
+└── partials/          # SCSS style components
+```
+
+### Key Components
+
+1. **definition.json**
+   - Defines theme metadata, parameters, and configuration
+   - Specifies customizable options like colors, fonts, and spacing
+   - Configures language-specific labels and descriptions
+   - Lists required assets (fonts, images)
+
+2. **_variables.json**
+   - Contains theme-specific default values
+   - Defines core styling variables like:
+     - Colors (primary, secondary, text, etc.)
+     - Typography (font family, sizes)
+     - Spacing and layout values
+     - Component-specific settings
+
+3. **partials/**
+   - Contains modular SCSS files for different components
+   - Common components include:
+     - Buttons (`_button.scss`)
+     - Form fields (`_field.scss`)
+     - Typography (`_fonts.scss`)
+     - Layout (`_form-actions.scss`)
+     - Validation (`_error.scss`)
+
+### Example Structure
+
+The Atlanta theme demonstrates a complete implementation with:
+
+- Clean, geometric design
+- Neutral color scheme
+- Responsive layouts
+- Comprehensive form controls
+- Validation states
+- Accessibility features
+
+## Best Practices
+
+1. **Modular Organization**
+   - Split styles into logical components
+   - Use partial files for better maintainability
+   - Follow consistent naming conventions
+
+2. **Variable Usage**
+   - Leverage theme variables for consistency
+   - Make styles configurable through `definition.json`
+   - Use SCSS features for DRY code
+
+3. **Responsive Design**
+   - Include mobile and desktop breakpoints
+   - Use flexible units (em, rem) for scaling
+   - Test across different screen sizes
+
+4. **Accessibility**
+   - Include focus states
+   - Maintain sufficient color contrast
+   - Support keyboard navigation
+
+### Extended FC Theme
+
+- Best for making targeted style adjustments to an existing theme
+- Inherits most styles from a base theme
+- Allows overriding specific components and variables
+- Lowest maintenance overhead
+
+### Full FC Theme
+
+- Complete copy of an existing theme
+- Full control over all theme components
+- Requires more maintenance when base themes are updated
+- Good balance between customization and complexity
+
+### Custom Theme
+
+- Start from minimal boilerplate
+- Complete freedom in design and implementation
+- Highest maintenance responsibility
+- Best for unique designs that differ significantly from existing themes

@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Getting Started/Usage" />
+
+# Usage
+
+## For FC Cloud Users
+
+```bash
+pnpm dev-cloud
+```
+
+### Changing Forms
+
+You can change the preview form by using the dropdown in the sidebar. If you need to test your design with your custom form you can by adjusting the `./config/cloudConfig.json` file. The `fcForms` array determines which forms will be rendered in the sidebar dropdown.
+
+```json
+{
+    "id":  "<form-embed-id>", // see the screenshot below
+    "name": "Contact form" // this is used by the dropdown as a display name
+},
+```
+
+<img src="./assets/embed-id.png" alt="finding a form embed-id in the fc-cloud" width="800"/>
+
+## For Self-hosted Users
+
+1. Check if the URL of your headless-server matches the predefined URL in `./config/localConfig.json` (http://localhost:8080) and adjust it if needed.
+
+2. Start the development server:
+```bash
+pnpm dev-local
+```
+
+3. Set your form definition either in `./config/localConfig.json` or paste it inside the input field of our user interface.

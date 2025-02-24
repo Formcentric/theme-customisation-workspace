@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='Maintenance/Updating Themes' />
+
+# Updating Themes
+
+To update the base themes in your workspace:
+
+```bash
+pnpm update-theme
+```
+
+This command will update all base themes in your `base-themes` directory with the latest versions from the Formcentric module.
+
+## Update Impact by Theme Type
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Theme Type</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Update Impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Extended FC Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Generally Low</span> - Most changes are inherited
+                    automatically. In some cases, you may need to adjust templates.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Full FC Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span> - Manual review and integration of changes
+                    needed
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Custom Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>High</span> - Must manually check compatibility with new
+                    features
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+### Post-Update Checklist
+
+1. For Extended FC Themes:
+    - Style customizations via variables typically continue working
+    - Check any template overrides for new required props or functionality
+2. For Full/Custom Themes:
+    - Review changes in updated base themes
+    - Manually incorporate necessary modifications
+3. Always test your themes to ensure they work as expected with the updated components
