@@ -146,7 +146,7 @@ function App() {
 
     const handleThemeChange = (themeName: string, custom?: boolean) => {
         if (themeName === selectedTheme) return
-        Object.values(window?.formcentric?.formapp?.instances).forEach(instance => instance?.stop())
+        Object.values(window?.formcentric?.formapp?.instances || {}).forEach(instance => instance?.stop())
 
         const themeFolder = custom ? config.paths.output : config.paths.moduelPath
         setSelectedTheme(themeName)
@@ -155,7 +155,7 @@ function App() {
     }
 
     const handleFormChange = (form: string) => {
-        Object.values(window?.formcentric?.formapp?.instances).forEach(instance => instance?.stop())
+        Object.values(window?.formcentric?.formapp?.instances || {}).forEach(instance => instance?.stop())
 
         if (FC_ENV === 'cloud') {
             setSelectedCloudForm(form)
@@ -173,6 +173,8 @@ function App() {
         'data-fc-theme-dir': themeDir,
         'data-fc-theme': selectedTheme,
     }
+
+    console.log(commonProps)
 
     const environmentProps = {
         cloud: {
