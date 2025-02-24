@@ -32,7 +32,7 @@ const getBaseTheme = (theme: string) => {
 // TODO: Merge files
 const merge = async (theme: string) => {
     try {
-        const mergeFiles = config.variants.files
+        const mergeFiles = config.variants.files as unk as WorkspaceConfig.FileHandler[]
         const outputPath = path.join(outputDir, theme)
         const baseThemePath = getBaseTheme(theme)
 
@@ -41,26 +41,18 @@ const merge = async (theme: string) => {
 
             // Skip if no matching files found
             if (!files || files.length === 0) {
-                logger.info(`No ${file.name} files found for theme ${theme}`)
                 return
             }
 
             // Process each found file
             files.forEach(async filePath => {
                 const baseFilePath = filePath.replace(outputPath, baseThemePath)
-                const baseFileContent = fs.read(baseFilePath)
-                let content = fs.read(filePath)
+                const { fileContent, baseFileContent } = file.read(filePath, baseFilePath)
 
                 // Merge files if base content exists and merge function is defined
-                if (content && baseFileContent && file.merge) {
-                    content = file.merge(content, baseFileContent)
-
-                    // Write back merged content
-                    if (typeof content === 'object') {
-                        content = JSON.stringify(content, null, 2)
-                    }
-                    fs.writeFileSync(filePath, content)
-                    logger.success(`Merged ${file.name} for theme ${theme}`)
+                if (fileContent && baseFileContent) {
+                    const mergedContent = file.merge(fileContent, baseFileContent)
+                    file.write(filePath, mergedContent)
                 }
             })
         })

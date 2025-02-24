@@ -3,6 +3,7 @@ import path from 'path'
 import fs from 'fs'
 import config from '../config/workspace.config'
 import { execSync } from 'child_process'
+
 export default function buildPlugin(): Plugin {
     return {
         name: 'build-plugin',

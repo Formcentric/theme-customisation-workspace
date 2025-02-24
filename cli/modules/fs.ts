@@ -58,11 +58,14 @@ const copyFile = (src: string, dest: string) => {
     fs.copyFileSync(src, dest)
 }
 
-const writeFileSync = (filePath: string, data: string) => {
+const writeFileSync = (filePath: string, data: string | null) => {
+    if (!data) return
+
     const destDir = path.dirname(filePath)
     if (!exists(destDir)) {
         createDirectory(destDir)
     }
+
     fs.writeFileSync(filePath, data)
 }
 

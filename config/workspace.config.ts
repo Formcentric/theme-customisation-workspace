@@ -1,6 +1,7 @@
 import _ from 'lodash'
+import { fs } from '../cli/modules'
 
-export default {
+const WorkspaceConfig: WorkspaceConfig.Config = {
     assets: [
         {
             src: 'node_modules/@formcentric/client',
@@ -22,7 +23,17 @@ export default {
         files: [
             {
                 name: 'definition.json',
-                merge: (file: Definition, baseFile: Definition) => {
+                read: (filePath, baseFilePath) => {
+                    const fileContent = fs.read<Record<string, unknown>>(filePath)
+                    const baseFileContent = fs.read<Record<string, unknown>>(baseFilePath)
+
+                    return { fileContent, baseFileContent }
+                },
+                merge: (file, baseFile) => {
+                    if (typeof file !== 'object' || typeof baseFile !== 'object') {
+                        return file
+                    }
+
                     const customizer = <T extends { name: string }>(objValue: T[], srcValue: T[]) => {
                         if (_.isArray(objValue) && _.isArray(srcValue)) {
                             return srcValue.reduce((acc: T[], srcItem: T) => {
@@ -39,42 +50,143 @@ export default {
 
                     return _.mergeWith({}, baseFile, file, customizer)
                 },
+                write: (filePath, content) => {
+                    fs.writeFileSync(filePath, JSON.stringify(content, null, 2))
+                },
             },
             {
                 name: '_variables.json',
-                merge: (file: Record<string, string>, baseFile: Record<string, string>) => {
+                read: (filePath, baseFilePath) => {
+                    const fileContent = fs.read<Record<string, string>>(filePath)
+                    const baseFileContent = fs.read<Record<string, string>>(baseFilePath)
+
+                    return { fileContent, baseFileContent }
+                },
+                merge: (file, baseFile) => {
                     return {
                         ...baseFile,
                         ...file,
                     }
                 },
+                write: (filePath, content) => {
+                    fs.writeFileSync(filePath, JSON.stringify(content, null, 2))
+                },
             },
             {
                 name: '_fc-variables.scss',
-                merge: (file: string, baseFile: string) => {
-                    // TODO: Implement merge logic
-                    return file
+                read: (filePath, baseFilePath) => {
+                    const fileContent = fs.read<string>(filePath)
+                    const baseFileContent = fs.read<string>(baseFilePath)
+
+                    return { fileContent, baseFileContent }
+                },
+                merge: (file, baseFile) => {
+                    if (!file || !baseFile) return file || baseFile
+
+                    const targetLines = file.split('\n')
+                    const sourceLines = baseFile.split('\n').filter(line => !file.includes(line.trim().split(':')[0]))
+
+                    const mergedContent = targetLines.concat(sourceLines).join('\n')
+
+                    return mergedContent
+                },
+                write: (filePath, content) => {
+                    fs.writeFileSync(filePath, content)
                 },
             },
             {
                 name: '_variables.scss',
-                merge: (file: string, baseFile: string) => {
-                    // TODO: Implement merge logic
-                    return file
+                read: (filePath: string, baseFilePath: string) => {
+                    const fileContent = fs.read<string>(filePath)
+                    const baseFileContent = fs.read<string>(baseFilePath)
+
+                    return { fileContent, baseFileContent }
+                },
+                merge: (file, baseFile) => {
+                    if (!file || !baseFile) return file || baseFile
+
+                    const targetLines = file.split('\n')
+                    const sourceLines = baseFile.split('\n').filter(line => !file.includes(line.trim().split(':')[0]))
+
+                    const mergedContent = targetLines.concat(sourceLines).join('\n')
+
+                    return mergedContent
+                },
+                write: (filePath, content) => {
+                    fs.writeFileSync(filePath, content)
                 },
             },
             {
                 name: 'styles.scss',
-                merge: (file: string, baseFile: string) => {
-                    // TODO: Implement merge logic
-                    return file
+                read: (filePath, baseFilePath) => {
+                    const fileContent = fs.read<string>(filePath)
+                    const baseFileContent = fs.read<string>(baseFilePath)
+
+                    return { fileContent, baseFileContent }
+                },
+                merge: (file, baseFile) => {
+                    if (!file || !baseFile) return file || baseFile
+
+                    const targetLines = file.split('\n')
+                    const sourceLines = baseFile.split('\n').filter(line => !file.includes(line.trim().split(':')[0]))
+
+                    const mergedContent = targetLines.concat(sourceLines).join('\n')
+
+                    return mergedContent
+                },
+                write: (filePath, content) => {
+                    fs.writeFileSync(filePath, content)
                 },
             },
             {
                 name: 'index.js',
-                merge: (file: string, baseFile: string) => {
-                    // TODO: Implement merge logic
-                    return file
+                read: (filePath, baseFilePath) => {
+                    const fileContent = fs.read<string>(filePath)
+                    const baseFileContent = fs.read<string>(baseFilePath)
+
+                    return { fileContent, baseFileContent }
+                },
+                merge: (file, baseFile) => {
+                    if (!file || !baseFile) return file || baseFile
+
+                    const parseContent = (content: string) => {
+                        const imports = new Set()
+                        const exports = new Set()
+
+                        // Get all imports
+                        const importMatches = content.matchAll(/import { (\w+) } from '(\.\/\w+)'/g)
+                        for (const match of importMatches) {
+                            imports.add(match[0])
+                        }
+
+                        // Get exports
+                        const exportMatch = content.match(/export default {([\s\S]*?)}/)
+                        if (exportMatch) {
+                            const exportItems = exportMatch[1]
+                                .split(',')
+                                .map(exp => exp.trim())
+                                .filter(Boolean)
+                            exportItems.forEach(exp => exports.add(exp))
+                        }
+
+                        return { imports, exports }
+                    }
+
+                    const { imports: sourceImports, exports: sourceExports } = parseContent(baseFile)
+                    const { imports: targetImports, exports: targetExports } = parseContent(file)
+
+                    // Combine imports and exports
+                    const allImports = new Set([...targetImports, ...sourceImports])
+                    const allExports = new Set([...targetExports, ...sourceExports])
+
+                    // Reconstruct the file
+                    const mergedImports = [...allImports].join('\n')
+                    const mergedExports = `export default {\n    ${[...allExports].join(',\n    ')}\n}`
+
+                    return `${mergedImports}\n\n${mergedExports}`
+                },
+                write: (filePath, content) => {
+                    fs.writeFileSync(filePath, content)
                 },
             },
         ],
@@ -87,3 +199,5 @@ export default {
         paths: ['node_modules', 'src/util/fcThemesList.json', 'src/util/themesList.json', 'dist'],
     },
 }
+
+export default WorkspaceConfig
