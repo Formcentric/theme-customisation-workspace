@@ -22,16 +22,14 @@ export default {
         files: [
             {
                 name: 'definition.json',
-                merge: (file: Record<string, unknown>, baseFile: Record<string, unknown>) => {
-                    const customizer = (objValue: unknown, srcValue: unknown, key: string) => {
-                        if (_.isArray(objValue) && key === 'parameters') {
-                            return srcValue.reduce((acc: unknown[], srcItem: unknown) => {
+                merge: (file: Definition, baseFile: Definition) => {
+                    const customizer = <T extends { name: string }>(objValue: T[], srcValue: T[]) => {
+                        if (_.isArray(objValue) && _.isArray(srcValue)) {
+                            return srcValue.reduce((acc: T[], srcItem: T) => {
                                 const matchIndex = acc.findIndex(accItem => accItem.name === srcItem.name)
                                 if (matchIndex > -1) {
-                                    // If there's a matching item, deeply merge them
                                     acc[matchIndex] = _.mergeWith(acc[matchIndex], srcItem, customizer)
                                 } else {
-                                    // Otherwise, add the new item from the source array
                                     acc.push(srcItem)
                                 }
                                 return acc

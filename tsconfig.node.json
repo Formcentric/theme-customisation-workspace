@@ -21,5 +21,6 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
+    "files": ["./types/global.d.ts"],
     "include": ["vite.config.ts", "cli"]
 }
