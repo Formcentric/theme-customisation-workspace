@@ -31,10 +31,11 @@ function reset() {
     logger.success('Reset completed')
 }
 
-interfaces.confirm({
-    question: 'Are you sure you want to reset the workspace?',
-    onYes: () => {
-        reset()
-        ps.spawn('pnpm', ['i'])
-    },
-})
+interfaces
+    .confirm('Are you sure you want to reset the workspace? All custom themes will be deleted.')
+    .then(confirmed => {
+        if (confirmed) {
+            reset()
+            ps.spawn('pnpm', ['i'])
+        }
+    })

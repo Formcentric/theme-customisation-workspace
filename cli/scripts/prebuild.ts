@@ -4,29 +4,28 @@ import path from 'path'
 const themesDir = config.paths.targetPath
 const baseDir = config.paths.basePath
 const outputDir = config.paths.output
+const themeConfig = config.internal.config
 
-const themeConfig = 'config.json'
 // get all themes
 const themes = fs.listDirectory(themesDir, true)
 
 const getVariant = (theme: string) => {
     const configPath = path.join(themesDir, theme, themeConfig)
     if (!fs.exists(configPath)) {
-        logger.info(`Config file not found for theme ${theme}: ${configPath}`)
+        return null
     }
 
     const config = fs.read<{ variant: string }>(configPath)
-    return config?.variant || null
+    return config?.variant
 }
 
 const getBaseTheme = (theme: string) => {
     const variant = getVariant(theme)
     if (!variant) {
-        logger.error(`Variant not found for theme ${theme}`)
         return ''
     }
     const baseThemePath = path.join(baseDir, variant)
-    return baseThemePath || ''
+    return baseThemePath
 }
 
 // TODO: Merge files
@@ -87,19 +86,14 @@ const prebuild = async () => {
                 try {
                     const themePath = path.join(themesDir, theme)
                     const outputPath = path.join(outputDir, theme)
-                    const configPath = path.join(themePath, themeConfig)
 
                     if (!fs.exists(themePath)) {
                         logger.error(`Theme directory not found: ${themePath}`)
                         return
                     }
 
-                    if (!fs.exists(configPath)) {
-                        logger.error(`Config file not found for theme ${theme}: ${configPath}`)
-                        return
-                    }
-
                     const baseThemePath = getBaseTheme(theme)
+                    const noMerge = !baseThemePath
 
                     if (baseThemePath) {
                         if (!fs.exists(baseThemePath)) {
@@ -117,13 +111,13 @@ const prebuild = async () => {
                         overwrite: true,
                     })
 
-                    await merge(theme)
+                    if (!noMerge) await merge(theme)
                     ps.spawn('pnpm', ['css', outputPath])
 
                     logger.success(`Successfully built theme: ${theme}`)
                 } catch (themeError) {
                     if (themeError instanceof Error) {
-                        logger.error(`Error processing theme ${theme}:`, themeError.message)
+                        logger.error(`Error processing theme ${theme}:`, themeError)
                     } else {
                         logger.error(`An unknown error occurred while processing theme ${theme}`)
                     }

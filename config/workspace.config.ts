@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { fs } from '../cli/modules'
+import path from 'path'
 
 const WorkspaceConfig: WorkspaceConfig.Config = {
     paths: {
@@ -12,8 +13,10 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
         prettierConfigPath: '.prettierrc',
         output: 'dist',
     },
-    variants: {
+    internal: {
         config: 'config.json',
+    },
+    variants: {
         files: [
             {
                 name: 'definition.json',
@@ -184,6 +187,58 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 },
             } as WorkspaceConfig.FileHandler<string>,
         ] as WorkspaceConfig.FileHandler<unknown>[],
+    },
+    custom: {
+        files: [
+            {
+                name: 'definition.json',
+                create: filePath => {
+                    const definitionPath = path.join(WorkspaceConfig.paths.utilsPath, 'definition.json')
+                    const definition = fs.read<Record<string, unknown>>(definitionPath)
+                    fs.writeFileSync(filePath, JSON.stringify(definition, null, 2))
+                },
+            },
+            {
+                name: '_variables.json',
+                create: filePath => {
+                    fs.writeFileSync(
+                        filePath,
+                        JSON.stringify(
+                            {
+                                customCSSVariable: 'Custom css inline variables. Add css variables here',
+                            },
+                            null,
+                            2,
+                        ),
+                    )
+                },
+            },
+            {
+                name: '_fc-variables.scss',
+                create: filePath => {
+                    fs.writeFileSync(filePath, '// Custom FormCentric variables. Add SCSS Variables here\n')
+                },
+            },
+            {
+                name: '_variables.scss',
+                create: filePath => {
+                    fs.writeFileSync(filePath, '// Custom theme variables. Add SCSS Variables here\n')
+                },
+            },
+            {
+                name: 'styles.scss',
+                create: filePath => {
+                    fs.writeFileSync(
+                        filePath,
+                        '// Custom theme styles. Import your scss partials into this entry file\n',
+                    )
+                },
+            },
+            {
+                name: 'index.js',
+                create: filePath => {},
+            },
+        ],
     },
     output: {
         fcThemesList: 'src/util/fcThemesList.json',

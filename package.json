@@ -8,7 +8,7 @@
         "dev-local": "pnpm tsx ./cli/scripts/generateThemeList.ts && vite build && VITE_FC_ENV=local vite",
         "build": "vite build",
         "css": "sh -c 'pnpm exec sass --no-source-map \"$0\" && pnpm exec postcss \"$0\"/**/*.css --config postcss.config.js --no-map --replace'",
-        "create-theme": "pnpm tsx ./cli/scripts/createTheme.ts",
+        "create-theme": "pnpm tsx ./cli/scripts/create.ts",
         "reset": "pnpm tsx ./cli/scripts/reset.ts"
     },
     "devDependencies": {
@@ -29,6 +29,7 @@
         "glob": "^11.0.0",
         "globals": "^15.11.0",
         "http-proxy-middleware": "^3.0.3",
+        "inquirer": "^12.4.2",
         "lodash": "^4.17.21",
         "path": "^0.12.7",
         "postcss": "^8.4.49",

@@ -1,33 +1,71 @@
-import readline from 'readline'
+import inquirer from 'inquirer'
 
-interface QuestionOptions {
-    question: string
-    onYes: () => Promise<unknown> | void
-    onNo?: () => Promise<unknown> | void
+export async function confirm(question: string): Promise<boolean> {
+    try {
+        const { confirmed } = await inquirer.prompt([
+            {
+                type: 'confirm',
+                name: 'confirmed',
+                message: question,
+                default: false,
+            },
+        ])
+        return confirmed
+    } catch (error: unknown) {
+        if (error instanceof Error && error.message === 'SIGINT') {
+            process.exit(0)
+        }
+        throw error
+    }
 }
 
-const isYes = (answer: string) => answer.toLowerCase() === 'yes' || answer.toLowerCase() === 'y'
-// const isNo = (answer: string) => answer.toLowerCase() === 'no' || answer.toLowerCase() === 'n'
+export async function select(message: string, choices: any[]) {
+    try {
+        const { selected } = await inquirer.prompt([
+            {
+                type: 'list',
+                name: 'selected',
+                message,
+                choices,
+            },
+        ])
+        return selected
+    } catch (error: unknown) {
+        console.log(error)
 
-export async function confirm({ question, onYes, onNo }: QuestionOptions): Promise<void> {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    })
+        if (error instanceof Error && error.message === 'SIGINT') {
+            process.exit(0)
+        }
+        throw error
+    }
+}
 
-    return new Promise(resolve => {
-        rl.question(question + '(yes/no) ', async answer => {
-            if (isYes(answer)) {
-                await onYes()
-            } else {
-                if (onNo) await onNo()
-            }
-            rl.close()
-            resolve()
-        })
-    })
+type Question = {
+    name: string
+    message: string
+    type?: 'input' | 'password' | 'number'
+    default?: string | number
+}
+
+export async function questions(questions: Question[]): Promise<Record<string, any>> {
+    try {
+        const prompts = questions.map(q => ({
+            type: q.type || 'input',
+            ...q,
+        }))
+
+        const answers = await inquirer.prompt(prompts)
+        return answers
+    } catch (error: unknown) {
+        if (error instanceof Error && error.message === 'SIGINT') {
+            process.exit(0)
+        }
+        throw error
+    }
 }
 
 export default {
     confirm,
+    select,
+    questions,
 }

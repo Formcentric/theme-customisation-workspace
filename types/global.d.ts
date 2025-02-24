@@ -12,11 +12,12 @@ declare namespace WorkspaceConfig {
         write: (filePath: string, content: T) => void
     }
 
+    interface CustomFileHandler<T, U = T> {
+        name: string
+        create: (filePath: string) => void
+    }
+
     interface Config {
-        assets: {
-            src: string
-            dest: string
-        }[]
         paths: {
             rootPath: string
             configPath: string
@@ -31,9 +32,14 @@ declare namespace WorkspaceConfig {
             fcThemesList: string
             themesList: string
         }
-        variants: {
+        internal: {
             config: string
+        }
+        variants: {
             files: FileHandler<unknown>[]
+        }
+        custom: {
+            files: CustomFileHandler<unknown>[]
         }
         reset: {
             paths: string[]
