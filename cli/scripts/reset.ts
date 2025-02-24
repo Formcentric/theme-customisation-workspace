@@ -1,5 +1,5 @@
 import path from 'path'
-import { fs, interfaces, logger } from '../modules'
+import { fs, interfaces, logger, ps } from '../modules'
 import config from '../../config/workspace.config'
 
 function reset() {
@@ -35,5 +35,6 @@ interfaces.confirm({
     question: 'Are you sure you want to reset the workspace?',
     onYes: () => {
         reset()
+        ps.spawn('pnpm', ['i'])
     },
 })

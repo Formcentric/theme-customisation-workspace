@@ -2,12 +2,6 @@ import _ from 'lodash'
 import { fs } from '../cli/modules'
 
 const WorkspaceConfig: WorkspaceConfig.Config = {
-    assets: [
-        {
-            src: 'node_modules/@formcentric/client',
-            dest: 'src/assets',
-        },
-    ],
     paths: {
         rootPath: '.',
         configPath: 'config/cli.config.tson',

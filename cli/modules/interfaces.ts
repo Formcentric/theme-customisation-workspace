@@ -16,7 +16,7 @@ export async function confirm({ question, onYes, onNo }: QuestionOptions): Promi
     })
 
     return new Promise(resolve => {
-        rl.question(question, async answer => {
+        rl.question(question + '(yes/no) ', async answer => {
             if (isYes(answer)) {
                 await onYes()
             } else {
