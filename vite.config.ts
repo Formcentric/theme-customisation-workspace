@@ -2,8 +2,6 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { sync } from 'glob'
 import path from 'path'
-import selectiveReloadPlugin from './utils/selectiveReloadPlugin.ts'
-import themeWatcherPlugin from './utils/themeWatcherPlugin.ts'
 import transformToIIFE from './utils/transformToIIFE.ts'
 import buildPlugin from './utils/buildPlugin.ts'
 import cloudConfig from './config/cloudConfig.json'
@@ -36,8 +34,11 @@ export default defineConfig(() => {
                 },
                 external: (id: string) => id.startsWith('src/fc-themes'),
             },
+            watch: {
+                include: 'src/themes/**',
+            },
         },
-        plugins: [react(), themeWatcherPlugin(), buildPlugin(), selectiveReloadPlugin()],
+        plugins: [react(), buildPlugin()],
         define: {
             FC_ENV: JSON.stringify(fcEnv),
         },
