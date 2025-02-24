@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import { fs } from '../cli/modules'
-import path from 'path'
 
 const WorkspaceConfig: WorkspaceConfig.Config = {
     paths: {
@@ -193,9 +192,7 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
             {
                 name: 'definition.json',
                 create: filePath => {
-                    const definitionPath = path.join(WorkspaceConfig.paths.utilsPath, 'definition.json')
-                    const definition = fs.read<Record<string, unknown>>(definitionPath)
-                    fs.writeFileSync(filePath, JSON.stringify(definition, null, 2))
+                    fs.writeFileSync(filePath, JSON.stringify({}, null, 2))
                 },
             },
             {

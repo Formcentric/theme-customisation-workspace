@@ -57,9 +57,9 @@ const merge = async (theme: string) => {
         })
     } catch (error) {
         if (error instanceof Error) {
-            logger.error(`Error merging theme ${theme}:`, error.message)
+            logger.error('prebuild.merge.known', { theme, error: error.message })
         } else {
-            logger.error(`An unknown error occurred while merging theme ${theme}`)
+            logger.error('prebuild.merge.unknown', { theme })
         }
         process.exit(1)
     }
@@ -76,7 +76,7 @@ const prebuild = async () => {
         }
 
         if (!themes || themes.length === 0) {
-            logger.info(`No themes found in directory: ${themesDir}. Skipping build...`)
+            logger.info('prebuild.theme.start.info', { dir: themesDir })
             process.exit(0)
         }
 
@@ -88,7 +88,7 @@ const prebuild = async () => {
                     const outputPath = path.join(outputDir, theme)
 
                     if (!fs.exists(themePath)) {
-                        logger.error(`Theme directory not found: ${themePath}`)
+                        logger.error('prebuild.theme.exists.theme.error', { theme })
                         return
                     }
 
@@ -97,7 +97,7 @@ const prebuild = async () => {
 
                     if (baseThemePath) {
                         if (!fs.exists(baseThemePath)) {
-                            logger.error(`Variant theme not found: ${baseThemePath}`)
+                            logger.error('prebuild.theme.exists.base.error', { base: baseThemePath })
                             return
                         }
                         await fs.copyDirectoryRecursive(baseThemePath, outputPath)
@@ -114,19 +114,19 @@ const prebuild = async () => {
                     if (!noMerge) await merge(theme)
                     ps.spawn('pnpm', ['css', outputPath])
 
-                    logger.success(`Successfully built theme: ${theme}`)
+                    logger.success('prebuild.theme.finish.success', { theme })
                 } catch (themeError) {
                     if (themeError instanceof Error) {
-                        logger.error(`Error processing theme ${theme}:`, themeError)
+                        logger.error('prebuild.theme.error.known', { theme, error: themeError.message })
                     } else {
-                        logger.error(`An unknown error occurred while processing theme ${theme}`)
+                        logger.error('prebuild.theme.error.unknown', { theme })
                     }
                     // Continue with next theme instead of stopping the entire build
                 }
             })
-        console.log('Build process completed')
+        logger.success('prebuild.success')
     } catch (error) {
-        console.error('Build process failed:', error)
+        logger.error('prebuild.error.known', { error: error.message })
         process.exit(1) // Exit with error code
     }
 }

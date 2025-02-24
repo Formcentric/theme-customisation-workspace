@@ -5,7 +5,7 @@ import config from '../../config/workspace.config'
 // Function to generate a list of folder names and write to a JSON file
 const generateThemesList = (dirPath: string, outputFile: string) => {
     if (!fs.exists(dirPath)) {
-        logger.warn(`Directory not found: ${dirPath}`)
+        logger.warn('generateThemeList.exists.warn', { dir: dirPath })
         return
     }
 
@@ -25,12 +25,12 @@ const themeList = async () => {
     try {
         generateThemesList(config.paths.moduelPath, config.output.fcThemesList)
         generateThemesList(config.paths.targetPath, config.output.themesList)
-        logger.success('Theme list generated successfully')
+        logger.success('generateThemeList.finish.success')
     } catch (error) {
         if (error instanceof Error) {
             logger.error(error.message)
         } else {
-            logger.error('An unknown error occurred')
+            logger.error('generateThemeList.error.unknown')
         }
     }
 }

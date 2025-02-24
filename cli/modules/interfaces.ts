@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import logger from './logger'
 
 export async function confirm(question: string): Promise<boolean> {
     try {
@@ -6,7 +7,7 @@ export async function confirm(question: string): Promise<boolean> {
             {
                 type: 'confirm',
                 name: 'confirmed',
-                message: question,
+                message: logger.t(question),
                 default: false,
             },
         ])

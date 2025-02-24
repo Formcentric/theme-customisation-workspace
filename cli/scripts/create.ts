@@ -2,12 +2,7 @@ import path from 'path'
 import { logger, fs, ps } from '../modules'
 import config from '../../config/workspace.config'
 import { interfaces } from '../modules'
-
-enum ThemeType {
-    EXTENDED = 'Extended FC Theme',
-    EXISTING = 'Full FC Theme',
-    CUSTOM = 'Custom Theme',
-}
+import { enums, input } from '../constants'
 
 interface ThemeOption {
     name: string
@@ -15,15 +10,15 @@ interface ThemeOption {
 }
 
 async function copyThemeFiles(
-    selectedType: ThemeType,
+    selectedType: enums.ThemeType,
     baseThemePath: string,
     themePath: string,
     themeConfig: string,
     base: string,
 ) {
-    if (selectedType === ThemeType.EXISTING) {
+    if (selectedType === enums.ThemeType.EXISTING) {
         await fs.copyDirectoryRecursive(baseThemePath, themePath)
-    } else if (selectedType === ThemeType.EXTENDED) {
+    } else if (selectedType === enums.ThemeType.EXTENDED) {
         await fs.copyDirectoryRecursive(baseThemePath, themePath, {
             filter: file => {
                 const fileName = path.basename(file)
@@ -48,7 +43,7 @@ async function copyThemeFiles(
     }
 }
 
-async function createTheme(selectedType: ThemeType, base: string, theme?: string) {
+async function createTheme(selectedType: enums.ThemeType, base: string, theme?: string) {
     const finalTargetDir = theme || base
     const moduleThemePath = path.join(config.paths.moduelPath, base)
     const baseThemePath = path.join(config.paths.basePath, base)
@@ -57,15 +52,15 @@ async function createTheme(selectedType: ThemeType, base: string, theme?: string
     const themeConfig = path.join(themePath, config.internal.config)
 
     if (fs.exists(themePath)) {
-        logger.error(`The theme directory "src/themes/${finalTargetDir}" already exists!`)
-        logger.info('If you want to create a different theme, choose a unique name or delete the existing directory.')
+        logger.error('create.createTheme.exists.error', { themePath: `src/themes/${finalTargetDir}` })
+        logger.info('create.createTheme.exists.info')
         process.exit(0)
     }
 
     try {
         await createBaseTheme(base, baseThemePath, moduleThemePath)
 
-        logger.info(`Creating theme ${finalTargetDir}...`)
+        logger.info('create.createTheme.processing.info', { name: finalTargetDir })
         await copyThemeFiles(selectedType, baseThemePath, themePath, themeConfig, base)
 
         await finalizeThemeCreation(templateEntry, themePath)
@@ -75,26 +70,26 @@ async function createTheme(selectedType: ThemeType, base: string, theme?: string
 }
 
 async function createBaseTheme(base: string, baseThemePath: string, moduleThemePath: string) {
-    logger.info(`Creating base theme...`)
+    logger.info('create.createBaseTheme.start.info')
     if (!fs.exists(baseThemePath)) {
         await fs.copyDirectoryRecursive(moduleThemePath, baseThemePath)
     } else {
-        logger.info(`Skipped. Base theme ${base} already exists in ${config.paths.basePath}`)
+        logger.info('create.createBaseTheme.exists.info', { base, path: config.paths.basePath })
     }
 }
 
 async function finalizeThemeCreation(templateEntry: string, themePath: string) {
     fs.copyFile(templateEntry, path.join(themePath, 'script.js'))
-    logger.info('Generating theme list...')
+    logger.info('create.finalizeThemeCreation.start.info')
     await ps.spawn('pnpm', ['tsx', 'cli/scripts/generateThemeList.ts'])
-    logger.success('Theme creation complete!')
+    logger.success('create.finalizeThemeCreation.finish.success')
 }
 
 function handleError(error: unknown) {
     if (error instanceof Error) {
         logger.error(error.message)
     } else {
-        logger.error('An unknown error occurred')
+        logger.error('create.error.unknown')
     }
     process.exit(1)
 }
@@ -103,14 +98,14 @@ async function getAvailableThemes(): Promise<string[]> {
     let themes = await fs.listDirectory(config.paths.moduelPath)
 
     if (!themes) {
-        logger.warn('No themes found in the module path')
-        logger.info('Installing dependencies...')
+        logger.warn('create.getAvailableThemes.exists.warn')
+        logger.info('create.getAvailableThemes.exists.info')
         await ps.spawn('pnpm', ['i'])
         themes = await fs.listDirectory(config.paths.moduelPath)
 
         if (!themes) {
-            logger.error('Still no themes found in module path')
-            logger.info(`Please check package.json for package specified in ${config.paths.moduelPath}`)
+            logger.error('create.getAvailableThemes.exists.exists.error')
+            logger.info('create.getAvailableThemes.exists.exists.info', { path: config.paths.moduelPath })
             process.exit(1)
         }
     }
@@ -129,28 +124,9 @@ function formatThemeOptions(themes: string[]): ThemeOption[] {
 }
 
 async function selectThemeType() {
-    logger.matrix(
-        ['Criteria', 'Extended FC Theme', 'Full FC Theme', 'Custom Theme'],
-        [
-            ['Maintenance', 'Low', 'Medium', 'High'],
-            ['Adjustability', 'Moderate', 'Moderate', 'Complete'],
-            ['Implementation Time', 'Short', 'Medium', 'Long'],
-        ],
-        'Decision Matrix for Theme Options',
-        'white',
-        {
-            Low: 'green',
-            Medium: 'yellow',
-            High: 'red',
-            Short: 'green',
-            Long: 'red',
-            Limited: 'red',
-            Moderate: 'yellow',
-            Complete: 'green',
-        },
-    )
+    logger.matrix(...input.create.selectThemeType.matrix)
     const message = 'Select your theme type based on the matrix above:'
-    const choices = Object.values(ThemeType)
+    const choices = Object.values(enums.ThemeType)
     return await interfaces.select(message, choices)
 }
 
@@ -158,17 +134,17 @@ async function selectThemeType() {
 async function main() {
     try {
         const availableThemes = await getAvailableThemes()
-        const selectedType = (await selectThemeType()) as ThemeType
+        const selectedType = (await selectThemeType()) as enums.ThemeType
         const themeOptions = formatThemeOptions(availableThemes)
 
         switch (selectedType) {
-            case ThemeType.EXISTING: {
+            case enums.ThemeType.EXISTING: {
                 const base = await interfaces.select('Select a theme', themeOptions)
                 await createTheme(selectedType, base)
                 break
             }
 
-            case ThemeType.EXTENDED: {
+            case enums.ThemeType.EXTENDED: {
                 const base = await interfaces.select('Select a theme', themeOptions)
                 const { theme } = await interfaces.questions([
                     {
@@ -182,7 +158,7 @@ async function main() {
                 break
             }
 
-            case ThemeType.CUSTOM: {
+            case enums.ThemeType.CUSTOM: {
                 const themes = await getAvailableThemes()
                 const base = themes[0]
 

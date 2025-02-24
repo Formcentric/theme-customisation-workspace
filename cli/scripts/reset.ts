@@ -12,9 +12,9 @@ function reset() {
             } else {
                 fs.deleteFile(targetPath)
             }
-            logger.success(`Deleted: ${target}`)
+            logger.success('reset.delete.success', { target })
         } else {
-            logger.warn(`Not found: ${target}`)
+            logger.warn('reset.delete.warn', { target })
         }
     })
 
@@ -22,20 +22,18 @@ function reset() {
     const emptyPaths = [config.paths.basePath, config.paths.targetPath]
     emptyPaths.forEach(path => {
         if (fs.cleanDirectory(path, ['.gitkeep'])) {
-            logger.success(`Cleaned: ${path} (kept .gitkeep)`)
+            logger.success('reset.clean.success', { path })
         } else {
-            logger.warn(`Not found: ${path}`)
+            logger.warn('reset.clean.warn', { path })
         }
     })
 
-    logger.success('Reset completed')
+    logger.success('reset.success')
 }
 
-interfaces
-    .confirm('Are you sure you want to reset the workspace? All custom themes will be deleted.')
-    .then(confirmed => {
-        if (confirmed) {
-            reset()
-            ps.spawn('pnpm', ['i'])
-        }
-    })
+interfaces.confirm('reset.confirm').then(confirmed => {
+    if (confirmed) {
+        reset()
+        ps.spawn('pnpm', ['i'])
+    }
+})
