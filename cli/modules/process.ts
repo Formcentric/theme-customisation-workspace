@@ -1,16 +1,10 @@
-const { spawn: childSpawn } = require('child_process')
+import { spawn as childSpawn } from 'child_process'
 
-/**
- * Spawns a command and handles its output streams
- * @param {string} command - The command to run
- * @param {string[]} args - Array of command arguments
- * @param {Object} options - Configuration options
- * @param {boolean} options.stdout - Whether to pipe stdout (default: true)
- * @param {boolean} options.stderr - Whether to pipe stderr (default: true)
- * @param {function} options.onClose - Callback function when process closes
- * @returns {Promise} Resolves when process completes
- */
-const spawn = (command, args = [], options = {}) => {
+const spawn = (
+    command: string,
+    args: string[] = [],
+    options: { stdout?: boolean; stderr?: boolean; onClose?: (...args: unknown[]) => unknown } = {},
+) => {
     const { stdout = true, stderr = true, onClose = () => {} } = options
 
     return new Promise((resolve, reject) => {
@@ -33,6 +27,6 @@ const spawn = (command, args = [], options = {}) => {
     })
 }
 
-module.exports = {
+export default {
     spawn,
 }

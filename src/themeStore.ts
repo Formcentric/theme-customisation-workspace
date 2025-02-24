@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import config from '../config/cli.config.json'
+import config from '../config/workspace.config'
 
 const modulePath = '/' + config.paths.moduelPath.replace('themes', '')
 

@@ -5,8 +5,8 @@ import path from 'path'
 import transformToIIFE from './utils/transformToIIFE.ts'
 import buildPlugin from './utils/buildPlugin.ts'
 import themeWatcherPlugin from './utils/themeWatcher.ts'
-import cloudConfig from './config/cloudConfig.json'
-import config from './config/cli.config.json'
+import cloudConfig from './config/cloud.config.json'
+import config from './config/workspace.config'
 
 type FcEnv = 'local' | 'cloud'
 // https://vite.dev/config/

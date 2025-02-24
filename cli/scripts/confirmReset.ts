@@ -1,5 +1,5 @@
-const readline = require('readline')
-const { ps, logger } = require('../modules/index.cjs')
+import readline from 'readline'
+import { ps, logger } from '../modules'
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -11,10 +11,14 @@ rl.question('Your custom themes will be deleted if you proceed. Are you sure? (y
         logger.log('Resetting workspace...')
         try {
             // Split the command into command and arguments
-            await ps.spawn('node', ['cli/scripts/resetApp.cjs'])
+            await ps.spawn('pnpm', ['tsx', 'cli/scripts/resetApp.ts'])
             await ps.spawn('pnpm', ['i'])
         } catch (error) {
-            logger.error(error.message)
+            if (error instanceof Error) {
+                logger.error(error.message)
+            } else {
+                logger.error('An unknown error occurred')
+            }
         }
     } else {
         logger.info('Script execution canceled.')

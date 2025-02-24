@@ -1,6 +1,6 @@
-const path = require('path')
-const { fs, logger } = require('../modules/index.cjs')
-const config = require('../../config/cli.config.json')
+import path from 'path'
+import { fs, logger } from '../modules'
+import config from '../../config/workspace.config'
 
 function copyAssets() {
     logger.info('Starting asset copy process...')
@@ -10,7 +10,7 @@ function copyAssets() {
         const destPath = path.resolve(dest)
 
         if (!fs.exists(srcPath)) {
-            logger.error(`Source path does not exist: ${srcPath}`)
+            logger.error(`Path does not exist: ${srcPath}`)
             process.exit(1)
         }
 

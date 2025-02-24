@@ -1,6 +1,6 @@
-const path = require('path')
-const { fs, logger } = require('../modules/index.cjs')
-const config = require('../../config/cli.config.json')
+import path from 'path'
+import { fs, logger } from '../modules'
+import config from '../../config/workspace.config'
 
 function resetApp() {
     // Delete specified files and folders

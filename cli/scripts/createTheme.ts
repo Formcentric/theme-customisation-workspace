@@ -1,13 +1,14 @@
-const path = require('path')
-const { logger, fs, ps } = require('../modules/index.cjs')
-const config = require('../../config/cli.config.json')
+import path from 'path'
+import { logger, fs, ps } from '../modules'
+import config from '../../config/workspace.config'
 
-async function createTheme(themeName, targetDir) {
+async function createTheme(themeName: string, targetDir: string) {
     const finalTargetDir = targetDir || `${themeName}-custom`
     const moduleThemePath = path.join(config.paths.moduelPath, themeName)
     const baseThemePath = path.join(config.paths.basePath, themeName)
     const themePath = path.join(config.paths.targetPath, finalTargetDir)
     const templateEntry = path.join(config.paths.utilsPath, 'templateEntry.js')
+    const variantConfig = path.join(themePath, config.variants.config)
 
     if (fs.exists(themePath)) {
         logger.error(`The theme directory "src/themes/${finalTargetDir}" already exists!`)
@@ -17,17 +18,28 @@ async function createTheme(themeName, targetDir) {
 
     try {
         logger.info(`Creating theme: ${themeName} at ${finalTargetDir}`)
-        fs.copyDirectoryRecursive(moduleThemePath, baseThemePath)
-        fs.copyDirectoryRecursive(baseThemePath, themePath)
+        await fs.copyDirectoryRecursive(moduleThemePath, baseThemePath)
+        await fs.copyDirectoryRecursive(baseThemePath, themePath, {
+            filter: file => {
+                const fileName = path.basename(file)
+                const isDir = fs.isDirectory(file)
+
+                return isDir || config.variants.files.map(file => file.name).includes(fileName)
+            },
+        })
+        fs.writeFileSync(variantConfig, JSON.stringify({ variant: themeName }, null, 2))
         fs.copyFile(templateEntry, path.join(themePath, 'script.js'))
 
         logger.info('Generating theme list...')
-        await ps.spawn('node', ['cli/scripts/generateThemeList.cjs'])
+        await ps.spawn('pnpm', ['tsx', 'cli/scripts/generateThemeList.ts'])
 
-        await ps.spawn('vite', ['build'])
         logger.success('Theme creation complete!')
     } catch (error) {
-        logger.error(`Error during theme creation: ${error.message}`)
+        if (error instanceof Error) {
+            logger.error(error.message)
+        } else {
+            logger.error('An unknown error occurred')
+        }
         process.exit(1)
     }
 }

@@ -6,10 +6,10 @@ import { ThemeData, useThemeStore } from './themeStore'
 import Sidebar from './components/Sidebar'
 import fcThemes from './util/fcThemesList.json'
 import themes from './util/themesList.json'
-import cloudConfig from '../config/cloudConfig.json'
-import localConfig from '../config/localConfig.json'
+import cloudConfig from '../config/cloud.config.json'
+import localConfig from '../config/local.config.json'
 import { ThemesPreview } from './components/ThemesPreview'
-import config from '../config/cli.config.json'
+import config from '../config/workspace.config'
 
 declare global {
     interface Window {
