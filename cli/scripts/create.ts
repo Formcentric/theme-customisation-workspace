@@ -34,12 +34,15 @@ async function copyThemeFiles(
                 return fs.isDirectory(file) || customFiles.map(file => file.name).includes(fileName)
             },
         })
-        customFiles.forEach(file => {
-            const files = fs.findFilesByName(themePath, file.name)
-            files.forEach(filePath => {
-                if (file?.create) file.create(filePath)
+        customFiles
+            .filter(file => file?.template)
+            .forEach(file => {
+                const files = fs.findFilesByName(themePath, file.name)
+                const utilFile = path.join(config.paths.utilsPath, file.name)
+                files.forEach(filePath => {
+                    fs.copyFile(utilFile, filePath)
+                })
             })
-        })
     }
 }
 
@@ -64,6 +67,10 @@ async function createTheme(selectedType: enums.ThemeType, base: string, theme?: 
         await copyThemeFiles(selectedType, baseThemePath, themePath, themeConfig, base)
 
         await finalizeThemeCreation(templateEntry, themePath)
+
+        if (selectedType === enums.ThemeType.CUSTOM) {
+            logger.warn('create.createTheme.custom.info')
+        }
     } catch (error) {
         handleError(error)
     }
@@ -179,5 +186,4 @@ async function main() {
     }
 }
 
-// Start the program
 main()

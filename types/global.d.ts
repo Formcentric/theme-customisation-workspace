@@ -12,11 +12,6 @@ declare namespace WorkspaceConfig {
         write: (filePath: string, content: T) => void
     }
 
-    interface CustomFileHandler<T, U = T> {
-        name: string
-        create: (filePath: string) => void
-    }
-
     interface Config {
         paths: {
             rootPath: string
@@ -39,7 +34,7 @@ declare namespace WorkspaceConfig {
             files: FileHandler<unknown>[]
         }
         custom: {
-            files: CustomFileHandler<unknown>[]
+            files: { name: string; template?: boolean }[]
         }
         reset: {
             paths: string[]

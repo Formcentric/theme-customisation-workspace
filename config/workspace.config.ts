@@ -191,49 +191,29 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
         files: [
             {
                 name: 'definition.json',
-                create: filePath => {
-                    fs.writeFileSync(filePath, JSON.stringify({}, null, 2))
-                },
+                template: true,
             },
             {
                 name: '_variables.json',
-                create: filePath => {
-                    fs.writeFileSync(
-                        filePath,
-                        JSON.stringify(
-                            {
-                                customCSSVariable: 'Custom css inline variables. Add css variables here',
-                            },
-                            null,
-                            2,
-                        ),
-                    )
-                },
+                template: true,
             },
             {
                 name: '_fc-variables.scss',
-                create: filePath => {
-                    fs.writeFileSync(filePath, '// Custom FormCentric variables. Add SCSS Variables here\n')
-                },
+                template: true,
             },
             {
                 name: '_variables.scss',
-                create: filePath => {
-                    fs.writeFileSync(filePath, '// Custom theme variables. Add SCSS Variables here\n')
-                },
+                template: true,
             },
             {
                 name: 'styles.scss',
-                create: filePath => {
-                    fs.writeFileSync(
-                        filePath,
-                        '// Custom theme styles. Import your scss partials into this entry file\n',
-                    )
-                },
+                template: true,
+            },
+            {
+                name: '_dependencies.scss',
             },
             {
                 name: 'index.js',
-                create: filePath => {},
             },
         ],
     },

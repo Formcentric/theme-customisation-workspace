@@ -1,9 +1,12 @@
 const messages = {
     create: {
         createTheme: {
+            custom: {
+                info: "Action required: Don't forget to configure your theme definition file",
+            },
             exists: {
                 error: 'The theme directory "{{{themePath}}" already exists!',
-                info: 'If you want to create a different theme, choose a unique name or delete the existing directory.',
+                info: 'If you want to create a different theme, choose a unique name or delete the existing directory',
             },
             processing: {
                 info: 'Creating theme {{name}}...',
@@ -92,6 +95,23 @@ const messages = {
             warn: 'Not found: {{path}}',
         },
     },
+    update: {
+        start: {
+            info: 'Updating base themes...',
+            exit: 'No updatable base themes found in {{basePath}}. Skipping update...',
+            continue: 'Base themes found in {{basePath}}:\n{{themes}}\n\nProceeding with update...',
+        },
+        processing: {
+            info: 'Updating base theme {{theme}} ...',
+            success: 'Successfully updated base theme {{theme}}',
+            error: 'Error updating base theme {{theme}}: {{error}}',
+        },
+        finish: {
+            success: 'Successfully updated all base themes',
+            error: 'Some base themes were not updated due to errors. Please check the logs for more details',
+            todo: ' Action required: Review the changes and incorporate any necessary modifications into your custom themes',
+        },
+    },
 }
 
-export default { messages }
+export default { ...messages }

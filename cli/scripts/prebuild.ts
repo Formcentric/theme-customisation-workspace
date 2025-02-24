@@ -126,7 +126,11 @@ const prebuild = async () => {
             })
         logger.success('prebuild.success')
     } catch (error) {
-        logger.error('prebuild.error.known', { error: error.message })
+        if (error instanceof Error) {
+            logger.error('prebuild.error.known', { error: error.message })
+        } else {
+            logger.error('prebuild.error.unknown')
+        }
         process.exit(1) // Exit with error code
     }
 }

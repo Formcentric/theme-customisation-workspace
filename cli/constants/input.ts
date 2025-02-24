@@ -2,7 +2,7 @@ const input = {
     create: {
         selectThemeType: {
             matrix: [
-                ['Criteria', 'Extended FC Theme', 'Full FC Theme', 'Custom Theme (NO SUPPORT)'],
+                ['Criteria', 'Extended FC Theme', 'Full FC Theme', 'Custom Theme'],
                 [
                     ['Maintenance', 'Low', 'Medium', 'High'],
                     ['Adjustability', 'Moderate', 'Moderate', 'Complete'],
