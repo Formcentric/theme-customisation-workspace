@@ -30,61 +30,49 @@ const getBaseTheme = (theme: string) => {
 }
 
 // TODO: Merge files
-// const merge = async theme => {
-//     try {
-//         const mergeFiles = config.variants.files
-//         const outputPath = path.join(outputDir, theme)
-//         const baseThemePath = getBaseTheme(theme)
+const merge = async (theme: string) => {
+    try {
+        const mergeFiles = config.variants.files
+        const outputPath = path.join(outputDir, theme)
+        const baseThemePath = getBaseTheme(theme)
 
-//         mergeFiles.forEach(async file => {
-//             const files = fs.findFilesByName(outputPath, file.name)
+        mergeFiles.forEach(async file => {
+            const files = fs.findFilesByName(outputPath, file.name)
 
-//             // Skip if no matching files found
-//             if (!files || files.length === 0) {
-//                 logger.info(`No ${file.name} files found for theme ${theme}`)
-//                 return
-//             }
+            // Skip if no matching files found
+            if (!files || files.length === 0) {
+                logger.info(`No ${file.name} files found for theme ${theme}`)
+                return
+            }
 
-//             // Get the base file content if it exists
-//             const baseFilePath = path.join(baseThemePath, file.name)
-//             let baseFileContent = null
-//             if (fs.exists(baseFilePath)) {
-//                 baseFileContent = fs.readFile(baseFilePath)
-//                 // Parse JSON files
-//                 if (file.name.endsWith('.json')) {
-//                     baseFileContent = JSON.parse(baseFileContent)
-//                 }
-//             }
+            // Process each found file
+            files.forEach(async filePath => {
+                const baseFilePath = filePath.replace(outputPath, baseThemePath)
+                const baseFileContent = fs.read(baseFilePath)
+                let content = fs.read(filePath)
 
-//             // Process each found file
-//             files.forEach(async filePath => {
-//                 const baseFilePath = filePath.replace(outputPath, baseThemePath)
-//                 let baseFileContent = fs.readFile(baseFilePath)
-//                 let content = fs.readFile(filePath)
-//                 // Parse JSON files
-//                 if (file.name.endsWith('.json')) {
-//                     baseFileContent = JSON.parse(baseFileContent)
-//                     content = JSON.parse(content)
-//                 }
+                // Merge files if base content exists and merge function is defined
+                if (content && baseFileContent && file.merge) {
+                    content = file.merge(content, baseFileContent)
 
-//                 // Merge files if base content exists and merge function is defined
-//                 if (baseFileContent && file.merge) {
-//                     content = file.merge(content, baseFileContent)
-
-//                     // Write back merged content
-//                     if (typeof content === 'object') {
-//                         content = JSON.stringify(content, null, 2)
-//                     }
-//                     fs.writeFile(filePath, content)
-//                     logger.success(`Merged ${file.name} for theme ${theme}`)
-//                 }
-//             })
-//         })
-//     } catch (error) {
-//         logger.error(`Error merging theme ${theme}:`, error.message)
-//         process.exit(1)
-//     }
-// }
+                    // Write back merged content
+                    if (typeof content === 'object') {
+                        content = JSON.stringify(content, null, 2)
+                    }
+                    fs.writeFileSync(filePath, content)
+                    logger.success(`Merged ${file.name} for theme ${theme}`)
+                }
+            })
+        })
+    } catch (error) {
+        if (error instanceof Error) {
+            logger.error(`Error merging theme ${theme}:`, error.message)
+        } else {
+            logger.error(`An unknown error occurred while merging theme ${theme}`)
+        }
+        process.exit(1)
+    }
+}
 
 const prebuild = async () => {
     try {
@@ -132,9 +120,9 @@ const prebuild = async () => {
                     overwrite: true,
                 })
 
+                await merge(theme)
                 ps.spawn('pnpm', ['css', outputPath])
 
-                // await merge(theme)
                 logger.success(`Successfully built theme: ${theme}`)
             } catch (themeError) {
                 if (themeError instanceof Error) {

@@ -23,16 +23,23 @@ export default {
             {
                 name: 'definition.json',
                 merge: (file: Record<string, unknown>, baseFile: Record<string, unknown>) => {
-                    return _.mergeWith({}, baseFile, file, (objValue, srcValue) => {
-                        if (Array.isArray(objValue)) {
-                            if (objValue[0]?.name) {
-                                return _.unionBy(objValue, srcValue, 'name')
-                            } else if (objValue[0]?.src) {
-                                return _.unionBy(objValue, srcValue, 'src')
-                            }
-                            return srcValue
+                    const customizer = (objValue: unknown, srcValue: unknown, key: string) => {
+                        if (_.isArray(objValue) && key === 'parameters') {
+                            return srcValue.reduce((acc: unknown[], srcItem: unknown) => {
+                                const matchIndex = acc.findIndex(accItem => accItem.name === srcItem.name)
+                                if (matchIndex > -1) {
+                                    // If there's a matching item, deeply merge them
+                                    acc[matchIndex] = _.mergeWith(acc[matchIndex], srcItem, customizer)
+                                } else {
+                                    // Otherwise, add the new item from the source array
+                                    acc.push(srcItem)
+                                }
+                                return acc
+                            }, _.cloneDeep(objValue))
                         }
-                    })
+                    }
+
+                    return _.mergeWith({}, baseFile, file, customizer)
                 },
             },
             {
@@ -53,21 +60,21 @@ export default {
             },
             {
                 name: '_variables.scss',
-                merge: (file, baseFile) => {
+                merge: (file: string, baseFile: string) => {
                     // TODO: Implement merge logic
                     return file
                 },
             },
             {
                 name: 'styles.scss',
-                merge: (file, baseFile) => {
+                merge: (file: string, baseFile: string) => {
                     // TODO: Implement merge logic
                     return file
                 },
             },
             {
                 name: 'index.js',
-                merge: (file, baseFile) => {
+                merge: (file: string, baseFile: string) => {
                     // TODO: Implement merge logic
                     return file
                 },
