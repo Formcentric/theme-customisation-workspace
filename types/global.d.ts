@@ -1,34 +1,16 @@
 declare namespace WorkspaceConfig {
-    interface JsonFileHandler {
-        name: 'definition.json' | '_variables.json'
+    interface FileHandler<T, U = T> {
+        name: string
         read: (
             filePath: string,
             baseFilePath: string,
         ) => {
-            fileContent: Record<string, unknown> | null
-            baseFileContent: Record<string, unknown> | null
+            fileContent: T | null
+            baseFileContent: U | null
         }
-        merge: (
-            file: Record<string, unknown> | null,
-            baseFile: Record<string, unknown> | null,
-        ) => Record<string, unknown> | null
-        write: (filePath: string, content: Record<string, unknown> | null) => void
+        merge: (file: T, baseFile: U) => T
+        write: (filePath: string, content: T) => void
     }
-
-    interface TextFileHandler {
-        name: '_fc-variables.scss' | '_variables.scss' | 'styles.scss' | 'index.js'
-        read: (
-            filePath: string,
-            baseFilePath: string,
-        ) => {
-            fileContent: string | null
-            baseFileContent: string | null
-        }
-        merge: (file: string | null, baseFile: string | null) => string | null
-        write: (filePath: string, content: string | null) => void
-    }
-
-    type FileHandler = JsonFileHandler | TextFileHandler
 
     interface Config {
         assets: {
@@ -51,7 +33,7 @@ declare namespace WorkspaceConfig {
         }
         variants: {
             config: string
-            files: FileHandler[]
+            files: FileHandler<unknown>[]
         }
         reset: {
             paths: string[]

@@ -53,7 +53,7 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 write: (filePath, content) => {
                     fs.writeFileSync(filePath, JSON.stringify(content, null, 2))
                 },
-            },
+            } as WorkspaceConfig.FileHandler<Record<string, unknown>>,
             {
                 name: '_variables.json',
                 read: (filePath, baseFilePath) => {
@@ -71,7 +71,7 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 write: (filePath, content) => {
                     fs.writeFileSync(filePath, JSON.stringify(content, null, 2))
                 },
-            },
+            } as WorkspaceConfig.FileHandler<Record<string, string>>,
             {
                 name: '_fc-variables.scss',
                 read: (filePath, baseFilePath) => {
@@ -93,7 +93,7 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 write: (filePath, content) => {
                     fs.writeFileSync(filePath, content)
                 },
-            },
+            } as WorkspaceConfig.FileHandler<string>,
             {
                 name: '_variables.scss',
                 read: (filePath: string, baseFilePath: string) => {
@@ -115,7 +115,7 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 write: (filePath, content) => {
                     fs.writeFileSync(filePath, content)
                 },
-            },
+            } as WorkspaceConfig.FileHandler<string>,
             {
                 name: 'styles.scss',
                 read: (filePath, baseFilePath) => {
@@ -137,7 +137,7 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 write: (filePath, content) => {
                     fs.writeFileSync(filePath, content)
                 },
-            },
+            } as WorkspaceConfig.FileHandler<string>,
             {
                 name: 'index.js',
                 read: (filePath, baseFilePath) => {
@@ -188,8 +188,8 @@ const WorkspaceConfig: WorkspaceConfig.Config = {
                 write: (filePath, content) => {
                     fs.writeFileSync(filePath, content)
                 },
-            },
-        ],
+            } as WorkspaceConfig.FileHandler<string>,
+        ] as WorkspaceConfig.FileHandler<unknown>[],
     },
     output: {
         fcThemesList: 'src/util/fcThemesList.json',

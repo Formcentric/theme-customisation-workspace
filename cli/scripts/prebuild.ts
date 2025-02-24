@@ -32,7 +32,7 @@ const getBaseTheme = (theme: string) => {
 // TODO: Merge files
 const merge = async (theme: string) => {
     try {
-        const mergeFiles = config.variants.files as unk as WorkspaceConfig.FileHandler[]
+        const mergeFiles = config.variants.files
         const outputPath = path.join(outputDir, theme)
         const baseThemePath = getBaseTheme(theme)
 
