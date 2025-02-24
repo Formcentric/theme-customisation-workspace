@@ -2,18 +2,15 @@ import chalk from 'chalk'
 
 const write = console.log
 
-type ColorFunc = (text: string) => string
+// Type for valid chalk colors
+type ChalkColor = keyof typeof chalk & ('blue' | 'green' | 'yellow' | 'red')
 
 const logger = {
     log: (msg: string) => write(msg),
-    info: (msg: string, color: string = 'blue', icon = 'ℹ') =>
-        write((chalk[color as keyof typeof chalk] as ColorFunc)(`${icon} ${msg}`)),
-    success: (msg: string, color: string = 'green', icon = '✓') =>
-        write((chalk[color as keyof typeof chalk] as ColorFunc)(`${icon} ${msg}`)),
-    warn: (msg: string, color: string = 'yellow', icon = '⚠') =>
-        write((chalk[color as keyof typeof chalk] as ColorFunc)(`${icon} ${msg}`)),
-    error: (msg: string, color: string = 'red', icon = '✖') =>
-        write((chalk[color as keyof typeof chalk] as ColorFunc)(`${icon} ${msg}`)),
+    info: (msg: string, color: ChalkColor = 'blue', icon = 'ℹ') => write(chalk[color](`${icon} ${msg}`)),
+    success: (msg: string, color: ChalkColor = 'green', icon = '✓') => write(chalk[color](`${icon} ${msg}`)),
+    warn: (msg: string, color: ChalkColor = 'yellow', icon = '⚠') => write(chalk[color](`${icon} ${msg}`)),
+    error: (msg: string, color: ChalkColor = 'red', icon = '✖') => write(chalk[color](`${icon} ${msg}`)),
 }
 
 export default logger
