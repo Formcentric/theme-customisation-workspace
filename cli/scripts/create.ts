@@ -102,13 +102,15 @@ function handleError(error: unknown) {
 }
 
 async function getAvailableThemes(): Promise<string[]> {
-    let themes = await fs.listDirectory(config.paths.moduelPath)
+    const getThemes = async () =>
+        await fs.listDirectory(config.paths.moduelPath).filter(dir => !config.paths.utilsPath.includes(dir))
+    let themes = await getThemes()
 
     if (!themes) {
         logger.warn('create.getAvailableThemes.exists.warn')
         logger.info('create.getAvailableThemes.exists.info')
         await ps.spawn('pnpm', ['i'])
-        themes = await fs.listDirectory(config.paths.moduelPath)
+        themes = await getThemes()
 
         if (!themes) {
             logger.error('create.getAvailableThemes.exists.exists.error')
