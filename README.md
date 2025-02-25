@@ -37,8 +37,8 @@ Test your changes in real-time with:
 
 ## Documentation
 
-The documentation is available in the `docs` folder. To open it in storybook run:
+The documentation is available in the `docs` folder. To open it run:
 
 ```bash
-pnpm docs
+pnpm storybook
 ```

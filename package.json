@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev-docs": "storybook dev -p 6006",
+        "storybook": "storybook dev -p 6006",
         "dev-cloud": "pnpm tsx ./cli/scripts/generateThemeList.ts && vite build && VITE_FC_ENV=cloud vite",
         "dev-local": "pnpm tsx ./cli/scripts/generateThemeList.ts && vite build && VITE_FC_ENV=local vite",
         "create-theme": "pnpm tsx ./cli/scripts/create.ts",
