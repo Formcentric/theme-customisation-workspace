@@ -5,7 +5,7 @@ const messages = {
                 info: "Action required: Don't forget to configure your theme definition file",
             },
             exists: {
-                error: 'The theme directory "{{{themePath}}" already exists!',
+                error: 'The theme directory "{{themePath}}" already exists!',
                 info: 'If you want to create a different theme, choose a unique name or delete the existing directory',
             },
             processing: {
