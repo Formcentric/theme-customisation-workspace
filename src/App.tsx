@@ -41,6 +41,20 @@ const Wrapper = styled.div`
     background: #f0f2fc;
 `
 
+function generateUid(input: string): string {
+    let hash = 0
+    for (let i = 0; i < input.length; i++) {
+        const char = input.charCodeAt(i)
+        hash = (hash << 5) - hash + char
+        hash = hash & hash // Convert to 32-bit integer
+    }
+    return `${input}:fcid:${Math.abs(hash)}`
+}
+
+function removeUid(input: string): string {
+    return input.split(':fcid:')[0]
+}
+
 function App() {
     const formDefinition = useThemeStore(s => s.formDefinition)
     const setThemeData = useThemeStore(s => s.setThemeData)
@@ -64,7 +78,7 @@ function App() {
                         )
 
                         return {
-                            id: definition.theme,
+                            id: generateUid(definition.theme),
                             name: definition.labels.en,
                             description: definition.descriptions.en,
                             previewImageSrc: image.default,
@@ -148,8 +162,9 @@ function App() {
         if (themeName === selectedTheme) return
         Object.values(window?.formcentric?.formapp?.instances || {}).forEach(instance => instance?.stop())
 
+        const themeId = custom ? themeName : generateUid(themeName)
         const themeFolder = custom ? config.paths.output : config.paths.moduelPath
-        setSelectedTheme(themeName)
+        setSelectedTheme(themeId)
         setThemeDir(themeFolder)
         reloadFormapp()
     }
@@ -171,10 +186,8 @@ function App() {
     const commonProps = {
         'data-fc-formapp-url': modulePath + '/formapp.js',
         'data-fc-theme-dir': themeDir,
-        'data-fc-theme': selectedTheme,
+        'data-fc-theme': removeUid(selectedTheme),
     }
-
-    console.log(commonProps)
 
     const environmentProps = {
         cloud: {
