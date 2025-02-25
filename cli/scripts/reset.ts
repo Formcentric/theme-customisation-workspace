@@ -21,7 +21,7 @@ function reset() {
     // Clean themes directory but keep .gitkeep
     const emptyPaths = [config.paths.basePath, config.paths.targetPath]
     emptyPaths.forEach(path => {
-        if (fs.cleanDirectory(path, ['.gitkeep'])) {
+        if (fs.cleanDirectory(path, ['README.md'])) {
             logger.success('reset.clean.success', { path })
         } else {
             logger.warn('reset.clean.warn', { path })

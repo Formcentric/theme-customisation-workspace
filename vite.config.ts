@@ -15,7 +15,7 @@ export default defineConfig(() => {
 
     const themes: string[] = sync('*', {
         cwd: config.paths.targetPath,
-        ignore: ['.*'],
+        ignore: ['.*', 'README.md'],
     })
 
     return {

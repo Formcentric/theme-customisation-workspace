@@ -106,7 +106,9 @@ const prebuild = async () => {
                     await fs.copyDirectoryRecursive(themePath, outputPath, {
                         filter: (file: string) => {
                             const name = path.basename(file)
-                            return !name.includes('.gitkeep') && !name.includes(themeConfig)
+                            return (
+                                !name.includes('README.md') && !name.includes(themeConfig)
+                            )
                         },
                         overwrite: true,
                     })

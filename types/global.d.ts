@@ -15,7 +15,6 @@ declare namespace WorkspaceConfig {
     interface Config {
         paths: {
             rootPath: string
-            configPath: string
             moduelPath: string
             basePath: string
             targetPath: string

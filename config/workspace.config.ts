@@ -4,7 +4,6 @@ import { fs } from '../cli/modules'
 const WorkspaceConfig: WorkspaceConfig.Config = {
     paths: {
         rootPath: '.',
-        configPath: 'config/cli.config.tson',
         moduelPath: 'node_modules/@formcentric/client/dist/themes',
         basePath: 'src/themes-base',
         targetPath: 'src/themes',
