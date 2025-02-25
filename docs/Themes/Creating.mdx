@@ -72,49 +72,63 @@ A typical theme consists of the following key files and directories:
 ### Core Files
 
 ```
-themes-base/[theme-name]/
-├── definition.json      # Theme configuration and parameters
-├── _variables.json      # Theme-specific variables
+themes/[theme-name]/
+├── _variables.json     # Theme-specific variables
+├── definition.json     # Theme configuration and parameters
+├── script.js           # Imports all template functions from templates/
+├── styles.scss         # Imports all partials from partials/
 ├── fonts/              # Font files used by the theme
 ├── img/                # Theme images and assets
-└── partials/          # SCSS style components
+├── partials/           # SCSS style components
+├── templates/          # Template files
+└── variables/          # Theme variables
 ```
 
 ### Key Components
 
-1. **definition.json**
+3. **_variables.json**
+   - Contains theme-specific default values as css variables that are programmatically injected into the form during runtime
+   - Defines core styling variables like:
+   - Colors (primary, secondary, text, etc.)
+   - Typography (font family, sizes)
+   - Spacing and layout values
+   - Component-specific settings
+
+2. **definition.json (Formcentric Cloud)**
    - Defines theme metadata, parameters, and configuration
    - Specifies customizable options like colors, fonts, and spacing
    - Configures language-specific labels and descriptions
-   - Lists required assets (fonts, images)
+   - Lists required assets
 
-2. **_variables.json**
-   - Contains theme-specific default values
-   - Defines core styling variables like:
-     - Colors (primary, secondary, text, etc.)
-     - Typography (font family, sizes)
-     - Spacing and layout values
-     - Component-specific settings
+3. **script.js**
+   - Entry point for template functions
+   - Contains import statements for all template functions
+   - When building the theme, the script is compiled into a single file and added to the form during runtime
 
-3. **partials/**
-   - Contains modular SCSS files for different components
-   - Common components include:
-     - Buttons (`_button.scss`)
-     - Form fields (`_field.scss`)
-     - Typography (`_fonts.scss`)
-     - Layout (`_form-actions.scss`)
-     - Validation (`_error.scss`)
+4. **styles.scss**
+   - Entry point for styles
+   - Contains import statements for all partials
+   - When building the theme, the styles are compiled into a single file and added to the form during runtime
+   - Optionally, the SCSS file can be added directly as an import to the stylesheet of the embedding application
 
-### Example Structure
+5. **partials/**
+   - Contains modular SCSS files for form components
+   - Imported by styles.scss
 
-The Atlanta theme demonstrates a complete implementation with:
+6. **templates/**
+   - Contains template files for form components
+   - Imported by script.js
 
-- Clean, geometric design
-- Neutral color scheme
-- Responsive layouts
-- Comprehensive form controls
-- Validation states
-- Accessibility features
+7. **variables/**
+   - Contains variable files for form components:
+        - **_fc-variables.scss**
+            - The variable configuration file of the theme
+            - Determines if theme variables have already been added during build time (see _variables.scss) and otherwise defaults to css variables injected during runtime (see _variables.json)
+        - **_variables.scss**
+            - SCSS variables containing the same values as _variables.json
+            - Not included in styles.scss by default
+            - Has to be added to styles.scss to use it instead of injected css variables from _variables.json
+
 
 ## Best Practices
 
@@ -125,23 +139,23 @@ The Atlanta theme demonstrates a complete implementation with:
 
 2. **Variable Usage**
    - Leverage theme variables for consistency
-   - Make styles configurable through `definition.json`
+   - Make styles configurable through `definition.json` (Formcentric Cloud) and the variable configuration files _fc-variables.scss, _variables.scss and _variables.json
    - Use SCSS features for DRY code
 
 3. **Responsive Design**
    - Include mobile and desktop breakpoints
-   - Use flexible units (em, rem) for scaling
+   - Use flexible units (em) for scaling
    - Test across different screen sizes
 
 4. **Accessibility**
    - Include focus states
    - Maintain sufficient color contrast
-   - Support keyboard navigation
+   - Support keyboard navigation when building custom templates
 
 ### Extended FC Theme
 
 - Best for making targeted style adjustments to an existing theme
-- Inherits most styles from a base theme
+- Inherits most styles from the chosen base theme
 - Allows overriding specific components and variables
 - Lowest maintenance overhead
 
