@@ -81,9 +81,6 @@ importers:
       chalk:
         specifier: ^5.4.1
         version: 5.4.1
-      chokidar:
-        specifier: ^4.0.1
-        version: 4.0.1
       cssnano:
         specifier: ^7.0.6
         version: 7.0.6(postcss@8.4.49)
@@ -599,7 +596,7 @@ packages:
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@formcentric/client@3.3.0-DEV.5':
-    resolution: {integrity: sha512-A7i6TP4NesfdBaI4A3GOAnGg8faSFrShvjoE3U3jD2BN6f4N4BigP9E44o49aW73I0cPju57bXkMGJYXi+QboQ==, tarball: https://maven.monday-consulting.com:443/artifactory/api/npm/formcentric-npm/@formcentric/client/-/@formcentric/client-3.3.0-DEV.5.tgz}
+    resolution: {integrity: sha512-A7i6TP4NesfdBaI4A3GOAnGg8faSFrShvjoE3U3jD2BN6f4N4BigP9E44o49aW73I0cPju57bXkMGJYXi+QboQ==, tarball: https://maven.monday-consulting.com/artifactory/api/npm/formcentric-npm/@formcentric/client/-/@formcentric/client-3.3.0-DEV.5.tgz}
     hasBin: true
 
   '@headlessui/react@2.2.0':
@@ -1445,10 +1442,6 @@ packages:
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
     engines: {node: '>= 8.10.0'}
-
-  chokidar@4.0.1:
-    resolution: {integrity: sha512-n8enUVCED/KVRQlab1hr3MVpcVMvxtZjmEa956u+4YijlmQED223XMSYj2tLuKvr4jcCTzNNMpQDUer72MMmzA==}
-    engines: {node: '>= 14.16.0'}
 
   chromatic@11.25.2:
     resolution: {integrity: sha512-/9eQWn6BU1iFsop86t8Au21IksTRxwXAl7if8YHD05L2AbuMjClLWZo5cZojqrJHGKDhTqfrC2X2xE4uSm0iKw==}
@@ -2620,10 +2613,6 @@ packages:
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
-
-  readdirp@4.0.2:
-    resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
-    engines: {node: '>= 14.16.0'}
 
   recast@0.23.9:
     resolution: {integrity: sha512-Hx/BGIbwj+Des3+xy5uAtAbdCyqK9y9wbBcDFDYanLS9JnMqf7OeF87HQwUimE87OEc72mr6tkKUKMBBL+hF9Q==}
@@ -4326,10 +4315,6 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  chokidar@4.0.1:
-    dependencies:
-      readdirp: 4.0.2
-
   chromatic@11.25.2: {}
 
   cli-width@4.1.0: {}
@@ -5508,8 +5493,6 @@ snapshots:
   readdirp@3.6.0:
     dependencies:
       picomatch: 2.3.1
-
-  readdirp@4.0.2: {}
 
   recast@0.23.9:
     dependencies:

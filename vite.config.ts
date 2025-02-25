@@ -49,6 +49,14 @@ export default defineConfig(() => {
         },
         server: {
             port: 3000,
+            watch: {
+                usePolling: false,
+                interval: 100,
+                awaitWriteFinish: {
+                    stabilityThreshold: 2000,
+                    pollInterval: 100,
+                },
+            },
             ...(fcEnv === 'cloud' && {
                 proxy: {
                     '/headless-server': {

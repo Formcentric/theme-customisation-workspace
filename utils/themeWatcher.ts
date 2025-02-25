@@ -1,6 +1,5 @@
 import { build, Plugin } from 'vite'
 import { exec, execSync } from 'child_process'
-import chokidar from 'chokidar'
 import path from 'path'
 import transformToIIFE from './transformToIIFE'
 import config from '../config/workspace.config'
@@ -40,25 +39,13 @@ export default function themeWatcherPlugin(): Plugin {
                 }
             }
 
-            const watcher = chokidar.watch(themesDir, {
-                ignoreInitial: true,
-                awaitWriteFinish: {
-                    stabilityThreshold: 2000,
-                    pollInterval: 100,
-                },
-            })
-
-            let isProcessing = false
-
             const buildTheme = async (filePath: string) => {
-                // If already processing, don't queue another build
-                if (isProcessing) {
-                    return
-                }
-
                 try {
-                    isProcessing = true
+                    if (filePath.includes(config.paths.basePath)) return
                     const relativePath = path.relative(config.paths.targetPath, filePath)
+                    console.log(filePath)
+                    console.log(relativePath)
+
                     const pathParts = relativePath.split(path.sep)
                     const themeName = pathParts[0]
 
@@ -76,36 +63,44 @@ export default function themeWatcherPlugin(): Plugin {
                     await buildJs(themeName)
                 } catch (err) {
                     console.error('Error when recompiling', err)
-                } finally {
-                    isProcessing = false
                 }
             }
 
-            watcher
-                .on('add', buildTheme)
-                .on('change', buildTheme)
-                .on('unlinkDir', async filePath => {
-                    const baseName = path.basename(filePath) // Get the name of the deleted directory
+            let processingFolder = false
+            server.watcher.on('add', async filePath => {
+                if (processingFolder) return
+                processingFolder = true
 
-                    try {
-                        const themeList = await import('../src/util/themesList.json')
-                        if ((themeList as string[]).includes(baseName)) {
-                            console.log(`Theme "${baseName}" was deleted, regenerating theme list...`)
-                            // First stop the server
-                            await server.close()
-                            // Regenerate the theme list
-                            exec('pnpm tsx cli/scripts/generateThemeList.ts')
-                            // Rebuild the server
-                            await server.restart()
-                        }
-                    } catch (error) {
-                        console.error(error)
+                if (filePath.startsWith(themesDir)) {
+                    await buildTheme(filePath)
+                }
+
+                processingFolder = false
+            })
+
+            server.watcher.on('change', filePath => {
+                if (filePath.startsWith(themesDir)) {
+                    buildTheme(filePath)
+                }
+            })
+
+            server.watcher.on('unlinkDir', async filePath => {
+                const baseName = path.basename(filePath)
+
+                try {
+                    const themeList = await import('../src/util/themesList.json')
+                    if ((themeList as string[]).includes(baseName)) {
+                        console.log(`Theme "${baseName}" was deleted, regenerating theme list...`)
+                        // First stop the server
+                        await server.close()
+                        // Regenerate the theme list
+                        exec('pnpm tsx cli/scripts/generateThemeList.ts')
+                        // Rebuild the server
+                        await server.restart()
                     }
-                })
-
-            // Clean up the watcher when the server is stopped
-            server.watcher.on('close', () => {
-                watcher.close()
+                } catch (error) {
+                    console.error(error)
+                }
             })
         },
     }
