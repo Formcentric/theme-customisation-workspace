@@ -32,8 +32,6 @@ export async function select(message: string, choices: any[]) {
         ])
         return selected
     } catch (error: unknown) {
-        console.log(error)
-
         if (error instanceof Error && error.message === 'SIGINT') {
             process.exit(0)
         }

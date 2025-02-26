@@ -5,6 +5,7 @@ import FormDropdown, { Option } from './FormDropdown'
 import { useThemeStore } from '../themeStore'
 import { debounce } from 'lodash'
 import { useCallback, useState } from 'react'
+import { removeUid } from '../helpers/uid'
 
 const Wrapper = styled.div`
     width: 350px;
@@ -261,7 +262,7 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                         <ThemeItem
                             key={item}
                             onClick={() => handleThemeChange(item, true)}
-                            $selected={selectedTheme === item}
+                            $selected={selectedTheme === removeUid(item)}
                         >
                             {item}
                         </ThemeItem>

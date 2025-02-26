@@ -10,6 +10,7 @@ import cloudConfig from '../config/cloud.config.json'
 import localConfig from '../config/local.config.json'
 import { ThemesPreview } from './components/ThemesPreview'
 import config from '../config/workspace.config'
+import { generateUid, removeUid } from './helpers/uid'
 
 declare global {
     interface Window {
@@ -40,20 +41,6 @@ const Wrapper = styled.div`
     overflow: hidden;
     background: #f0f2fc;
 `
-
-function generateUid(input: string): string {
-    let hash = 0
-    for (let i = 0; i < input.length; i++) {
-        const char = input.charCodeAt(i)
-        hash = (hash << 5) - hash + char
-        hash = hash & hash // Convert to 32-bit integer
-    }
-    return `${input}:fcid:${Math.abs(hash)}`
-}
-
-function removeUid(input: string): string {
-    return input.split(':fcid:')[0]
-}
 
 function App() {
     const formDefinition = useThemeStore(s => s.formDefinition)
@@ -117,7 +104,7 @@ function App() {
                 stylesheet?.parentNode?.removeChild(stylesheet)
             })
         } catch {
-            console.log('formapp could not be unmounted')
+            console.error('Formapp could not be unmounted')
         }
     }
 
@@ -161,10 +148,9 @@ function App() {
     const handleThemeChange = (themeName: string, custom?: boolean) => {
         if (themeName === selectedTheme) return
         Object.values(window?.formcentric?.formapp?.instances || {}).forEach(instance => instance?.stop())
-
-        const themeId = custom ? themeName : generateUid(themeName)
         const themeFolder = custom ? config.paths.output : config.paths.moduelPath
-        setSelectedTheme(themeId)
+
+        setSelectedTheme(themeName)
         setThemeDir(themeFolder)
         reloadFormapp()
     }
@@ -204,8 +190,8 @@ function App() {
         <Wrapper>
             <Sidebar
                 selectedTheme={selectedTheme}
-                handleThemeChange={handleThemeChange}
                 formOptions={cloudConfig.fcForms}
+                handleThemeChange={handleThemeChange}
                 handleFormChange={handleFormChange}
             />
             {selectedTheme ? (
