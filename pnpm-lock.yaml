@@ -30,6 +30,9 @@ importers:
       '@formcentric/client':
         specifier: 3.3.0-DEV.5
         version: 3.3.0-DEV.5
+      '@formcentric/utils':
+        specifier: link:../frontend/dist/libs/utils
+        version: link:../frontend/dist/libs/utils
       '@headlessui/react':
         specifier: ^2.2.0
         version: 2.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

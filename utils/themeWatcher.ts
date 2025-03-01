@@ -2,7 +2,7 @@ import { build, Plugin } from 'vite'
 import { exec, execSync } from 'child_process'
 import path from 'path'
 import transformToIIFE from './transformToIIFE'
-import config from '../config/workspace.config'
+import config from '../config/formcentric.config'
 
 export default function themeWatcherPlugin(): Plugin {
     return {
@@ -43,8 +43,6 @@ export default function themeWatcherPlugin(): Plugin {
                 try {
                     if (filePath.includes(config.paths.basePath)) return
                     const relativePath = path.relative(config.paths.targetPath, filePath)
-                    console.log(filePath)
-                    console.log(relativePath)
 
                     const pathParts = relativePath.split(path.sep)
                     const themeName = pathParts[0]
@@ -55,7 +53,7 @@ export default function themeWatcherPlugin(): Plugin {
                     }
 
                     // Run prebuild first
-                    execSync(`pnpm tsx cli/scripts/prebuild.ts ${themeName}`, {
+                    execSync(`pnpm fc-utils-themes prebuild ${themeName}`, {
                         stdio: 'inherit',
                     })
 
@@ -94,7 +92,7 @@ export default function themeWatcherPlugin(): Plugin {
                         // First stop the server
                         await server.close()
                         // Regenerate the theme list
-                        exec('pnpm tsx cli/scripts/generateThemeList.ts')
+                        exec('pnpm fc-utils-themes list')
                         // Rebuild the server
                         await server.restart()
                     }

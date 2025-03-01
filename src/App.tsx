@@ -9,7 +9,7 @@ import themes from './util/themesList.json'
 import cloudConfig from '../config/cloud.config.json'
 import localConfig from '../config/local.config.json'
 import { ThemesPreview } from './components/ThemesPreview'
-import config from '../config/workspace.config'
+import config from '../config/formcentric.config.js'
 import { generateUid, removeUid } from './helpers/uid'
 
 declare global {

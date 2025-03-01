@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import config from '../config/workspace.config'
+import config from '../config/formcentric.config.js'
 
 const modulePath = '/' + config.paths.moduelPath.replace('themes', '')
 

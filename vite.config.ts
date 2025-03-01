@@ -2,12 +2,11 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { sync } from 'glob'
 import path from 'path'
-import transformToIIFE from './utils/transformToIIFE.ts'
-import buildPlugin from './utils/buildPlugin.ts'
-import themeWatcherPlugin from './utils/themeWatcher.ts'
 import cloudConfig from './config/cloud.config.json'
-import config from './config/workspace.config'
-
+import config from './config/formcentric.config.js'
+import buildPlugin from './utils/buildPlugin.js'
+import themeWatcherPlugin from './utils/themeWatcher.js'
+import transformToIIFE from './utils/transformToIIFE.js'
 type FcEnv = 'local' | 'cloud'
 // https://vite.dev/config/
 export default defineConfig(() => {

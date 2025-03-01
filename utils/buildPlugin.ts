@@ -1,10 +1,10 @@
 import { Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
-import config from '../config/workspace.config'
+import config from '../config/formcentric.config'
 import { execSync } from 'child_process'
 
-export default function buildPlugin(): Plugin {
+export default async function buildPlugin(): Promise<Plugin> {
     return {
         name: 'build-plugin',
         apply: 'build',
@@ -45,7 +45,7 @@ export default function buildPlugin(): Plugin {
 
             // copy themes to dist folder
             try {
-                execSync('npx tsx cli/scripts/prebuild.ts', { stdio: 'inherit' })
+                execSync('pnpm fc-utils-themes prebuild', { stdio: 'inherit' })
             } catch (error) {
                 console.error('Error during build:', error)
                 process.exit(1)
