@@ -1,12 +1,11 @@
 import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
 import { sync } from 'glob'
 import path from 'path'
 import cloudConfig from './config/cloud.config.json'
 import config from './config/formcentric.config.js'
-import buildPlugin from './utils/buildPlugin.js'
-import themeWatcherPlugin from './utils/themeWatcher.js'
-import transformToIIFE from './utils/transformToIIFE.js'
+import { fcThemeWatcher, fcThemeBuilder, fcIIFE } from '@formcentric/utils'
+
 type FcEnv = 'local' | 'cloud'
 // https://vite.dev/config/
 export default defineConfig(() => {
@@ -31,12 +30,12 @@ export default defineConfig(() => {
                 output: {
                     format: 'cjs' as never,
                     entryFileNames: '[name].js',
-                    plugins: [transformToIIFE()],
+                    plugins: [fcIIFE() as Plugin],
                 },
                 external: (id: string) => id.startsWith(config.paths.moduelPath),
             },
         },
-        plugins: [react(), themeWatcherPlugin(), buildPlugin()],
+        plugins: [react(), fcThemeWatcher() as Plugin, fcThemeBuilder() as Plugin],
         define: {
             FC_ENV: JSON.stringify(fcEnv),
         },
