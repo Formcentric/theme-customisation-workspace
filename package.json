@@ -17,7 +17,7 @@
         "@chromatic-com/storybook": "^3.2.4",
         "@eslint/js": "^9.14.0",
         "@formcentric/client": "3.3.0-DEV.5",
-        "@formcentric/utils": "0.0.1-DEV.0",
+        "@formcentric/utils": "0.0.1-DEV.1",
         "@headlessui/react": "^2.2.0",
         "@storybook/addon-docs": "^8.5.8",
         "@storybook/addon-essentials": "^8.5.8",
