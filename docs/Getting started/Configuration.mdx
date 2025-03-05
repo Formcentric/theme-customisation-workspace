@@ -4,11 +4,11 @@ import { Meta } from '@storybook/blocks'
 
 ## Cloud Configuration
 
-The cloud configuration file manages settings for FC Cloud users running `pnpm dev-cloud`. Specifically, which forms are available to test themes against.
+The cloud configuration file manages settings for FC Cloud users running `pnpm dev-cloud`. Specifically, which forms are available to test themes.
 
 ## Local Configuration
 
-The local configuration file manages settings for self-hosted users running `pnpm dev-local`. Specifically, the headless server url and the form definition to use for testing.
+The local configuration file manages settings for self-hosted users running `pnpm dev-local`. Specifically, the headless server url and the form definition to use for theme testing.
 
 ## Workspace Configuration
 
@@ -16,11 +16,11 @@ The workspace configuration file manages your theming environment, handling file
 
 ### Overview
 
-Your workspace configuration lives in `config/formcentric.config.js.ts` and defines how your theming system behaves. Let's break down each section:
+Your workspace configuration is located in `config/formcentric.config.js` and defines how your theming system behaves. Below is a breakdown of each section:
 
 ### Path Configuration
 
-The `paths` object defines all important directories and files in your workspace:
+The `paths` object defines all essential directories and files in your workspace:
 
 ```ts
 paths: {
@@ -37,7 +37,7 @@ paths: {
 
 ### Variant Configuration
 
-The `variants` object defines how specific files in extended Formcentric themes will be read, merged and written during the build process:
+The `variants` object defines how specific files in customized Formcentric themes will be read, merged and written during the build process:
 
 ```ts
 variants: {
@@ -47,7 +47,7 @@ variants: {
 
 ### Reset Configuration
 
-The `reset` object defines the files and directories that will be affected by the reset command:
+The `reset` object defines which files and directories are affected by the reset command.
 
 ```ts
 reset: {

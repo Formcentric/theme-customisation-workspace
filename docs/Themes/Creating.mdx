@@ -65,6 +65,28 @@ When creating a new theme, choose between three theme types:
     </table>
 </div>
 
+### Extended FC Theme
+
+- Best for making targeted style adjustments to an existing theme
+- Inherits most styles from the chosen base theme
+- Allows overriding specific components and variables
+- Lowest maintenance overhead
+
+### Full FC Theme
+
+- Complete copy of an existing theme
+- Full control over all theme components
+- Requires more maintenance when base themes are updated
+- Good balance between customization and complexity
+
+### Custom Theme
+
+- Start from minimal boilerplate
+- Complete freedom in design and implementation
+- Highest maintenance responsibility
+- Best for unique designs that differ significantly from existing themes
+
+
 ## Theme Structure
 
 A typical theme consists of the following key files and directories:
@@ -73,15 +95,15 @@ A typical theme consists of the following key files and directories:
 
 ```
 themes/[theme-name]/
-├── _variables.json     # Theme-specific variables
-├── definition.json     # Theme configuration and parameters
+├── _variables.json     # Defines theme-specific variables
+├── definition.json     # Sets theme configuration and parameters
 ├── script.js           # Imports all template functions from templates/
 ├── styles.scss         # Imports all partials from partials/
-├── fonts/              # Font files used by the theme
-├── img/                # Theme images and assets
-├── partials/           # SCSS style components
-├── templates/          # Template files
-└── variables/          # Theme variables
+├── fonts/              # Includes font files
+├── img/                # Includes theme images
+├── partials/           # Includes SCSS style components
+├── templates/          # Includes template files
+└── variables/          # Defines theme-specific variables
 ```
 
 ### Key Components
@@ -96,14 +118,14 @@ themes/[theme-name]/
 
 2. **definition.json (Formcentric Cloud)**
    - Defines theme metadata, parameters, and configuration
-   - Specifies customizable options like colors, fonts, and spacing
+   - Specifies customizable options such as colors, fonts, and spacing
    - Configures language-specific labels and descriptions
    - Lists required assets
 
 3. **script.js**
    - Entry point for template functions
    - Contains import statements for all template functions
-   - When building the theme, the script is compiled into a single file and added to the form during runtime
+   - When building themes, the script is compiled into a single file and added to the form during runtime
 
 4. **styles.scss**
    - Entry point for styles
@@ -122,12 +144,12 @@ themes/[theme-name]/
 7. **variables/**
    - Contains variable files for form components:
         - **_fc-variables.scss**
-            - The variable configuration file of the theme
-            - Determines if theme variables have already been added during build time (see _variables.scss) and otherwise defaults to css variables injected during runtime (see _variables.json)
+            - Variable configuration file of the theme
+            - Determines if theme variables have already been declared during build time (see _variables.scss) and otherwise defaults to css variables injected during runtime (see _variables.json)
         - **_variables.scss**
             - SCSS variables containing the same values as _variables.json
             - Not included in styles.scss by default
-            - Has to be added to styles.scss to use it instead of injected css variables from _variables.json
+            - Must be added to styles.scss to use it instead of injected css variables from _variables.json in the css output file
 
 
 ## Best Practices
@@ -151,24 +173,3 @@ themes/[theme-name]/
    - Include focus states
    - Maintain sufficient color contrast
    - Support keyboard navigation when building custom templates
-
-### Extended FC Theme
-
-- Best for making targeted style adjustments to an existing theme
-- Inherits most styles from the chosen base theme
-- Allows overriding specific components and variables
-- Lowest maintenance overhead
-
-### Full FC Theme
-
-- Complete copy of an existing theme
-- Full control over all theme components
-- Requires more maintenance when base themes are updated
-- Good balance between customization and complexity
-
-### Custom Theme
-
-- Start from minimal boilerplate
-- Complete freedom in design and implementation
-- Highest maintenance responsibility
-- Best for unique designs that differ significantly from existing themes

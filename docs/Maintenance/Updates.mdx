@@ -4,13 +4,13 @@ import { Meta } from '@storybook/blocks'
 
 # Updating Themes
 
-To update the base themes in your workspace:
+To update base themes in your workspace, run:
 
 ```bash
 pnpm update-theme
 ```
 
-This command will update all base themes in your `base-themes` directory with the latest versions from the Formcentric module.
+This command updates all base themes in your `themes-base` directory with the latest versions from the Formcentric module.
 
 ## Update Impact by Theme Type
 
@@ -34,14 +34,13 @@ This command will update all base themes in your `base-themes` directory with th
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Full FC Theme</td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
                     <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span> - Manual review and integration of changes
-                    needed
+                    are required.
                 </td>
             </tr>
             <tr>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Custom Theme</td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
-                    <span style={{ color: 'rgb(200, 0, 0)' }}>High</span> - Must manually check compatibility with new
-                    features
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>High</span> - Manual review, integration and compatibility check with new features are required.
                 </td>
             </tr>
         </tbody>
@@ -50,10 +49,10 @@ This command will update all base themes in your `base-themes` directory with th
 
 ### Post-Update Checklist
 
-1. For Extended FC Themes:
-    - Style customizations via variables typically continue working
-    - Check any template overrides for new required props or functionality
-2. For Full/Custom Themes:
-    - Review changes in updated base themes
-    - Manually incorporate necessary modifications
-3. Always test your themes to ensure they work as expected with the updated components
+1. Extended FC Themes:
+    - Style customizations via variables typically continue working.
+    - Check any template overrides for new required props or functionality.
+2. Full/Custom Themes:
+    - Review changes in updated base themes.
+    - Manually incorporate necessary modifications.
+3. Always test your themes to ensure they work as expected with the updated components.

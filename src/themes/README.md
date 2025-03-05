@@ -1,11 +1,11 @@
 # Themes Directory
 
-This directory contains your created custom themes.
+This directory contains your custom-created themes.
 
 ## Creating a New Theme
 
-1. Run `pnpm create-theme`
-2. Modify the desired theme files
+1. Run `pnpm create-theme`.
+2. Modify the desired theme files.
 
 ## Documentation
 

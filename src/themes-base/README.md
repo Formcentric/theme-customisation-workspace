@@ -1,6 +1,6 @@
-# ⚠️ WARNING: Do Not Edit Manually
+# ⚠️ WARNING: DO NOT MODIFY MANUALLY
 
-This directory contains base theme files that are managed by the system. **DO NOT edit these files directly.**
+This directory contains base theme files that are managed by the system. **DO NOT MODIFY these files directly.**
 
 ## Why?
 
@@ -13,8 +13,8 @@ This directory contains base theme files that are managed by the system. **DO NO
 To create custom themes:
 
 1. Run `pnpm create-theme`
-2. Modify the desired theme files in the configured target directory
-3. Follow the theming documentation for proper customization procedures
+2. Modify the desired theme files in the configured target directory.
+3. Follow the theming documentation for proper customization procedures.
 
 ## Documentation
 
