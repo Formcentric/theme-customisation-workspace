@@ -4,6 +4,8 @@ import { Meta } from '@storybook/blocks';
 
 # Usage
 
+<br />
+
 ## For FC Cloud Users
 
 ```bash
@@ -27,13 +29,14 @@ The fcForms array determines which forms appear in the sidebar dropdown.
 
 ## For Self-hosted Users
 
-1. Verify that the URL of your headless-server matches the predefined URL in `./config/localConfig.json` (http://localhost:8080) and update it if needed.
+Verify that the URL of your headless-server matches the predefined URL in `./config/localConfig.json` (http://localhost:8080) and update it if needed.
 
-2. Start the development server:
+Start the development server:
+
 ```bash
 pnpm dev-local
 ```
 
-3. Set your form definition by either:
+Set your form definition by either:
     - Pasting it inside the input field of our user interface
     - Updating the `formDefinition` property in `./config/localConfig.json`

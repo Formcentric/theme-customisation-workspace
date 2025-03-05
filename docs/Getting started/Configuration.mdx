@@ -2,6 +2,10 @@ import { Meta } from '@storybook/blocks'
 
 <Meta title='Getting started/Configuration' />
 
+# Configuration
+
+<br />
+
 ## Cloud Configuration
 
 The cloud configuration file manages settings for FC Cloud users running `pnpm dev-cloud`. Specifically, which forms are available to test themes.
@@ -37,11 +41,18 @@ paths: {
 
 ### Variant Configuration
 
-The `variants` object defines how specific files in customized Formcentric themes will be read, merged and written during the build process:
+The `variants` object defines how specific files in customized Formcentric themes will be read, merged and written with their counterparts in the base theme during the build process:
 
 ```ts
 variants: {
-    files: [],
+    files: [
+        {
+            name: 'definition.json',
+            read: (filePath, baseFilePath) => ({ fileContent: {}, baseFileContent: {} }), // Custom read function
+            merge: (file, baseFile) => file, // Custom merge function
+            write: (filePath, content) => {}, // Custom write function
+        }
+    ],
 }
 ```
 
