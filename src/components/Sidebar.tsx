@@ -267,8 +267,6 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
         handleThemeChange(themeName, custom)
     }
 
-    console.log(sidebarOpen)
-
     return (
         <SidebarContainer $isOpen={sidebarOpen}>
             <Wrapper>
