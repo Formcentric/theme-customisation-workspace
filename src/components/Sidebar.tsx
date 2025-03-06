@@ -6,9 +6,24 @@ import { useThemeStore } from '../themeStore'
 import { debounce } from 'lodash'
 import { useCallback, useState } from 'react'
 import { removeUid } from '../helpers/uid'
+import ArrowLeft from './icons/ArrowLeft'
+
+const SidebarContainer = styled.div<{ $isOpen: boolean }>`
+    display: flex;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 1024px) {
+        position: fixed;
+        transform: translateX(${props => (props.$isOpen ? '0' : '-300px')});
+        box-shadow: ${props => (props.$isOpen ? '0 0 15px rgba(0, 0, 0, 0.1)' : 'none')};
+        left: 0;
+        top: 0;
+        z-index: 10;
+    }
+`
 
 const Wrapper = styled.div`
-    width: 350px;
+    width: 300px;
     background: #f0f2fc;
     height: 100vh;
     padding: 0;
@@ -16,8 +31,39 @@ const Wrapper = styled.div`
     flex-direction: column;
     box-sizing: border-box;
     color: #473f7d;
-    grid-column: 1/2;
     border-right: 1px solid rgba(71, 63, 125, 0.1);
+`
+
+const MenuButton = styled.button<{ $isOpen: boolean }>`
+    background-color: white;
+    border: none;
+    color: #473f7d;
+    outline: none;
+    border-radius: 50%;
+    position: absolute;
+    right: -8px;
+    top: 30px;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 11;
+    box-shadow: 0 2px 8px rgba(71, 63, 125, 0.15);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: ${props => (!props.$isOpen ? 'hidden' : 'visible')};
+    transition: ${props => (props.$isOpen ? 'all 0.2s ease-in-out' : 'none')};
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(71, 63, 125, 0.2);
+        background-color: #f8f9ff;
+    }
+
+    @media (min-width: 1025px) {
+        visibility: hidden;
+    }
 `
 
 const Logo = styled.a`
@@ -207,9 +253,9 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
     const isCloud = FC_ENV === 'cloud'
     const formDefinition = useThemeStore(s => s.formDefinition)
     const [definition, setDefinition] = useState(formDefinition)
-
     const themeData = useThemeStore(s => s.themeData)
-
+    const sidebarOpen = useThemeStore(s => s.sidebarOpen)
+    const setSidebarOpen = useThemeStore(s => s.setSidebarOpen)
     const debouncedFormChange = useCallback(debounce(handleFormChange, 500), [])
 
     const handleFormDefinitionChange = (value: string) => {
@@ -217,129 +263,143 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
         debouncedFormChange(value)
     }
 
-    return (
-        <Wrapper>
-            <Logo
-                href='https://formcentric.com/'
-                target='_blank'
-            >
-                <img
-                    src={logo}
-                    width={22}
-                />
-                <p>FORMCENTRIC</p>
-            </Logo>
-            <div>
-                <Title>Preview Form</Title>
-                <FormChooser>
-                    {isCloud ? (
-                        <FormDropdown
-                            options={formOptions}
-                            handleChange={handleFormChange}
-                        />
-                    ) : (
-                        <FormDefInput
-                            value={definition}
-                            rows={6}
-                            onChange={e => handleFormDefinitionChange(e.target.value)}
-                            placeholder='Enter a form definition'
-                        ></FormDefInput>
-                    )}
-                </FormChooser>
-            </div>
+    const handleThemeClick = (themeName: string, custom?: boolean) => {
+        handleThemeChange(themeName, custom)
+    }
 
-            {themes.length > 0 && (
-                <>
-                    <ThemeDir>
-                        <Title>Custom Themes</Title>
-                    </ThemeDir>
-                    <Divider />
-                </>
-            )}
-            <Themes style={{ maxHeight: '30vh' }}>
-                {themes.length > 0 &&
-                    themes.map(item => (
-                        <ThemeItem
-                            key={item}
-                            onClick={() => handleThemeChange(item, true)}
-                            $selected={selectedTheme === removeUid(item)}
-                        >
-                            {item}
-                        </ThemeItem>
-                    ))}
-            </Themes>
-            {themes.length > 0 && <Divider />}
-            <ThemeDir>
-                <Title>
-                    Official Themes
-                    <svg
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => handleThemeChange('')}
-                        xmlns='http://www.w3.org/2000/svg'
-                        width='24'
-                        height='24'
-                        viewBox='0 0 24 24'
-                        fill='none'
-                        stroke='currentColor'
-                        strokeWidth='2'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        className='lucide lucide-layout-grid'
-                    >
-                        <rect
-                            width='7'
-                            height='7'
-                            x='3'
-                            y='3'
-                            rx='1'
-                        />
-                        <rect
-                            width='7'
-                            height='7'
-                            x='14'
-                            y='3'
-                            rx='1'
-                        />
-                        <rect
-                            width='7'
-                            height='7'
-                            x='14'
-                            y='14'
-                            rx='1'
-                        />
-                        <rect
-                            width='7'
-                            height='7'
-                            x='3'
-                            y='14'
-                            rx='1'
-                        />
-                    </svg>
-                </Title>
-            </ThemeDir>
-            <Divider />
-            <Themes style={{ flex: 1 }}>
-                {themeData.map(item => (
-                    <ThemeItem
-                        key={item.id}
-                        onClick={() => handleThemeChange(item.id)}
-                        $selected={selectedTheme === item.id}
-                    >
-                        {item.name}
-                    </ThemeItem>
-                ))}
-            </Themes>
-            <Divider />
-            <Menu>
-                <Title>Ressources</Title>
-                <MenuItem
-                    href='https://help.formcentric.com/en/cloud/quick-start/'
+    console.log(sidebarOpen)
+
+    return (
+        <SidebarContainer $isOpen={sidebarOpen}>
+            <Wrapper>
+                <MenuButton
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    $isOpen={sidebarOpen}
+                >
+                    <ArrowLeft />
+                </MenuButton>
+                <Logo
+                    href='https://formcentric.com/'
                     target='_blank'
                 >
-                    <span>Cloud Docs</span>
-                </MenuItem>
-            </Menu>
-        </Wrapper>
+                    <img
+                        src={logo}
+                        width={22}
+                    />
+                    <p>FORMCENTRIC</p>
+                </Logo>
+                <div>
+                    <Title>Preview Form</Title>
+                    <FormChooser>
+                        {isCloud ? (
+                            <FormDropdown
+                                options={formOptions}
+                                handleChange={handleFormChange}
+                            />
+                        ) : (
+                            <FormDefInput
+                                value={definition}
+                                rows={6}
+                                onChange={e => handleFormDefinitionChange(e.target.value)}
+                                placeholder='Enter a form definition'
+                            ></FormDefInput>
+                        )}
+                    </FormChooser>
+                </div>
+
+                {themes.length > 0 && (
+                    <>
+                        <ThemeDir>
+                            <Title>Custom Themes</Title>
+                        </ThemeDir>
+                        <Divider />
+                    </>
+                )}
+                <Themes style={{ maxHeight: '30vh' }}>
+                    {themes.length > 0 &&
+                        themes.map(item => (
+                            <ThemeItem
+                                key={item}
+                                onClick={() => handleThemeClick(item, true)}
+                                $selected={selectedTheme === removeUid(item)}
+                            >
+                                {item}
+                            </ThemeItem>
+                        ))}
+                </Themes>
+                {themes.length > 0 && <Divider />}
+                <ThemeDir>
+                    <Title>
+                        Official Themes
+                        <svg
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => handleThemeClick('', true)}
+                            xmlns='http://www.w3.org/2000/svg'
+                            width='24'
+                            height='24'
+                            viewBox='0 0 24 24'
+                            fill='none'
+                            stroke='currentColor'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            className='lucide lucide-layout-grid'
+                        >
+                            <rect
+                                width='7'
+                                height='7'
+                                x='3'
+                                y='3'
+                                rx='1'
+                            />
+                            <rect
+                                width='7'
+                                height='7'
+                                x='14'
+                                y='3'
+                                rx='1'
+                            />
+                            <rect
+                                width='7'
+                                height='7'
+                                x='14'
+                                y='14'
+                                rx='1'
+                            />
+                            <rect
+                                width='7'
+                                height='7'
+                                x='3'
+                                y='14'
+                                rx='1'
+                            />
+                        </svg>
+                    </Title>
+                </ThemeDir>
+                <Divider />
+                <Themes style={{ flex: 1 }}>
+                    {themeData.map(item => (
+                        <ThemeItem
+                            key={item.id}
+                            onClick={() => handleThemeClick(item.id)}
+                            $selected={selectedTheme === item.id}
+                        >
+                            {item.name}
+                        </ThemeItem>
+                    ))}
+                </Themes>
+                <Divider />
+                <Menu>
+                    <Title>Ressources</Title>
+                    <MenuItem
+                        href='https://help.formcentric.com/en/cloud/quick-start/'
+                        target='_blank'
+                    >
+                        <span>Cloud Docs</span>
+                    </MenuItem>
+                </Menu>
+            </Wrapper>
+        </SidebarContainer>
     )
 }
 

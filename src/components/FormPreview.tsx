@@ -13,6 +13,11 @@ const FormWrapper = styled.div`
     grid-column: 3/4;
     border-radius: 6px;
     position: relative;
+
+    @media (max-width: 1024px) {
+        grid-column: 1/4;
+        margin: 2rem 2rem;
+    }
 `
 
 const LoadingWrapper = styled.div`
@@ -30,6 +35,10 @@ const Form = styled.div`
     z-index: 2;
     max-width: 60rem;
     margin: 0 auto;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `
 
 export const FormPreview = ({ selectedTheme, selectedForm, clientAttributes }: FormPreviewP) => {

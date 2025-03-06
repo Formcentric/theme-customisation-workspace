@@ -18,11 +18,13 @@ interface ThemeStore {
     selectedTheme: string
     selectedCloudForm: string
     formDefinition: string
+    sidebarOpen: boolean
     setThemeData: (themeData: ThemeData[]) => void
     setThemeDir: (themeDir: string) => void
     setSelectedTheme: (selectedTheme: string) => void
     setSelectedCloudForm: (selectedCloudForm: string) => void
     setFormDefinition: (formDefinition: string) => void
+    setSidebarOpen: (sidebarOpen: boolean) => void
 }
 
 export const useThemeStore = create<ThemeStore>()(
@@ -34,11 +36,13 @@ export const useThemeStore = create<ThemeStore>()(
             selectedTheme: '',
             selectedCloudForm: '',
             formDefinition: '',
+            sidebarOpen: false,
             setThemeData: themeData => set({ themeData }),
             setSelectedTheme: selectedTheme => set({ selectedTheme }),
             setThemeDir: themeDir => set({ themeDir }),
             setFormDefinition: formDefinition => set({ formDefinition }),
             setSelectedCloudForm: selectedCloudForm => set({ selectedCloudForm }),
+            setSidebarOpen: sidebarOpen => set({ sidebarOpen }),
         }),
         { name: 'fc-theme-storage' },
     ),

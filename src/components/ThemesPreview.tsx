@@ -8,6 +8,17 @@ const Themes = styled.div`
     width: calc(100vw - 350px);
     padding: 3rem 3rem 3rem 2rem;
     overflow: auto;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        grid-column: 2/3;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    @media (max-width: 768px) {
+        grid-column: 1/2;
+        grid-template-columns: 1fr;
+    }
 `
 
 const ThemeCard = styled.div`
@@ -57,12 +68,16 @@ interface ThemesPreviewP {
 export const ThemesPreview = ({ handleThemeChange }: ThemesPreviewP) => {
     const themeData = useThemeStore(s => s.themeData)
 
+    const handleThemeClick = (themeId: string, custom?: boolean) => {
+        handleThemeChange(themeId, custom)
+    }
+
     return (
         <Themes>
             {themeData.map(theme => (
                 <ThemeCard
                     key={theme.id}
-                    onClick={() => handleThemeChange(theme.id, false)}
+                    onClick={() => handleThemeClick(theme.id, false)}
                 >
                     <ThemeInfo>
                         <h2>{theme.name}</h2>

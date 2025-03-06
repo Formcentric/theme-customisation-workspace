@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import { FormPreview } from './components/FormPreview'
 import './App.css'
 import styled from 'styled-components'
@@ -11,6 +11,8 @@ import localConfig from '../config/local.config.json'
 import { ThemesPreview } from './components/ThemesPreview'
 import config from '../config/formcentric.config.js'
 import { generateUid, removeUid } from './helpers/uid'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 declare global {
     interface Window {
@@ -34,12 +36,58 @@ declare global {
 
 const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: 350px 1fr minmax(30rem, 60rem) 2fr;
+    grid-template-columns: 300px 1fr minmax(30rem, 60rem) 2fr;
     gap: 1rem;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
     background: #f0f2fc;
+    position: relative;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr minmax(30rem, 60rem) 1fr;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+`
+
+const MenuButton = styled.button<{ $isOpen: boolean }>`
+    background-color: white;
+    border: none;
+    color: #473f7d;
+    outline: none;
+    border-radius: 50%;
+    position: absolute;
+    visibility: ${props => (!props.$isOpen ? 'visible' : 'hidden')};
+    transition: ${props => (!props.$isOpen ? 'all 0.2s ease-in-out' : 'none')};
+    left: 10px;
+    top: 10px;
+    padding: 12px;
+    cursor: pointer;
+    z-index: 9;
+    box-shadow: 0 2px 8px rgba(71, 63, 125, 0.15);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(71, 63, 125, 0.2);
+        background-color: #f8f9ff;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    @media (min-width: 1025px) {
+        visibility: hidden;
+        transition: none;
+    }
 `
 
 function App() {
@@ -186,8 +234,17 @@ function App() {
         },
     }
 
+    const sidebarOpen = useThemeStore(s => s.sidebarOpen)
+    const setSidebarOpen = useThemeStore(s => s.setSidebarOpen)
+
     return (
         <Wrapper>
+            <MenuButton
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                $isOpen={sidebarOpen}
+            >
+                <FontAwesomeIcon icon={faBars} />
+            </MenuButton>
             <Sidebar
                 selectedTheme={selectedTheme}
                 formOptions={cloudConfig.fcForms}

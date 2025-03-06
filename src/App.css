@@ -1,29 +1,29 @@
 @font-face {
-  font-family: 'ArchivoExpanded';
-  font-weight: 500;
-  font-style: normal;
-  src: url('assets/fonts/ArchivoExpanded-Medium.woff2') format('woff2');
-  font-display: swap;
+    font-family: 'ArchivoExpanded';
+    font-weight: 500;
+    font-style: normal;
+    src: url('assets/fonts/ArchivoExpanded-Medium.woff2') format('woff2');
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Archivo';
-  font-weight: 400;
-  font-style: normal;
-  src: url('assets/fonts/Archivo-Regular.woff2') format('woff2');
-  font-display: swap;
+    font-family: 'Archivo';
+    font-weight: 400;
+    font-style: normal;
+    src: url('assets/fonts/Archivo-Regular.woff2') format('woff2');
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Archivo';
-  font-weight: 500; /* Medium */
-  font-style: normal;
-  src: url('assets/fonts/Archivo-Medium.woff2') format('woff2');
-  font-display: swap;
+    font-family: 'Archivo';
+    font-weight: 500; /* Medium */
+    font-style: normal;
+    src: url('assets/fonts/Archivo-Medium.woff2') format('woff2');
+    font-display: swap;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .fc-form form,
@@ -35,71 +35,73 @@
 }
 
 .fc-form {
-  height: calc(100vh - 4rem) !important;
+    height: calc(100vh - 4rem) !important;
 }
 
 .form-dropdown--disabled .listbox__btn {
-  color: #DADAE5;
+    color: #dadae5;
 }
 
 .listbox__btn {
-  font-size: 1rem;
-  background: #fff;
-  border: 1px solid #DADAE5;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-  transition: 250ms ease;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Archivo';
-  color: #473F7D;
-  width: 100%;
+    font-size: 1rem;
+    background: #fff;
+    border: 1px solid #dadae5;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    transition: 250ms ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Archivo';
+    color: #473f7d;
+    width: 100%;
 }
 
 .listbox__btn svg {
-  transition: 200ms ease;
+    transition: 200ms ease;
 }
 
 .listbox__btn[data-open] {
-  border-color: #B5B2CB;
+    border-color: #b5b2cb;
 }
 
 .listbox__btn[data-open] svg {
-  transform: rotate(180deg)
+    transform: rotate(180deg);
 }
 
 .listbox__options {
-  width: calc(350px - 2rem);
-  margin-top: 0.4rem;
-  border: 1px solid #B5B2CB;
-  border-radius: 6px;
-  font-family: 'Archivo';
-  color: #473F7D;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(10, 0, 82, 0.1);
+    width: calc(300px - 2rem);
+    margin-top: 0.4rem;
+    border: 1px solid #b5b2cb;
+    border-radius: 6px;
+    font-family: 'Archivo';
+    color: #473f7d;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(10, 0, 82, 0.1);
+    z-index: 20;
+    position: relative;
 }
 
 .listbox__option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .listbox__option svg {
-  display: none;
+    display: none;
 }
 
 .listbox__option:hover {
-  background-color: #F7F8FD;
+    background-color: #f7f8fd;
 }
 
 .listbox__option[data-selected] {
-  color: #0A0052;
-  font-weight: 500;
+    color: #0a0052;
+    font-weight: 500;
 }
 
 .listbox__option[data-selected] svg {
-  display: block;
+    display: block;
 }
