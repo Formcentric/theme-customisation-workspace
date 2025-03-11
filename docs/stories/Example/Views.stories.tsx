@@ -2,9 +2,9 @@ import React from 'react'
 import { Meta } from '@storybook/react'
 import Template from '../helpers/Template'
 import variables from './theme'
-import { View, ViewStory } from './Views'
+import { View, ViewProps, ViewStory } from './Views'
 
-const ViewTemplate = (props: ViewStory) => {
+const ViewTemplate = (props: ViewProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.redirect}
@@ -14,11 +14,17 @@ const ViewTemplate = (props: ViewStory) => {
     )
 }
 
-const meta: Meta<typeof View> = {
+const meta: Meta<typeof ViewTemplate> = {
     title: 'Properties/Views',
     component: ViewTemplate,
     parameters: {
         layout: 'fullscreen',
+        docs: {
+            description: {
+                component:
+                    'Implementation of a form view template defined in `templates/views/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form views.',
+            },
+        },
     },
 }
 

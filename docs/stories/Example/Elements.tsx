@@ -5,19 +5,21 @@ export type ElementProps = {
     formId: string
     id: string
     name: string
+    label: string
     value: string
     properties: {
-        style_class: string
-        placeholder: string
-        hint: string
-        shortHint: string
-        mandatory: boolean
+        style_class?: string
+        placeholder?: string
+        hint?: string
+        shortHint?: string
+        mandatory?: boolean
         type?: string
         autocomplete?: string
         maxlength?: number
         disabled?: boolean
         readonly?: boolean
         hidden?: boolean
+        visible?: boolean
         field_width?: 'mwf-s' | 'mwf-m' | 'mwf-l' | undefined
     }
     components: {
@@ -40,24 +42,26 @@ export type ElementProps = {
 }
 
 export const ElementProps: ElementProps = {
-    formId: 'example-form',
-    id: 'input-field-1',
-    name: 'example-input',
+    formId: 'Form',
+    id: 'fc12345',
+    name: 'inputField_1',
+    label: 'First name',
     fieldFocused: false,
     fieldSuccess: false,
     fieldError: undefined,
     value: '',
     properties: {
         style_class: '',
-        placeholder: 'Enter text here',
-        hint: 'This is a hint text',
-        shortHint: 'This is a short hint text',
-        mandatory: true,
+        placeholder: 'Please enter a name',
+        hint: '',
+        shortHint: '',
         type: 'text',
         autocomplete: 'off',
+        mandatory: false,
         disabled: false,
         readonly: false,
         hidden: false,
+        visible: true,
         field_width: undefined,
     },
     components: {
@@ -89,9 +93,47 @@ export const Element: ElementStory = {
         ...ElementProps,
     },
     argTypes: {
+        formId: {
+            description: 'Form ID.',
+        },
+        id: {
+            description: 'Field ID.',
+        },
+        name: {
+            description: 'Field name.',
+        },
+        label: {
+            description: 'Field label.',
+        },
+        value: {
+            description: 'Field value.',
+        },
+        properties: {
+            description: 'Field properties.',
+            control: 'object',
+            table: {
+                type: {
+                    summary: 'Object',
+                    detail: `{
+    style_class?: string,
+    placeholder?: string,
+    hint?: string,
+    shortHint?: string,
+    mandatory?: boolean,
+    type?: string, 
+    autocomplete?: string,
+    maxlength?: number,
+    disabled?: boolean,
+    readonly?: boolean,
+    hidden?: boolean,
+    visible?: boolean,
+    field_width?: "mwf-s" | "mwf-m" | "mwf-l" | undefined
+}`,
+                },
+            },
+        },
         fieldError: {
-            description:
-                'Error state for the field. When set, should be an object with a `defaultMessage` property containing the error text.',
+            description: 'Error state of the field.',
             control: 'object',
             table: {
                 type: { summary: 'Object', detail: '{ defaultMessage?: string }' },
@@ -99,11 +141,11 @@ export const Element: ElementStory = {
             },
         },
         fieldSuccess: {
-            description: 'Success state for the field.',
+            description: 'Success state of the field.',
             control: 'boolean',
         },
         fieldFocused: {
-            description: 'Whether the field is currently focused.',
+            description: 'Focus state of the field.',
             control: 'boolean',
         },
         components: {
@@ -113,15 +155,25 @@ export const Element: ElementStory = {
                 type: {
                     summary: 'Object',
                     detail: `{
-  captcha: () => React.ReactNode,
-  fileUploader: (props: ElementProps) => React.ReactNode,
-  comboBox: (props: ElementProps) => React.ReactNode,
-  suggestions: (props: ElementProps) => React.ReactNode,
-  hint: (props: ElementProps & { additionalClosureButton: boolean }) => React.ReactNode,
-  markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode,
-  datePicker: (props: ElementProps) => React.ReactNode,
-  siganture: (props: ElementProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
+    captcha: () => React.ReactNode,
+    fileUploader: (props: ElementProps) => React.ReactNode,
+    comboBox: (props: ElementProps) => React.ReactNode,
+    suggestions: (props: ElementProps) => React.ReactNode,
+    hint: (props: ElementProps & { additionalClosureButton: boolean }) => React.ReactNode,
+    markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode,
+    datePicker: (props: ElementProps) => React.ReactNode,
+    siganture: (props: ElementProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
 }`,
+                },
+            },
+        },
+        translation: {
+            control: false,
+            description: 'Translation function',
+            table: {
+                type: {
+                    summary: 'function',
+                    detail: `translation(key: string, params?: Record<string, string>) => string`,
                 },
             },
         },
