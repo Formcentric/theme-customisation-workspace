@@ -17,9 +17,15 @@ importers:
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
         version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@18.3.1)
+      htm:
+        specifier: ^3.1.1
+        version: 3.1.1
       motion:
         specifier: ^11.13.5
         version: 11.13.5(@emotion/is-prop-valid@1.2.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      preact:
+        specifier: ^10.26.4
+        version: 10.26.4
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -37,8 +43,8 @@ importers:
         specifier: ^9.14.0
         version: 9.14.0
       '@formcentric/client':
-        specifier: 3.3.0-DEV.5
-        version: 3.3.0-DEV.5
+        specifier: 3.3.0-DEV.6
+        version: 3.3.0-DEV.6
       '@formcentric/utils':
         specifier: 0.0.1-DEV.1
         version: 0.0.1-DEV.1(@types/node@22.9.0)(vite@5.4.10(@types/node@22.9.0)(sass@1.72.0))
@@ -607,8 +613,8 @@ packages:
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
-  '@formcentric/client@3.3.0-DEV.5':
-    resolution: {integrity: sha512-A7i6TP4NesfdBaI4A3GOAnGg8faSFrShvjoE3U3jD2BN6f4N4BigP9E44o49aW73I0cPju57bXkMGJYXi+QboQ==, tarball: https://maven.monday-consulting.com/artifactory/api/npm/formcentric-npm/@formcentric/client/-/@formcentric/client-3.3.0-DEV.5.tgz}
+  '@formcentric/client@3.3.0-DEV.6':
+    resolution: {integrity: sha512-lJ616NanY8PsuFDqMl9cHaCA9FUTf9WNzJwfi981FN0B0gMgJDIbjk+uUQnTDj+flDSwkHqmw0vRk9Tzzt/cUg==, tarball: https://maven.monday-consulting.com:443/artifactory/api/npm/formcentric-npm/@formcentric/client/-/@formcentric/client-3.3.0-DEV.6.tgz}
     hasBin: true
 
   '@formcentric/utils@0.0.1-DEV.1':
@@ -1964,6 +1970,9 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
+  htm@3.1.1:
+    resolution: {integrity: sha512-983Vyg8NwUE7JkZ6NmOqpCZ+sh1bKv2iYTlUkzlWmA5JD2acKoxd4KVxbMmxX/85mtfdnDmTFoNKcg5DGAvxNQ==}
+
   http-proxy-middleware@3.0.3:
     resolution: {integrity: sha512-usY0HG5nyDUwtqpiZdETNbmKtw3QQ1jwYFZ9wi5iHzX2BcILwQKtYDJPo7XHTsu5Z0B2Hj3W9NNnbd+AjFWjqg==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -2591,6 +2600,9 @@ packages:
   postcss@8.4.49:
     resolution: {integrity: sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==}
     engines: {node: ^10 || ^12 || >=14}
+
+  preact@10.26.4:
+    resolution: {integrity: sha512-KJhO7LBFTjP71d83trW+Ilnjbo+ySsaAgCfXOXUlmGzJ4ygYPWmysm77yg4emwfmoz3b22yvH5IsVFHbhUaH5w==}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -3440,7 +3452,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.8': {}
 
-  '@formcentric/client@3.3.0-DEV.5': {}
+  '@formcentric/client@3.3.0-DEV.6': {}
 
   '@formcentric/utils@0.0.1-DEV.1(@types/node@22.9.0)(vite@5.4.10(@types/node@22.9.0)(sass@1.72.0))':
     dependencies:
@@ -4945,6 +4957,8 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
+  htm@3.1.1: {}
+
   http-proxy-middleware@3.0.3:
     dependencies:
       '@types/http-proxy': 1.17.15
@@ -5513,6 +5527,8 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  preact@10.26.4: {}
 
   prelude-ls@1.2.1: {}
 

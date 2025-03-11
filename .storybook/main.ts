@@ -7,6 +7,16 @@ const config: StorybookConfig = {
         name: '@storybook/react-vite',
         options: {},
     },
+    viteFinal: config => {
+        config.css = {
+            preprocessorOptions: {
+                css: {
+                    variables: true,
+                },
+            },
+        }
+        return config
+    },
     docs: {
         autodocs: true,
     },
