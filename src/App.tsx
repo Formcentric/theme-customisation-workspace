@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { FormPreview } from './components/FormPreview'
 import './App.css'
 import styled from 'styled-components'
@@ -93,6 +93,7 @@ const MenuButton = styled.button<{ $isOpen: boolean }>`
 function App() {
     const formDefinition = useThemeStore(s => s.formDefinition)
     const setThemeData = useThemeStore(s => s.setThemeData)
+    const themeData = useThemeStore(s => s.themeData)
     const modulePath = useThemeStore(s => s.modulePath)
 
     useEffect(() => {
@@ -181,7 +182,7 @@ function App() {
 
     useEffect(() => {
         const isCustomTheme = (themes as string[]).includes(selectedTheme)
-        const isFcTheme = fcThemes.includes(selectedTheme)
+        const isFcTheme = themeData.find(theme => theme.id === selectedTheme)
 
         if (!isFcTheme && !isCustomTheme && selectedTheme) setSelectedTheme('')
 
