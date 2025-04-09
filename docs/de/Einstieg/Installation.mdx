@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Einstieg/Installation' />
+
+# Schnellstart
+
+Folge diesen Schritten, um mit dem Formcentric Theme Customization Workspace loszulegen:
+
+Stelle sicher, dass [Node.js](https://nodejs.org/) und [pnpm](https://pnpm.io/) auf deinem System installiert sind:
+
+```bash
+# Node
+node -v
+
+# pnpm
+pnpm -v
+```
+
+Überprüfe die Datei `.nvmrc`, um die empfohlene Node.js-Version zu finden. Installiere sie bei Bedarf und führe anschließend folgende Befehle aus:
+
+- `corepack enable`, um Corepack zu aktivieren
+- `corepack prepare pnpm@latest --activate`, um pnpm einzurichten
+
+Führe danach die folgenden Befehle aus, um deine Entwicklungsumgebung einzurichten:
+
+```bash
+# Abhängigkeiten installieren
+pnpm i
+
+# Entwicklungsserver starten
+pnpm dev-cloud # Für FC-Cloud-Nutzer
+# oder
+pnpm dev-local # Für self-hosted Nutzer
+```
+
+Sobald der Entwicklungsserver läuft, kannst du die Anwendung unter `http://localhost:3000` aufrufen.
+Verwende den passenden Befehl, je nachdem, ob du FC Cloud nutzt oder den Formcentric Headless Server selbst hostest.
+
+Weitere Konfigurationsmöglichkeiten und nächste Schritte findest du in den Guides zu [Nutzung](/docs/de-einstieg-nutzung--docs) und [Konfiguration](/docs/de-einstieg-konfiguration--docs).

@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Wartung/Workspace zurücksetzen' />
+
+# Workspace zurücksetzen
+
+Der reset-Befehl hilft dir dabei, deinen Workspace aufzuräumen, indem er:
+
+- Alle benutzerdefinierten Themes entfernt
+- Das Verzeichnis für Base-Themes leert
+- Wichtige `.gitkeep`-Dateien erhält
+- Abhängigkeiten neu installiert
+
+Um den Workspace zurückzusetzen, führe folgenden Befehl aus:
+
+```bash
+pnpm reset
+```
+
+Du wirst vor dem Ausführen des Reset-Vorgangs zur Bestätigung aufgefordert.
+
+## Was wird zurückgesetzt?
+
+Welche Dateien und Verzeichnisse betroffen sind, kannst du in der Datei `formcentric.config.js.ts` konfigurieren  
+(Siehe [Reset-Konfiguration](/docs/de-einstieg-konfiguration--docs#reset-konfiguration)).
+
+## Nach dem Zurücksetzen
+
+Nach dem Ausführen des Reset-Befehls:
+
+1. Der Workspace wurde in seinen ursprünglichen Zustand zurückgesetzt
+2. Alle Abhängigkeiten wurden automatisch neu installiert
+3. Du kannst direkt mit der Erstellung neuer Themes beginnen

@@ -1,0 +1,66 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Wartung/Themes updaten' />
+
+# Themes aktualisieren
+
+Um die Base-Themes in deinem Workspace zu aktualisieren, führe folgenden Befehl aus:
+
+```bash
+pnpm update-theme
+```
+
+Dieser Befehl aktualisiert alle Base-Themes im Verzeichnis `themes-base` mit den neuesten Versionen aus dem Formcentric-Modul.
+
+## Auswirkungen der Aktualisierung je nach Theme-Typ
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Theme-Typ</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>
+                    Auswirkung der Aktualisierung
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Extended FC Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>In der Regel gering</span> – Die meisten Änderungen werden
+                    automatisch übernommen. In manchen Fällen kann eine Anpassung von Templates notwendig sein.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Full FC Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Mittel</span> – Änderungen müssen manuell überprüft und
+                    integriert werden.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Custom Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>Hoch</span> – Eine manuelle Überprüfung, Integration und
+                    Kompatibilitätsprüfung mit neuen Funktionen ist erforderlich.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+### Post-Update Checkliste
+
+1. **Extended FC Themes**
+
+    - Style-Anpassungen über Variablen funktionieren in der Regel weiterhin.
+    - Prüfe etwaige Template-Overrides auf neue erforderliche Props oder Funktionen.
+
+2. **Full/Custom Themes**
+
+    - Überprüfe die Änderungen in den aktualisierten Base-Themes.
+    - Integriere notwendige Anpassungen manuell.
+
+3. **Immer testen!**
+    - Teste dein Theme nach jeder Aktualisierung, um sicherzustellen, dass es mit den aktualisierten Komponenten wie erwartet funktioniert.

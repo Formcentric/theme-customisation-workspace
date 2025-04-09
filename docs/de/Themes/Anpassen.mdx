@@ -1,0 +1,134 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Themes/Anpassung' />
+
+# Anpassung
+
+Es gibt drei Hauptwege, ein Theme anzupassen:
+
+## CSS-Variablen
+
+Der schnellste Weg, ein Theme zu individualisieren, ist über die Anpassung oder Ergänzung von CSS-Variablen.  
+Diese steuern z. B. Farben, Typografie, Abstände und andere Design-Tokens.
+
+### Bestehende Variablen anpassen
+
+Je nach Zielumgebung musst du die Werte an verschiedenen Stellen anpassen.
+
+#### Entwicklung
+
+Während der Entwicklung kannst du die Werte in der Datei `_variables.json` ändern – Änderungen werden sofort sichtbar.
+
+#### Formcentric Cloud
+
+In der Formcentric Cloud musst du zusätzlich zur Anpassung in `_variables.json` auch den **entsprechenden Design-Parameter** in der Datei `definition.json` anpassen.
+
+**Hinweis:**  
+Die in `definition.json` definierten Variablen müssen im finalen CSS-Output des Themes auch als CSS-Variablen verfügbar sein.
+
+#### Einbettung in eine SCSS-fähige Anwendung
+
+Wenn du das Theme in eine Anwendung einbettest, die SCSS unterstützt, kannst du die Variablen direkt in `_variables.scss` anpassen.
+
+**Hinweis:**  
+Standardmäßig wird `_variables.scss` nicht automatisch in `styles.scss` eingebunden.  
+Füge es daher manuell **als erste Zeile** vor `_fc-variables.scss` hinzu:
+
+```scss
+@import './variables/_variables';
+@import './variables/_fc-variables';
+```
+
+### Neue Variablen hinzufügen
+
+Du kannst auch eigene Variablen hinzufügen. Dabei musst du sicherstellen, dass die Variable korrekt in `_fc-variables.scss` eingebunden ist.
+
+1. Füge die Variable in `_variables.scss` hinzu.
+2. Ergänze sie in `_variables.json`.
+3. Trage die Variable in `definition.json` als neuen Design-Parameter ein (nur relevant für Formcentric Cloud).
+4. Ergänze die Variable in der Datei `_fc-variables.scss`.
+
+#### Beispiel:
+
+##### `_variables.scss`
+
+```scss
+$scrollbarWidth: 10px;
+// Farben mit dem Suffix `Val` ermöglichen späteres rgba-Parsing (siehe _fc-variables.scss)
+$newColorVal: #000;
+```
+
+##### `_variables.json`
+
+```json
+{
+    "scrollBarWidth": "10px",
+    "newColor": "#000"
+}
+```
+
+##### `definition.json`
+
+```json
+{
+  "type": "TEXT",
+  "required": false,
+  "labels": { "en": "Scrollbar width" },
+  "name": "scrollbarWidth",
+  "value": "10px"
+}
+
+{
+    "type": "COLOR",
+    "required": false,
+    "labels": { "en": "New color" },
+    "name": "newColor",
+    "value": "#000"
+}
+```
+
+##### `_fc-variables.scss`
+
+```scss
+$scrollbarWidth: var(--scrollbarWidth) !default;
+// uses variable added in _variables.scss if present, otherwise css variable from _variables.json
+$newColorVal: var(--newColor) !default;
+
+// add rgba parsing if the variable is a color
+$newColor: rgba($newColorVal, 1);
+```
+
+## Template-Anpassung
+
+### Extended Themes
+
+Wenn du ein Extended Theme verwendest, kannst du einzelne Templates überschreiben, während der Rest vom Base-Theme geerbt wird. So funktioniert’s:
+
+1. Erstelle die gewünschte Template-Datei in der passenden Verzeichnisstruktur deines Themes
+2. Exportiere die Funktion unter dem gleichen Namen wie im Base-Template (siehe dazu die `index.js`-Dateien für Dateinamen und Exporte)
+
+Beispiel: Um das Template für `emailField` zu überschreiben:
+
+```javascript
+export const emailField = (html, props) => html`<input type="email" />`
+```
+
+Das Formular verwendet nun dein eigenes `emailField`-Template anstelle der Version aus dem Base-Theme – alle anderen Templates bleiben vom Base-Theme erhalten.
+
+### Full FC Theme
+
+Ein Full FC Theme ist eine vollständige Kopie eines Formcentric-Themes, inklusive aller Templates und Komponenten.  
+Um bestimmte Bereiche anzupassen, öffne einfach die entsprechende Datei und bearbeite sie direkt.
+
+### Custom Theme
+
+Ein Custom Theme enthält nur das grundlegende Theme-Boilerplate.  
+Eigene Versionen aller Templates müssen hier manuell hinzugefügt werden.
+
+## Best Practices
+
+1. Beginne mit CSS-Variablen für einfache Anpassungen
+2. Verwende SCSS-Partials für komponentenspezifische Styles
+3. Überschreibe Templates nur, wenn es wirklich nötig ist
+4. Achte auf Barrierefreiheit in eigenen Templates
+5. Teste responsives Verhalten über verschiedene Breakpoints hinweg

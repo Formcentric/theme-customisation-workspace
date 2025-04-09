@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Einstieg/Nutzung' />
+
+# Nutzung
+
+<br />
+
+## Für FC-Cloud-Nutzer
+
+```bash
+pnpm dev-cloud
+```
+
+### Formulare wechseln
+
+Du kannst das Vorschau-Formular über das Dropdown-Menü in der Sidebar ändern.
+Wenn du dein Design mit einem eigenen Formular testen möchtest, bearbeite die Datei `./config/cloudConfig.json`.
+Das fcForms-Array bestimmt, welche Formulare im Dropdown erscheinen.
+
+```json
+{
+    "id":  "<form-embed-id>", // Siehe Screenshot unten
+    "name": "Kontaktformular" // Anzeigename im Formular-Dropdown
+},
+```
+
+<img
+    src='./assets/embed-id.png'
+    alt='finding a form embed-id in the fc-cloud'
+    width='800'
+/>
+
+## Für self-hosted Nutzer
+
+Stelle sicher, dass die URL deines Headless-Servers mit der in `./config/localConfig.json` vordefinierten URL übereinstimmt (http://localhost:8080).
+Passe sie gegebenenfalls an.
+
+Starte den Entwicklungsserver:
+
+```bash
+pnpm dev-local
+```
+
+Lege deine Formular-Definition fest, entweder durch:
+– Einfügen der Definition ins Eingabefeld der Benutzeroberfläche
+– Oder Anpassen der `formDefinition`-Eigenschaft in `./config/localConfig.json`

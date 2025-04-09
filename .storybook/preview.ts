@@ -9,9 +9,30 @@ const preview: Preview = {
                 date: /Date$/i,
             },
         },
+        options: {
+            storySort: {
+                order: [
+                    'EN',
+                    [
+                        'Introduction',
+                        'Getting started',
+                        ['Installation', 'Usage', 'Configuration'],
+                        'Themes',
+                        ['Creating Themes', 'Structure', 'Customization'],
+                    ],
+                    'DE',
+                    [
+                        'Einleitung',
+                        'Einstieg',
+                        ['Installation', 'Nutzung', 'Configuration'],
+                        'Themes',
+                        ['Themes erstellen', 'Struktur', 'Anpassung'],
+                    ],
+                ],
+            },
+        },
     },
-
-    tags: ['autodocs']
+    tags: ['autodocs'],
 }
 
 export default preview

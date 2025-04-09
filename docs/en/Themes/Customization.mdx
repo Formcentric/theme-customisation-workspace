@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks'
 
-<Meta title='Themes/Customization' />
+<Meta title='EN/Themes/Customization' />
 
 # Customization
 
@@ -20,9 +20,9 @@ In development, you can change values in `_variables.json` to see the changes im
 
 #### Formcentric Cloud
 
-Formcentric Cloud in addition to the variables in `_variables.json` requires you to adjust the variable's corresponding design parameter in the theme definition file definition.json.
+Formcentric Cloud in addition to the variables in `_variables.json` requires you to adjust the variable's corresponding design parameter in the theme definition file `definition.json`.
 
-**Note:** The variables added in definition.json need to be available as css variables in the theme's css output file.
+**Note:** The variables added in `definition.json` need to be available as css variables in the theme's css output file.
 
 #### Embedding Application with SCSS
 
@@ -58,8 +58,8 @@ $newColorVal: #000;
 
 ```json
 {
-  "scrollBarWidth": "10px",
-  "newColor": "#000"
+    "scrollBarWidth": "10px",
+    "newColor": "#000"
 }
 ```
 
@@ -103,13 +103,13 @@ If you're using an extended theme, you can override specific templates while inh
 1. Create the template file in your theme's corresponding directory structure
 2. Export it with the same name as the base template you want to override (see index.js files for file and export names)
 
-For example, to override the template for emailField:
+For example, to override the template for `emailField`:
 
 ```javascript
-export const emailField = (html, props) => html`<input type="email" />`;
+export const emailField = (html, props) => html`<input type="email" />`
 ```
 
-The form will now use your custom emailField template instead of the base theme's version, while all other templates remain inherited from the base theme.
+The form will now use your custom `emailField` template instead of the base theme's version, while all other templates remain inherited from the base theme.
 
 ### Full FC Theme
 

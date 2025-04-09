@@ -1,0 +1,70 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Einstieg/Konfiguration' />
+
+# Konfiguration
+
+<br />
+
+## Cloud-Konfiguration
+
+Die Cloud-Konfigurationsdatei verwaltet Einstellungen für FC-Cloud-Nutzer, die `pnpm dev-cloud` verwenden.  
+Hier wird bestimmt, **welche Formulare verfügbar sind**, um Themes zu testen.
+
+## Lokale Konfiguration
+
+Die lokale Konfigurationsdatei ist relevant für self-hosted Nutzer, die `pnpm dev-local` verwenden.  
+Hier werden die **URL des Headless-Servers** und die **Formular-Definition für Theme-Tests** konfiguriert.
+
+## Workspace-Konfiguration
+
+Die Workspace-Konfiguration steuert deine Theme-Umgebung, inklusive Dateipfaden, Theme-Varianten und Build-Einstellungen.
+
+### Überblick
+
+Die Konfiguration befindet sich in der Datei `config/formcentric.config.js` und legt fest, wie dein Theming-System funktioniert.  
+Hier ist ein Überblick über die Abschnitte:
+
+### Pfad-Konfiguration
+
+Das `paths`-Objekt definiert alle relevanten Verzeichnisse und Dateien im Workspace:
+
+```ts
+paths: {
+    rootPath: '.',
+    configPath: 'config/cli.config.tson',
+    moduelPath: 'node_modules/@formcentric/client/dist/themes',
+    basePath: 'src/themes-base',
+    targetPath: 'src/themes',
+    utilsPath: 'node_modules/@formcentric/client/dist/themes/utils',
+    prettierConfigPath: '.prettierrc',
+    output: 'dist',
+}
+```
+
+### Varianten-Konfiguration
+
+Das `variants` Objekt bestimmt, wie bestimmte Dateien in angepassten Formcentric-Themes beim Build mit den entsprechenden Dateien im Base-Theme gelesen, zusammengeführt und geschrieben werden:
+
+```ts
+variants: {
+    files: [
+        {
+            name: 'definition.json',
+            read: (filePath, baseFilePath) => ({ fileContent: {}, baseFileContent: {} }), // Eigene read-Funktion
+            merge: (file, baseFile) => file, // Eigene merge-Funktion
+            write: (filePath, content) => {}, // Eigene write-Funktion
+        }
+    ],
+}
+```
+
+### Reset-Konfiguration
+
+Das `reset` Objekt definiert, welche Dateien und Verzeichnisse vom reset-Befehl zurückgesetzt werden:
+
+```ts
+reset: {
+    files: [],
+}
+```
