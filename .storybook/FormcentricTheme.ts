@@ -6,4 +6,11 @@ export default create({
     brandUrl: 'https://formcentric.com',
     brandImage: 'assets/logo.svg',
     brandTarget: '_self',
+
+    //
+    colorPrimary: '#473F7D',
+    colorSecondary: '#473F7D',
+
+    // UI
+    appBg: '#F0F2FC',
 })
