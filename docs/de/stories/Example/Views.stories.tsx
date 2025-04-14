@@ -15,7 +15,7 @@ const ViewTemplate = (props: ViewProps) => {
 }
 
 const meta: Meta<typeof ViewTemplate> = {
-    title: 'Properties/Views',
+    title: 'DE/Properties/Views',
     component: ViewTemplate,
     parameters: {
         layout: 'fullscreen',
