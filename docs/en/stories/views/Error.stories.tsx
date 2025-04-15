@@ -1,22 +1,22 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
 import Template from '../helpers/Template'
-import variables from './theme'
+import variables from '../helpers/theme'
 import { View, ViewProps, ViewStory } from './Views'
 
-const ViewTemplate = (props: ViewProps) => {
+const Error = (props: ViewProps) => {
     return (
         <Template
-            template={window.formcentric.formapp.templates.redirect}
+            template={window.formcentric.formapp.templates.error}
             props={props}
             variables={variables}
         />
     )
 }
 
-const meta: Meta<typeof ViewTemplate> = {
-    title: 'DE/Properties/Views',
-    component: ViewTemplate,
+const meta: Meta<typeof Error> = {
+    title: 'En/Template Properties/Views/Error',
+    component: Error,
     parameters: {
         layout: 'fullscreen',
         docs: {
@@ -32,5 +32,5 @@ export default meta
 
 export const Default: ViewStory = {
     ...View,
-    name: 'Redirect',
+    name: 'Error',
 }

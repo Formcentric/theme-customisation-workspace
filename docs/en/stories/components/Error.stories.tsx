@@ -1,22 +1,22 @@
-import React from 'react'
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from './Elements'
+import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
 import Template from '../helpers/Template'
-import variables from './theme'
+import React from 'react'
+import variables from '../helpers/theme'
 
-const ElementTemplate = (props: ElementProps) => {
+const ErrorTemplate = (props: ElementProps) => {
     return (
         <Template
-            template={window.formcentric.formapp.templates.inputField}
+            template={window.formcentric.formapp.components.error}
             props={props}
             variables={variables}
         />
     )
 }
 
-const meta: Meta<typeof ElementTemplate> = {
-    title: 'En/Properties/Elements',
-    component: ElementTemplate,
+const meta: Meta<typeof ErrorTemplate> = {
+    title: 'EN/Template Properties/Components/Error',
+    component: ErrorTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
@@ -31,26 +31,14 @@ const meta: Meta<typeof ElementTemplate> = {
 export default meta
 
 export const Default: ElementStory = {
-    ...Element,
-    name: 'Input field',
-}
-
-export const WithSuccess: ElementStory = {
-    ...Element,
-    name: 'Input field valid',
-    args: {
-        ...Element.args,
-        fieldSuccess: true,
-    },
-}
-
-export const WithError: ElementStory = {
-    ...Element,
-    name: 'Input field invalid',
     args: {
         ...Element.args,
         fieldError: {
-            defaultMessage: 'This is an error message',
+            defaultMessage: 'A concise error message',
         },
     },
+    argTypes: {
+        ...Element.argTypes,
+    },
+    name: 'Error Component',
 }

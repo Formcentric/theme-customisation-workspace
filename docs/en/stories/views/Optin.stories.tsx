@@ -1,22 +1,22 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
 import Template from '../helpers/Template'
-import variables from './theme'
+import variables from '../helpers/theme'
 import { View, ViewProps, ViewStory } from './Views'
 
-const ViewTemplate = (props: ViewProps) => {
+const Optin = (props: ViewProps) => {
     return (
         <Template
-            template={window.formcentric.formapp.templates.redirect}
+            template={window.formcentric.formapp.templates.optin}
             props={props}
             variables={variables}
         />
     )
 }
 
-const meta: Meta<typeof ViewTemplate> = {
-    title: 'En/Properties/Views',
-    component: ViewTemplate,
+const meta: Meta<typeof Optin> = {
+    title: 'En/Template Properties/Views/Optin',
+    component: Optin,
     parameters: {
         layout: 'fullscreen',
         docs: {
@@ -32,5 +32,17 @@ export default meta
 
 export const Default: ViewStory = {
     ...View,
-    name: 'Redirect',
+    args: {
+        ...View.args,
+        actions: [
+            {
+                view: 'optin',
+                action: 'datastoreAction',
+                data: {
+                    note: 'Please check your mail and confirm',
+                },
+            },
+        ],
+    },
+    name: 'Optin',
 }

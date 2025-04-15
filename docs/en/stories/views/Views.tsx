@@ -1,6 +1,6 @@
 import React from 'react'
 import { StoryObj } from '@storybook/react'
-import { ElementProps } from './Elements'
+import { ElementProps } from '../elements/Elements'
 
 export type ViewProps = {
     clientSession: string

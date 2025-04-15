@@ -41,6 +41,28 @@ export type ElementProps = {
     onblur: () => void
 }
 
+export type DateFieldProps = {
+    min: string
+    max: string
+    dateType: 'datetime-local' | 'date'
+}
+
+export const DateFieldProps: DateFieldProps = {
+    min: '',
+    max: '',
+    dateType: 'datetime-local',
+}
+
+export const DateField = {
+    args: DateFieldProps,
+    argTypes: {
+        min: {
+            description: 'Set a mininum ',
+            control: 'boolean',
+        },
+    },
+}
+
 export const ElementProps: ElementProps = {
     formId: 'Form',
     id: 'fc12345',

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from './Elements'
+import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
 import Template from '../helpers/Template'
 import variables from './theme'
 
@@ -15,7 +15,7 @@ const ElementTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof ElementTemplate> = {
-    title: 'DE/Properties/Elements',
+    title: 'DE/Template Attribute/Elemente/Input Feld',
     component: ElementTemplate,
     parameters: {
         layout: 'fullscreen',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Meta } from '@storybook/react'
 import Template from '../helpers/Template'
-import variables from './theme'
+import variables from '../helpers/theme'
 import { FooterStory, FooterProps, Footer } from './Footer'
 
 const FooterTemplate = (props: FooterProps) => {
@@ -62,7 +62,7 @@ const FooterTemplate = (props: FooterProps) => {
 }
 
 const meta: Meta<typeof FooterTemplate> = {
-    title: 'DE/Properties/Footer',
+    title: 'En/Template Properties/Form/Footer',
     component: FooterTemplate,
     parameters: {
         layout: 'fullscreen',
