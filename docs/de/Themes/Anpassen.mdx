@@ -17,7 +17,7 @@ Je nach Zielumgebung müssen Sie die Werte an verschiedenen Stellen anpassen.
 
 #### Entwicklung
 
-Während der Entwicklung können Sie die Werte in der Datei `_variables.json` ändern – Änderungen werden sofort sichtbar.
+Während der Entwicklung können Sie die Werte in der Datei `_variables.json` ändern. Ihre Änderungen werden sofort sichtbar.
 
 #### Formcentric Cloud
 
@@ -88,23 +88,23 @@ $newColorVal: #000;
 ```
 
 ##### `_fc-variables.scss`
-// TODO: translate comments
+
 ```scss
 $scrollbarWidth: var(--scrollbarWidth) !default;
-// uses variable added in _variables.scss if present, otherwise css variable from _variables.json
+// Nutzt wenn vorhanden Variablen aus `_variables.scss`, andernfalls aus `_variables.json`
 $newColorVal: var(--newColor) !default;
 
-// add rgba parsing if the variable is a color
+// Implementiert rgba parsing für Farb-Variablen
 $newColor: rgba($newColorVal, 1);
 ```
 
 ## Template-Anpassung
 
-### Extended Themes
+### Extended Formcentric-Theme
 
-Wenn Sie ein Extended Theme verwenden, können Sie einzelne Templates überschreiben, während der Rest vom Base-Theme geerbt wird. So funktioniert’s:
+Wenn Sie ein Extended FC-Theme verwenden, können Sie einzelne Templates überschreiben, während der Rest vom Base-Theme geerbt wird. So gehen Sie vor:
 
-1. Erstellen Sie die gewünschte Template-Datei in der passenden Verzeichnisstruktur deines Themes
+1. Erstellen Sie die gewünschte Template-Datei in der passenden Verzeichnisstruktur Ihres Themes
 2. Exportieren Sie die Funktion unter dem gleichen Namen wie im Base-Template (siehe dazu die `index.js`-Dateien für Dateinamen und Exporte)
 
 Beispiel: Um das Template für `emailField` zu überschreiben:
@@ -115,15 +115,15 @@ export const emailField = (html, props) => html`<input type="email" />`
 
 Das Formular verwendet nun Ihr eigenes `emailField`-Template anstelle der Version aus dem Base-Theme – alle anderen Templates bleiben vom Base-Theme erhalten.
 
-### Full FC Theme
+### Full Formcentric-Theme
 
-Ein Full FC Theme ist eine vollständige Kopie eines Formcentric-Themes, inklusive aller Templates und Komponenten.  
+Ein Full FC-Theme ist eine vollständige Kopie eines Formcentric-Themes, inklusive aller Templates und Komponenten.  
 Um bestimmte Bereiche anzupassen, öffnen Sie einfach die entsprechende Datei und bearbeiten Sie diese direkt.
 
 ### Custom Theme
 
 Ein Custom Theme enthält nur das grundlegende Theme-Boilerplate.  
-Eigene Versionen aller Templates müssen hier manuell hinzugefügt werden.
+Eigene Versionen aller Templates müssen Sie hier manuell hinzufügen.
 
 ## Best Practices
 

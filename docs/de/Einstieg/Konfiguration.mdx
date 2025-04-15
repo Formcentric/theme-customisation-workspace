@@ -8,26 +8,24 @@ import { Meta } from '@storybook/blocks'
 
 ## Cloud-Konfiguration
 
-Die Cloud-Konfigurationsdatei verwaltet Einstellungen für FC-Cloud-Nutzer, die `pnpm dev-cloud` verwenden.  
-Hier wird bestimmt, **welche Formulare verfügbar sind**, um Themes zu testen.
+Verwenden Sie die Cloud-Konfigurationsdatei, um Einstellungen für Formcentric Cloud zu verwalten, wenn Sie mit pnpm dev-cloud arbeiten. Hier legen Sie fest, welche Formulare für das Testen der Themes verfügbar sind.
 
 ## Lokale Konfiguration
 
-Die lokale Konfigurationsdatei ist relevant für self-hosted Nutzer, die `pnpm dev-local` verwenden.  
-Hier werden die **URL des Headless-Servers** und die **Formular-Definition für Theme-Tests** konfiguriert.
+Nutzen Sie die lokale Konfigurationsdatei, wenn Sie als self-hosted Nutzer mit pnpm dev-local arbeiten. Konfigurieren Sie hier die URL Ihres Headless-Servers und die Formular-Definition für Ihre Theme-Tests.
 
 ## Workspace-Konfiguration
 
-Die Workspace-Konfiguration steuert Ihre Theme-Umgebung, inklusive Dateipfaden, Theme-Varianten und Build-Einstellungen.
+Mit der Workspace-Konfiguration steuern Sie Ihre gesamte Theme-Umgebung, einschließlich Dateipfaden, Theme-Varianten und Build-Einstellungen.
 
 ### Überblick
 
-Die Konfiguration befindet sich in der Datei `config/formcentric.config.js` und legt fest, wie Ihr Theming-System funktioniert.  
+Ihre Konfiguration befindet sich in der Datei config/.config.js und bestimmt die Funktionsweise Ihres Theming-Systems.
 Hier ist ein Überblick über die Abschnitte:
 
 ### Pfad-Konfiguration
 
-Das `paths`-Objekt definiert alle relevanten Verzeichnisse und Dateien im Workspace:
+Im paths-Objekt definieren Sie alle relevanten Verzeichnisse und Dateien Ihres Workspaces:
 
 ```ts
 paths: {
@@ -44,7 +42,7 @@ paths: {
 
 ### Varianten-Konfiguration
 
-Das `variants` Objekt bestimmt, wie bestimmte Dateien in angepassten Formcentric-Themes beim Build mit den entsprechenden Dateien im Base-Theme gelesen, zusammengeführt und geschrieben werden:
+Das variants-Objekt definiert, wie Dateien in angepassten Formcentric-Themes beim Build-Prozess mit den entsprechenden Dateien des Basis-Themes (dem Standard-Template, auf dem Ihr Theme basiert) zusammengeführt und verarbeitet werden.
 
 ```ts
 variants: {

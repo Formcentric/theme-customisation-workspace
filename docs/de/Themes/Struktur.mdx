@@ -10,15 +10,15 @@ Ein typisches Theme besteht aus den folgenden zentralen Dateien und Verzeichniss
 
 ```
 themes/[theme-name]/
-├── _variables.json     # Definiert Theme-spezifische Variablen
-├── definition.json     # Theme Konfiguration und Parameter
-├── script.js           # Importiert alle Template Funktionen aus templates/
+├── _variables.json     # Definiert theme-spezifische Variablen
+├── definition.json     # Konfiguriert das Theme und seine Parameter
+├── script.js           # Importiert alle Template-Funktionen aus templates/
 ├── styles.scss         # Importiert alle Partials aus partials/
-├── fonts/              # Beinhaltet Font-Dateien
-├── img/                # Beinhaltet Bilder
-├── partials/           # Beinhaltet SCSS Style Komponenten
-├── templates/          # Beinhaltet Template Dateien
-└── variables/          # Definiert Theme-spezifische Variablen
+├── fonts/              # Enthält Schriftarten
+├── img/                # Enthält Bilder
+├── partials/           # Enthält SCSS-Komponenten für das Styling
+├── templates/          # Enthält Template-Dateien
+└── variables/          # Definiert theme-spezifische Variablen
 ```
 
 ## Zentrale Komponenten
@@ -70,7 +70,7 @@ themes/[theme-name]/
 
             - Zentrale Konfigurationsdatei für Theme-Variablen
             - Prüft beim Build, ob Variablen bereits deklariert wurden (siehe `_variables.scss`)
-            - Falls nicht, verwendet sie die zur Laufzeit injizierten CSS-Variablen aus `_variables.json`
+            - Verwendet andernfalls die zur Laufzeit injizierten CSS-Variablen aus `_variables.json`
 
         - **\_variables.scss**
             - SCSS-Variablen mit denselben Werten wie `_variables.json`
