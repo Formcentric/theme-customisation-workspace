@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const ButtonComponentTemplate = (props: ElementProps) => {
+const ButtonComponentTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.components.button}
@@ -15,7 +16,7 @@ const ButtonComponentTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof ButtonComponentTemplate> = {
-    title: 'EN/Template Properties/Components/Button Component',
+    title: 'EN/Template Properties/Components/Button',
     component: ButtonComponentTemplate,
     parameters: {
         layout: 'fullscreen',
@@ -30,13 +31,13 @@ const meta: Meta<typeof ButtonComponentTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
-        label: 'Button',
+        ...DefaultFieldStoryArgs.args,
+        label: 'Button Label',
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Button Component',
+    name: 'Default',
 }

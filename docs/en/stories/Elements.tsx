@@ -1,73 +1,10 @@
-import React from 'react'
-import { StoryObj } from '@storybook/react'
+import { type TemplateProps } from '../../types/Templates'
 
-export type ElementProps = {
-    formId: string
-    id: string
-    name: string
-    label: string
-    value: string
-    properties: {
-        style_class?: string
-        placeholder?: string
-        hint?: string
-        shortHint?: string
-        mandatory?: boolean
-        type?: string
-        autocomplete?: string
-        maxlength?: number
-        disabled?: boolean
-        readonly?: boolean
-        hidden?: boolean
-        visible?: boolean
-        field_width?: 'mwf-s' | 'mwf-m' | 'mwf-l' | undefined
-    }
-    components: {
-        captcha: () => React.ReactNode
-        fileUploader: (props: ElementProps) => React.ReactNode
-        comboBox: (props: ElementProps) => React.ReactNode
-        suggestions: (props: ElementProps) => React.ReactNode
-        hint: (props: ElementProps & { additionalClosureButton: boolean }) => React.ReactNode
-        markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode
-        datePicker: (props: ElementProps) => React.ReactNode
-        siganture: (props: ElementProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
-    }
-    fieldFocused?: boolean
-    fieldError?: { defaultMessage?: string }
-    fieldSuccess?: boolean
-    translation: (key: string, _params?: Record<string, string>) => string
-    oninput: () => void
-    onfocus: () => void
-    onblur: () => void
-}
-
-export type DateFieldProps = {
-    min: string
-    max: string
-    dateType: 'datetime-local' | 'date'
-}
-
-export const DateFieldProps: DateFieldProps = {
-    min: '',
-    max: '',
-    dateType: 'datetime-local',
-}
-
-export const DateField = {
-    args: DateFieldProps,
-    argTypes: {
-        min: {
-            description: 'Set a mininum ',
-            control: 'boolean',
-        },
-    },
-}
-
-export const ElementProps: ElementProps = {
+export const defaultProps: TemplateProps = {
     formId: 'Form',
     id: 'fc12345',
     name: 'inputField_1',
-    label: 'First name',
+    label: 'Label',
     fieldFocused: false,
     fieldSuccess: false,
     fieldError: undefined,
@@ -88,15 +25,15 @@ export const ElementProps: ElementProps = {
     },
     components: {
         captcha: () => null,
-        fileUploader: props => null,
-        comboBox: props => null,
-        suggestions: props => null,
-        hint: props => null,
-        datePicker: props => null,
+        fileUploader: () => null,
+        comboBox: () => null,
+        suggestions: () => null,
+        hint: () => null,
+        datePicker: () => null,
         markdown: props => props.markdown,
-        siganture: props => null,
+        siganture: () => null,
     },
-    translation: (key, params = {}) => {
+    translation: key => {
         return key
     },
     oninput: () => console.log('Input changed'),
@@ -104,15 +41,9 @@ export const ElementProps: ElementProps = {
     onblur: () => console.log('Input blurred'),
 }
 
-export type ElementStory = StoryObj<
-    ElementProps & {
-        template: (html: unknown, props: object) => React.ReactNode
-    }
->
-
-export const Element: ElementStory = {
+export const DefaultFieldStoryArgs = {
     args: {
-        ...ElementProps,
+        ...defaultProps,
     },
     argTypes: {
         formId: {
@@ -178,13 +109,13 @@ export const Element: ElementStory = {
                     summary: 'Object',
                     detail: `{
     captcha: () => React.ReactNode,
-    fileUploader: (props: ElementProps) => React.ReactNode,
-    comboBox: (props: ElementProps) => React.ReactNode,
-    suggestions: (props: ElementProps) => React.ReactNode,
-    hint: (props: ElementProps & { additionalClosureButton: boolean }) => React.ReactNode,
+    fileUploader: (props: TemplateProps) => React.ReactNode,
+    comboBox: (props: TemplateProps) => React.ReactNode,
+    suggestions: (props: TemplateProps) => React.ReactNode,
+    hint: (props: TemplateProps & { additionalClosureButton: boolean }) => React.ReactNode,
     markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode,
-    datePicker: (props: ElementProps) => React.ReactNode,
-    siganture: (props: ElementProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
+    datePicker: (props: TemplateProps) => React.ReactNode,
+    siganture: (props: TemplateProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
 }`,
                 },
             },

@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const CheckBoxOptionComponentTemplate = (props: ElementProps) => {
+const CheckBoxOptionComponentTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.components.checkBoxOption}
@@ -31,9 +32,9 @@ const meta: Meta<typeof CheckBoxOptionComponentTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
         child: {
             id: '1',
             name: 'option-a',
@@ -43,14 +44,14 @@ export const Default: ElementStory = {
         },
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Checkbox option',
+    name: 'Default',
 }
 
-export const Checked: ElementStory = {
+export const Checked = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
         child: {
             id: '1',
             name: 'option-a',
@@ -60,7 +61,7 @@ export const Checked: ElementStory = {
         },
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Checkbox option checked',
+    name: 'Checked',
 }

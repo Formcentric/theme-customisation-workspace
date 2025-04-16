@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const RadioGroupTemplate = (props: ElementProps) => {
+const RadioGroupTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.radioGroup}
@@ -15,14 +16,14 @@ const RadioGroupTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof RadioGroupTemplate> = {
-    title: 'EN/Template Properties/Elements/RadioGroup',
+    title: 'EN/Template Properties/Elements/Radio Group',
     component: RadioGroupTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a radio group element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,12 +31,7 @@ const meta: Meta<typeof RadioGroupTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    args: {
-        ...Element.args,
-    },
-    argTypes: {
-        ...Element.argTypes,
-    },
-    name: 'Radio Group',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }

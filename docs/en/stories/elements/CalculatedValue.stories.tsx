@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const CalculatedValueTemplate = (props: ElementProps) => {
+const CalculatedValueTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.calculatedValue}
@@ -15,14 +16,14 @@ const CalculatedValueTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof CalculatedValueTemplate> = {
-    title: 'EN/Template Properties/Elements/CalculatedValue',
+    title: 'EN/Template Properties/Elements/Calculated Value',
     component: CalculatedValueTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a calculated value field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,12 +31,12 @@ const meta: Meta<typeof CalculatedValueTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Calculated value field',
+    name: 'Default',
 }

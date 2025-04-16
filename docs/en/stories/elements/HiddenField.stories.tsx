@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, Element, DateField, ElementProps } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
+import { DefaultFieldStoryArgs } from '../Elements'
+import variables from '../../../helpers/theme'
 import React from 'react'
+import { TemplateProps } from '../../../types/Templates'
+import Template from '../../../helpers/Template'
 
-const HiddenFieldTemplate = (props: ElementProps) => {
+const HiddenFieldTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.hiddenField}
@@ -15,14 +16,14 @@ const HiddenFieldTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof HiddenFieldTemplate> = {
-    title: 'En/Template Properties/Elements/HiddenField',
+    title: 'En/Template Properties/Elements/Hidden Field',
     component: HiddenFieldTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a hidden field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,14 +31,7 @@ const meta: Meta<typeof HiddenFieldTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    args: {
-        ...Element.args,
-        ...DateField.args,
-    },
-    argTypes: {
-        ...Element.argTypes,
-        ...DateField.argTypes,
-    },
-    name: 'Hidden field',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }

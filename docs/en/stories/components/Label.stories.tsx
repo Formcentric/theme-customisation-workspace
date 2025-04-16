@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const Label = (props: ElementProps) => {
+const Label = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.components.label}
@@ -30,13 +31,13 @@ const meta: Meta<typeof Label> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
         label: 'Label',
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Label Component',
+    name: 'Default',
 }

@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const ShortHint = (props: ElementProps) => {
+const ShortHint = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.components.shortHint}
@@ -30,15 +31,15 @@ const meta: Meta<typeof ShortHint> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
         properties: {
             shortHint: 'A very short hin',
         },
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Short Hint Component',
+    name: 'Default',
 }

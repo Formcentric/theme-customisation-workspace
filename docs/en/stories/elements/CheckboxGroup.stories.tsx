@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const CheckboxGroupTemplate = (props: ElementProps) => {
+const CheckboxGroupTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.checkBoxGroup}
@@ -15,14 +16,14 @@ const CheckboxGroupTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof CheckboxGroupTemplate> = {
-    title: 'EN/Template Properties/Elements/CheckboxGroup',
+    title: 'EN/Template Properties/Elements/Checkbox Group',
     component: CheckboxGroupTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a checkbox group element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,12 +31,12 @@ const meta: Meta<typeof CheckboxGroupTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Checkbox Group field',
+    name: 'Default',
 }

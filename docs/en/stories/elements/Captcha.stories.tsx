@@ -1,19 +1,19 @@
 import { Meta } from '@storybook/react'
 import { DefaultFieldStoryArgs } from '../Elements'
 
-const DateFieldTemplate = () => {
+const CaptchaFieldTemplate = () => {
     return null
 }
 
-const meta: Meta<typeof DateFieldTemplate> = {
-    title: 'En/Template Properties/Elements/Date Field',
-    component: DateFieldTemplate,
+const meta: Meta<typeof CaptchaFieldTemplate> = {
+    title: 'En/Template Properties/Elements/Captcha',
+    component: CaptchaFieldTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a date field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a captcha element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

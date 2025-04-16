@@ -1,10 +1,9 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
-import { FooterStory, FooterProps, Footer } from './Footer'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
 
-const PageTitle = (props: FooterProps) => {
+const PageTitle = props => {
     return (
         <Template
             template={window.formcentric.formapp.templates.formPageTitle}
@@ -30,9 +29,9 @@ const meta: Meta<typeof PageTitle> = {
 
 export default meta
 
-export const Default: FooterStory = {
+export const Default = {
     args: {
         pageTitle: 'A title for a page',
     },
-    name: 'PageTitle',
+    name: 'Default',
 }

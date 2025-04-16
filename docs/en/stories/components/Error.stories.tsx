@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const ErrorTemplate = (props: ElementProps) => {
+const ErrorTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.components.error}
@@ -30,15 +31,15 @@ const meta: Meta<typeof ErrorTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
         fieldError: {
             defaultMessage: 'A concise error message',
         },
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Error Component',
+    name: 'Default',
 }

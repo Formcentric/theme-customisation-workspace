@@ -1,8 +1,8 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
-import { View, ViewProps, ViewStory } from './Views'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
+import { View, ViewProps, ViewStory } from '../Views'
 
 const Optin = (props: ViewProps) => {
     return (

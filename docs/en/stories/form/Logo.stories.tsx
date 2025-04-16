@@ -1,14 +1,13 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
-import { FooterStory, FooterProps, Footer } from './Footer'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
 
-const Logo = (props: FooterProps) => {
+const Logo = () => {
     return (
         <Template
             template={window.formcentric.formapp.templates.formLogo}
-            props={{ ...props }}
+            props={{}}
             variables={variables}
         />
     )
@@ -22,7 +21,7 @@ const meta: Meta<typeof Logo> = {
         docs: {
             description: {
                 component:
-                    'Implementation of the form footer template defined in `templates/forms/formFooter.js`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of navigation controls for multi-page forms.',
+                    'Implementation of the logo template defined in `templates/forms/formFooter.js`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of navigation controls for multi-page forms.',
             },
         },
     },
@@ -30,7 +29,6 @@ const meta: Meta<typeof Logo> = {
 
 export default meta
 
-export const Default: FooterStory = {
-    ...Footer,
-    name: 'Logo',
+export const Default = {
+    name: 'Default',
 }

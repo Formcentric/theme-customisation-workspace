@@ -1,10 +1,11 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const NumberTemplate = (props: ElementProps) => {
+const NumberTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.numberField}
@@ -22,7 +23,7 @@ const meta: Meta<typeof NumberTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a number input field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,7 +31,7 @@ const meta: Meta<typeof NumberTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    ...Element,
-    name: 'Number input field',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }

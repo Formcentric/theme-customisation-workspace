@@ -1,10 +1,11 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const EmailTemplate = (props: ElementProps) => {
+const EmailTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.emailField}
@@ -15,14 +16,14 @@ const EmailTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof EmailTemplate> = {
-    title: 'EN/Template Properties/Elements/Email Input',
+    title: 'EN/Template Properties/Elements/Email Field',
     component: EmailTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a email field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,7 +31,7 @@ const meta: Meta<typeof EmailTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    ...Element,
-    name: 'Email input field',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }

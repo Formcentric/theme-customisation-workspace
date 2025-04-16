@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const SummaryTemplate = (props: ElementProps) => {
+const SummaryTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.summary}
@@ -22,7 +23,7 @@ const meta: Meta<typeof SummaryTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a summary element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,12 +31,7 @@ const meta: Meta<typeof SummaryTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    args: {
-        ...Element.args,
-    },
-    argTypes: {
-        ...Element.argTypes,
-    },
-    name: 'Summary field',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }

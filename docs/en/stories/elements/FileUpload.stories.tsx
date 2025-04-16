@@ -1,19 +1,19 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, Element, DateField } from '../../../../.storybook/Elements'
+import { DefaultFieldStoryArgs } from '../Elements'
 
 const FileUploadTemplate = () => {
     return null
 }
 
 const meta: Meta<typeof FileUploadTemplate> = {
-    title: 'En/Template Properties/Elements/FileUpload',
+    title: 'En/Template Properties/Elements/File Upload',
     component: FileUploadTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a file upload fieldset element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -21,14 +21,7 @@ const meta: Meta<typeof FileUploadTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    args: {
-        ...Element.args,
-        ...DateField.args,
-    },
-    argTypes: {
-        ...Element.argTypes,
-        ...DateField.argTypes,
-    },
-    name: 'File upload field',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }

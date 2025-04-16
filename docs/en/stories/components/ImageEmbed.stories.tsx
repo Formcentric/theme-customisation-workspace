@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
 import React from 'react'
-import variables from '../helpers/theme'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const ImageEmbed = (props: ElementProps) => {
+const ImageEmbed = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.components.imageEmbed}
@@ -31,17 +32,17 @@ const meta: Meta<typeof ImageEmbed> = {
 
 export default meta
 
-export const Default: ElementStory = {
+export const Default = {
     args: {
-        ...Element.args,
+        ...DefaultFieldStoryArgs.args,
         properties: {
             pictureUrl: {
-                md: 'https://formcentric.com/assets/images/bereitgestellte-bilder/usp-location_usp_card_standard.png',
+                md: '../../../../src/assets/img/favicon.ico',
             },
         },
     },
     argTypes: {
-        ...Element.argTypes,
+        ...DefaultFieldStoryArgs.argTypes,
     },
-    name: 'Image Embed Component',
+    name: 'Default',
 }

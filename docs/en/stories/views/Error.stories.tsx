@@ -1,8 +1,8 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
-import { View, ViewProps, ViewStory } from './Views'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
+import { View, ViewProps, ViewStory } from '../Views'
 
 const Error = (props: ViewProps) => {
     return (
@@ -15,7 +15,7 @@ const Error = (props: ViewProps) => {
 }
 
 const meta: Meta<typeof Error> = {
-    title: 'En/Template Properties/Views/Error',
+    title: 'EN/Template Properties/Views/Error',
     component: Error,
     parameters: {
         layout: 'fullscreen',

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
-import { ElementStory, ElementProps, Element } from '../../../../.storybook/Elements'
-import Template from '../helpers/Template'
-import variables from '../helpers/theme'
+import { DefaultFieldStoryArgs } from '../Elements'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
+import { TemplateProps } from '../../../types/Templates'
 
-const PasswordTemplate = (props: ElementProps) => {
+const PasswordTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.passwordField}
@@ -15,14 +16,14 @@ const PasswordTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof PasswordTemplate> = {
-    title: 'EN/Template Properties/Elements/Password Input',
+    title: 'EN/Template Properties/Elements/Password Field',
     component: PasswordTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a password field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -30,7 +31,7 @@ const meta: Meta<typeof PasswordTemplate> = {
 
 export default meta
 
-export const Default: ElementStory = {
-    ...Element,
-    name: 'Password input field',
+export const Default = {
+    ...DefaultFieldStoryArgs,
+    name: 'Default',
 }
