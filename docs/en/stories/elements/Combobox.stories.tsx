@@ -1,18 +1,8 @@
 import { Meta } from '@storybook/react'
 import { DefaultFieldStoryArgs } from '../Elements'
-import Template from '../../../helpers/Template'
-import React from 'react'
-import variables from '../../../helpers/theme'
-import { TemplateProps } from '../../../types/Templates'
 
-const ComboboxTemplate = (props: TemplateProps) => {
-    return (
-        <Template
-            template={window.formcentric.formapp.templates.comboBox}
-            props={props}
-            variables={variables}
-        />
-    )
+const ComboboxTemplate = () => {
+    return null
 }
 
 const meta: Meta<typeof ComboboxTemplate> = {

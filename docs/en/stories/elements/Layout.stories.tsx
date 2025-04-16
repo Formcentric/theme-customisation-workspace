@@ -32,6 +32,25 @@ const meta: Meta<typeof LayoutTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        layoutFields: [
+            {
+                ...DefaultFieldStoryArgs.args,
+                type: 'inputField',
+            },
+            {
+                ...DefaultFieldStoryArgs.args,
+                type: 'textArea',
+            },
+            {
+                ...DefaultFieldStoryArgs.args,
+                type: 'numberField',
+            },
+        ],
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

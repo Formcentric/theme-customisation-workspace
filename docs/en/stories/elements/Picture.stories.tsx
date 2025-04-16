@@ -32,6 +32,16 @@ const meta: Meta<typeof PictureTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        properties: {
+            pictureUrl: {
+                original: '../../../../assets/theme-overview.jpg',
+            },
+        },
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

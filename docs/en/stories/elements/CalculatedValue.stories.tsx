@@ -34,6 +34,8 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
+        label: 'Calculated Value',
+        value: 'A calculated value',
     },
     argTypes: {
         ...DefaultFieldStoryArgs.argTypes,

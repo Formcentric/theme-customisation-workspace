@@ -34,6 +34,7 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
+        label: 'Button label',
     },
     argTypes: {
         ...DefaultFieldStoryArgs.argTypes,

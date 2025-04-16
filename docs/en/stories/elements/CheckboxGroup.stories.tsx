@@ -9,7 +9,32 @@ const CheckboxGroupTemplate = (props: TemplateProps) => {
     return (
         <Template
             template={window.formcentric.formapp.templates.checkBoxGroup}
-            props={props}
+            props={{
+                ...props,
+                children: [
+                    {
+                        id: '1',
+                        name: 'option-a',
+                        value: 'A',
+                        label: 'Option A',
+                        checked: false,
+                    },
+                    {
+                        id: '2',
+                        name: 'option-b',
+                        value: 'B',
+                        label: 'Option B',
+                        checked: true,
+                    },
+                    {
+                        id: '3',
+                        name: 'option-c',
+                        value: 'C',
+                        label: 'Option C',
+                        checked: false,
+                    },
+                ],
+            }}
             variables={variables}
         />
     )
@@ -37,6 +62,24 @@ export const Default = {
     },
     argTypes: {
         ...DefaultFieldStoryArgs.argTypes,
+        children: {
+            description: 'Checkbox Options',
+            control: 'object',
+            table: {
+                type: {
+                    summary: 'Object',
+                    detail: `{
+                    id: string
+                    label: string
+                    value: string
+                    checked: boolean
+                    properties: {
+                        pictureUrl: ''
+                    }
+}`,
+                },
+            },
+        },
     },
     name: 'Default',
 }

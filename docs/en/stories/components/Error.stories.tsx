@@ -23,7 +23,7 @@ const meta: Meta<typeof ErrorTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of an error template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

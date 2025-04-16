@@ -32,6 +32,41 @@ const meta: Meta<typeof SummaryTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        signatures: {},
+        summaryFields: [
+            {
+                data: {
+                    ...DefaultFieldStoryArgs.args,
+                    label: 'Summary item',
+                    name: 'inputField1',
+                    value: '1',
+                    type: 'inputField',
+                },
+            },
+            {
+                data: {
+                    ...DefaultFieldStoryArgs.args,
+                    label: 'Summary item',
+                    name: 'inputField2',
+                    value: '2',
+                    type: 'inputField',
+                },
+            },
+            {
+                data: {
+                    ...DefaultFieldStoryArgs.args,
+                    label: 'Summary item',
+                    name: 'inputField3',
+                    value: '3',
+                    type: 'inputField',
+                },
+            },
+        ],
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

@@ -23,7 +23,7 @@ const meta: Meta<typeof GlobalErrorTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a global error template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -34,6 +34,20 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
+        errors: {
+            globalErrors: [
+                {
+                    codes: '',
+                    defaultMessage: 'Error 1',
+                    field: '',
+                },
+                {
+                    codes: '',
+                    defaultMessage: 'Error 2',
+                    field: '',
+                },
+            ],
+        },
     },
     argTypes: {
         ...DefaultFieldStoryArgs.argTypes,

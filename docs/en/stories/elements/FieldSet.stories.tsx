@@ -32,6 +32,35 @@ const meta: Meta<typeof FieldSetTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        fieldSetFields: [
+            {
+                ...DefaultFieldStoryArgs.args,
+                properties: {
+                    field_width: 'mwf-m',
+                },
+                type: 'inputField',
+            },
+
+            {
+                ...DefaultFieldStoryArgs.args,
+                properties: {
+                    field_width: 'mwf-s',
+                },
+                type: 'numberField',
+            },
+            {
+                ...DefaultFieldStoryArgs.args,
+                properties: {
+                    field_width: 'mwf-m',
+                },
+                type: 'textArea',
+            },
+        ],
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }
