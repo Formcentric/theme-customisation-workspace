@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Meta } from '@storybook/react'
-import Template from '../helpers/Template'
-import variables from './theme'
-import { FooterStory, FooterProps, Footer } from './Footer'
+import Template from '../../../helpers/Template'
+import variables from '../../../helpers/theme'
+import { FooterStory, FooterProps, Footer } from '../Footer'
 
 const FooterTemplate = (props: FooterProps) => {
     const { currentPage, pageCount } = props
@@ -62,7 +62,7 @@ const FooterTemplate = (props: FooterProps) => {
 }
 
 const meta: Meta<typeof FooterTemplate> = {
-    title: 'DE/Template Attribute/Form/Footer',
+    title: 'En/Template Properties/Form/Footer',
     component: FooterTemplate,
     parameters: {
         layout: 'fullscreen',
@@ -79,5 +79,5 @@ export default meta
 
 export const Default: FooterStory = {
     ...Footer,
-    name: 'Footer',
+    name: 'Default',
 }

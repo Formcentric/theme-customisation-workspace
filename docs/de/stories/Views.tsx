@@ -1,6 +1,7 @@
 import React from 'react'
 import { StoryObj } from '@storybook/react'
-import { ElementProps } from './Elements'
+import { defaultProps } from './Elements'
+import { TemplateProps } from '../../types/Templates'
 
 export type ViewProps = {
     clientSession: string
@@ -19,7 +20,7 @@ export type ViewProps = {
             delay?: number
         }
     }>
-    components: ElementProps['components']
+    components: TemplateProps['components']
 }
 
 export const ViewProps: ViewProps = {
@@ -49,7 +50,7 @@ export const ViewProps: ViewProps = {
         },
     ],
     components: {
-        ...ElementProps.components,
+        ...defaultProps.components,
     },
 }
 
@@ -146,13 +147,13 @@ export const View: ViewStory = {
                     summary: 'Object',
                     detail: `{
   captcha: () => React.ReactNode,
-  fileUploader: (props: ElementProps) => React.ReactNode,
-  comboBox: (props: ElementProps) => React.ReactNode,
-  suggestions: (props: ElementProps) => React.ReactNode,
-  hint: (props: ElementProps & { additionalClosureButton: boolean }) => React.ReactNode,
+  fileUploader: (props: TemplateProps) => React.ReactNode,
+  comboBox: (props: TemplateProps) => React.ReactNode,
+  suggestions: (props: TemplateProps) => React.ReactNode,
+  hint: (props: TemplateProps & { additionalClosureButton: boolean }) => React.ReactNode,
   markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode,
-  datePicker: (props: ElementProps) => React.ReactNode,
-  siganture: (props: ElementProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
+  datePicker: (props: TemplateProps) => React.ReactNode,
+  siganture: (props: TemplateProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
 }`,
                 },
             },
