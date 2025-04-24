@@ -1,0 +1,66 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Wartung/Themes updaten' />
+
+# Themes aktualisieren
+
+Um die Basis-Themes, also die Standard-Templates, auf denen Ihr Theme basiert, in Ihrem Workspace zu aktualisieren, führen Sie den folgenden Befehl aus:
+
+```bash
+pnpm update-theme
+```
+
+Mit diesem Befehl aktualisieren Sie alle Basis-Themes im Verzeichnis `themes-base` auf die neuesten Versionen des Formcentric-Moduls.
+
+## Auswirkungen der Aktualisierung je nach Theme-Typ
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Theme-Typ</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>
+                    Auswirkung der Aktualisierung
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Extended Formcentric-Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>In der Regel gering</span> – Die meisten Änderungen werden
+                    automatisch übernommen. In einigen Fällen ist jedoch eine Anpassung der Vorlagen erforderlich.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Full Formcentric-Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Mittel</span> – Änderungen müssen manuell überprüft und
+                    integriert werden.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Custom-Theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>Hoch</span> – Eine manuelle Überprüfung, Integration und
+                    Kompatibilitätsprüfung mit neuen Funktionen ist erforderlich.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+### `Checkliste` nach der Aktualisierung
+
+1. **Extended Formcentric-Themes**
+
+    - Anpassungen von Styles über Variablen funktionieren in der Regel weiterhin.
+    - Überprüfen Sie etwaige Überschreibungen von Templates auf neue erforderliche Attribute oder Funktionen.
+
+2. **Full- und Custom-Themes**
+
+    - Überprüfen Sie die Änderungen in den aktualisierten Basis-Themes.
+    - Integrieren Sie notwendige Anpassungen manuell.
+
+3. **Immer testen!**
+    - Testen Sie Ihr Theme nach jeder Aktualisierung, um sicherzustellen, dass es mit den aktualisierten Komponenten wie erwartet funktioniert.

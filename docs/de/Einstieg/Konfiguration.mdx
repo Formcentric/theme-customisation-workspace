@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Einstieg/Konfiguration' />
+
+# Konfiguration
+
+<br />
+
+## Cloud-Konfiguration
+
+Verwenden Sie die Cloud-Konfigurationsdatei, um Einstellungen für Formcentric Cloud zu verwalten, wenn Sie mit pnpm dev-cloud arbeiten. Hier legen Sie fest, welche Formulare für das Testen der Themes verfügbar sind.
+
+## Lokale Konfiguration
+
+Nutzen Sie die lokale Konfigurationsdatei, wenn Sie als self-hosted Nutzer mit pnpm dev-local arbeiten. Konfigurieren Sie hier die URL Ihres Headless-Servers und die Formular-Definition für Ihre Theme-Tests.
+
+## Workspace-Konfiguration
+
+Mit der Workspace-Konfiguration steuern Sie Ihre gesamte Theme-Umgebung, einschließlich Dateipfaden, Theme-Varianten und Build-Einstellungen.
+
+### Überblick
+
+Ihre Konfiguration befindet sich in der Datei config/.config.js und bestimmt die Funktionsweise Ihres Theming-Systems.
+Hier ist ein Überblick über die Abschnitte:
+
+### Pfad-Konfiguration
+
+Im paths-Objekt definieren Sie alle relevanten Verzeichnisse und Dateien Ihres Workspaces:
+
+```ts
+paths: {
+    rootPath: '.',
+    configPath: 'config/cli.config.tson',
+    moduelPath: 'node_modules/@formcentric/client/dist/themes',
+    basePath: 'src/themes-base',
+    targetPath: 'src/themes',
+    utilsPath: 'node_modules/@formcentric/client/dist/themes/utils',
+    prettierConfigPath: '.prettierrc',
+    output: 'dist',
+}
+```
+
+### Varianten-Konfiguration
+
+Das variants-Objekt definiert, wie Dateien in angepassten Formcentric-Themes beim Build-Prozess mit den entsprechenden Dateien des Basis-Themes (dem Standard-Template, auf dem Ihr Theme basiert) zusammengeführt und verarbeitet werden.
+
+```ts
+variants: {
+    files: [
+        {
+            name: 'definition.json',
+            read: (filePath, baseFilePath) => ({ fileContent: {}, baseFileContent: {} }), // Eigene read-Funktion
+            merge: (file, baseFile) => file, // Eigene merge-Funktion
+            write: (filePath, content) => {}, // Eigene write-Funktion
+        }
+    ],
+}
+```
+
+### Reset-Konfiguration
+
+Das `reset` Objekt definiert, welche Dateien und Verzeichnisse vom reset-Befehl zurückgesetzt werden:
+
+```ts
+reset: {
+    files: [],
+}
+```

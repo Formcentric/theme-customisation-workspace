@@ -15,7 +15,7 @@ const ElementTemplate = (props: ElementProps) => {
 }
 
 const meta: Meta<typeof ElementTemplate> = {
-    title: 'Properties/Elements',
+    title: 'En/Properties/Elements',
     component: ElementTemplate,
     parameters: {
         layout: 'fullscreen',

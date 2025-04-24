@@ -62,7 +62,7 @@ const FooterTemplate = (props: FooterProps) => {
 }
 
 const meta: Meta<typeof FooterTemplate> = {
-    title: 'Properties/Footer',
+    title: 'DE/Properties/Footer',
     component: FooterTemplate,
     parameters: {
         layout: 'fullscreen',

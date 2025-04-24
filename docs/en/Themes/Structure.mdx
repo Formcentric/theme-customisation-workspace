@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks'
 
-<Meta title='Themes/Structure' />
+<Meta title='EN/Themes/Structure' />
 
 # Theme Structure
 
@@ -27,10 +27,10 @@ themes/[theme-name]/
 
     - Contains theme-specific default values as css variables that are programmatically injected into the form during runtime
     - Defines core styling variables like:
-    - Colors (primary, secondary, text, etc.)
-    - Typography (font family, sizes)
-    - Spacing and layout values
-    - Component-specific settings
+        - Colors (primary, secondary, text, etc.)
+        - Typography (font family, sizes)
+        - Spacing and layout values
+        - Component-specific settings
 
 2. **definition.json (Formcentric Cloud)**
 
@@ -55,19 +55,19 @@ themes/[theme-name]/
 5. **partials/**
 
     - Contains modular SCSS files for form components
-    - Imported by styles.scss
+    - Imported by `styles.scss`
 
 6. **templates/**
 
     - Contains template files for form components
-    - Imported by script.js
+    - Imported by `script.js`
 
 7. **variables/**
     - Contains variable files for form components:
         - **\_fc-variables.scss**
             - Variable configuration file of the theme
-            - Determines if theme variables have already been declared during build time (see \_variables.scss) and otherwise defaults to css variables injected during runtime (see \_variables.json)
+            - Determines if theme variables have already been declared during build time (see `_variables.scss`) and otherwise defaults to css variables injected during runtime (see \_variables.json)
         - **\_variables.scss**
-            - SCSS variables containing the same values as \_variables.json
-            - Not included in styles.scss by default
-            - Must be added to styles.scss to use it instead of injected css variables from \_variables.json in the css output file
+            - SCSS variables containing the same values as `_variables.json`
+            - Not included in `styles.scss` by default
+            - Must be added to `styles.scss` to use it instead of injected css variables from `_variables.json` in the css output file

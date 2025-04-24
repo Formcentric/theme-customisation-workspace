@@ -1,0 +1,113 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Themes/Themes erstellen' />
+
+# Ein eigenes Theme erstellen
+
+Erstellen Sie ein eigenes Theme mit folgendem Befehl:
+
+```bash
+pnpm create-theme
+```
+
+## Theme-Typen
+
+Wenn Sie ein neues Theme erstellen, können Sie zwischen drei Typen wählen:
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Kriterium</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Extended FC-Theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Full FC-Theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Custom-Theme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Wartungsaufwand</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Gering</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Mittel</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>Hoch</span>
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Anpassbarkeit</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Begrenzt</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Begrenzt</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Vollständig</span>
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Implementierungszeit</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Kurz</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Mittel</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>Lang</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+### Extended Formcentric-Theme
+
+- Ideal für gezielte Style-Anpassungen an einem bestehenden Theme
+- Erbt die meisten Styles vom gewählten Basis-Theme
+- Ermöglicht das gezielte Überschreiben von Komponenten und Variablen
+- Geringster Wartungsaufwand
+
+### Full Formcentric-Theme
+
+- Vollständige Kopie eines bestehenden Themes
+- Volle Kontrolle über alle Theme-Komponenten
+- Höherer Wartungsaufwand bei Änderungen am Basis-Theme
+- Gute Balance zwischen Flexibilität und Komplexität
+
+### Custom-Theme
+
+- Startet mit einem minimalistischen Boilerplate
+- Maximale Freiheit bei Design und technischer Umsetzung
+- Höchster Pflegeaufwand
+- Optimal für individuelle Designs, die sich stark von bestehenden Themes unterscheiden
+
+## Best Practices
+
+1. **Modulare Struktur**
+
+    - Teilen Sie Ihre Styles in logische Komponenten auf
+    - Verwenden Sie Partials für bessere Wartbarkeit
+    - Befolgen Sie eine einheitliche Namensgebung
+
+2. **Nutzung von Variablen**
+
+    - Setzen Sie Theme-Variablen für konsistentes Styling ein
+    - Machen Sie Ihre Styles konfigurierbar über `definition.json` (Formcentric Cloud) und die Dateien `_fc-variables.scss`, `_variables.scss` und `_variables.json`
+    - Verwenden Sie SCSS-Features, um DRY-Prinzipien umzusetzen
+
+3. **Responsives Design**
+
+    - Berücksichtigen Sie Breakpoints für Mobilgeräte und Desktop
+    - Nutzen Sie flexible Einheiten wie em
+    - Testen Sie auf verschiedenen Bildschirmgrößen
+
+4. **Barrierefreiheit (Accessibility)**
+
+    - Berücksichtigen Sie Fokus-Zustände
+    - Stellen Sie ausreichende Farbkontraste sicher
+    - Unterstützen Sie Tastaturnavigation bei Ihren benutzerdefinierten Templates
