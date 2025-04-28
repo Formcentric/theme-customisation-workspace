@@ -16,7 +16,7 @@ const SummaryTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof SummaryTemplate> = {
-    title: 'EN/Template Properties/Elements/Summary',
+    title: 'DE/Template Attribute/Elemente/Zusammenfassung',
     component: SummaryTemplate,
     parameters: {
         layout: 'fullscreen',

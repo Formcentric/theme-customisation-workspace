@@ -41,7 +41,7 @@ const RadioGroupTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof RadioGroupTemplate> = {
-    title: 'EN/Template Properties/Elements/Radio Group',
+    title: 'DE/Template Attribute/Elemente/Einfachauswahl',
     component: RadioGroupTemplate,
     parameters: {
         layout: 'fullscreen',

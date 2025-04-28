@@ -15,7 +15,7 @@ const ViewTemplate = (props: ViewProps) => {
 }
 
 const meta: Meta<typeof ViewTemplate> = {
-    title: 'En/Template Properties/Views/Redirect',
+    title: 'DE/Template Attribute/Views/Weiterleitung',
     component: ViewTemplate,
     parameters: {
         layout: 'fullscreen',

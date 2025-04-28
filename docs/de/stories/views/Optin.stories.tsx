@@ -15,7 +15,7 @@ const Optin = (props: ViewProps) => {
 }
 
 const meta: Meta<typeof Optin> = {
-    title: 'En/Template Properties/Views/Optin',
+    title: 'DE/Template Attribute/Views/Opt-in',
     component: Optin,
     parameters: {
         layout: 'fullscreen',

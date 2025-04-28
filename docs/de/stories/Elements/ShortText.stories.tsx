@@ -16,7 +16,7 @@ const ShortTextTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof ShortTextTemplate> = {
-    title: 'EN/Template Properties/Elements/Short Text',
+    title: 'DE/Template Attribute/Elemente/Kurzer Text',
     component: ShortTextTemplate,
     parameters: {
         layout: 'fullscreen',

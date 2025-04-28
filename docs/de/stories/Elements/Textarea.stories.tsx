@@ -16,7 +16,7 @@ const TextareaTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof TextareaTemplate> = {
-    title: 'EN/Template Properties/Elements/Textarea',
+    title: 'DE/Template Attribute/Elemente/Langer Text',
     component: TextareaTemplate,
     parameters: {
         layout: 'fullscreen',

@@ -16,7 +16,7 @@ const CalculatedValueTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof CalculatedValueTemplate> = {
-    title: 'DE/Template Attribute/Elemente/Calculated Value',
+    title: 'DE/Template Attribute/Elemente/Berechneter Wert',
     component: CalculatedValueTemplate,
     parameters: {
         layout: 'fullscreen',

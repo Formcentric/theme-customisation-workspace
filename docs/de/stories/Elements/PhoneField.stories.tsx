@@ -16,7 +16,7 @@ const PhoneFieldTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof PhoneFieldTemplate> = {
-    title: 'EN/Template Properties/Elements/Phone Field',
+    title: 'DE/Template Attribute/Elemente/Telefonnummer',
     component: PhoneFieldTemplate,
     parameters: {
         layout: 'fullscreen',

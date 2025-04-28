@@ -14,7 +14,7 @@ const Logo = () => {
 }
 
 const meta: Meta<typeof Logo> = {
-    title: 'En/Template Properties/Form/Logo',
+    title: 'DE/Template Attribute/Formular/Logo',
     component: Logo,
     parameters: {
         layout: 'fullscreen',

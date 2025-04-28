@@ -41,7 +41,7 @@ const CheckboxGroupTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof CheckboxGroupTemplate> = {
-    title: 'DE/Template Attribute/Elemente/Checkbox Gruppe',
+    title: 'DE/Template Attribute/Elemente/Mehrfachauswahl',
     component: CheckboxGroupTemplate,
     parameters: {
         layout: 'fullscreen',

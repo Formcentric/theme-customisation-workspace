@@ -14,7 +14,7 @@ const PageTitle = props => {
 }
 
 const meta: Meta<typeof PageTitle> = {
-    title: 'En/Template Properties/Form/PageTitle',
+    title: 'DE/Template Attribute/Formular/Seitentitel',
     component: PageTitle,
     parameters: {
         layout: 'fullscreen',

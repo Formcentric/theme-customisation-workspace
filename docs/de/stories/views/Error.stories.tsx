@@ -15,7 +15,7 @@ const Error = (props: ViewProps) => {
 }
 
 const meta: Meta<typeof Error> = {
-    title: 'EN/Template Properties/Views/Error',
+    title: 'DE/Template Attribute/Views/Fehler',
     component: Error,
     parameters: {
         layout: 'fullscreen',

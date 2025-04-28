@@ -6,7 +6,7 @@ const SignatureTemplate = () => {
 }
 
 const meta: Meta<typeof SignatureTemplate> = {
-    title: 'En/Template Properties/Elements/Signature',
+    title: 'DE/Template Attribute/Elemente/Signatur',
     component: SignatureTemplate,
     parameters: {
         layout: 'fullscreen',

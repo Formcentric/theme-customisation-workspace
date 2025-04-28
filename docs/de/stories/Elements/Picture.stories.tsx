@@ -16,7 +16,7 @@ const PictureTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof PictureTemplate> = {
-    title: 'EN/Template Properties/Elements/Picture',
+    title: 'DE/Template Attribute/Elemente/Bild',
     component: PictureTemplate,
     parameters: {
         layout: 'fullscreen',

@@ -15,7 +15,7 @@ const Success = (props: ViewProps) => {
 }
 
 const meta: Meta<typeof Success> = {
-    title: 'En/Template Properties/Views/Success',
+    title: 'DE/Template Attribute/Views/Erfolg',
     component: Success,
     parameters: {
         layout: 'fullscreen',

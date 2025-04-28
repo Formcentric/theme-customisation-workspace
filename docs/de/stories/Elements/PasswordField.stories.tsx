@@ -16,7 +16,7 @@ const PasswordTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof PasswordTemplate> = {
-    title: 'EN/Template Properties/Elements/Password Field',
+    title: 'DE/Template Attribute/Elemente/Password-Feld',
     component: PasswordTemplate,
     parameters: {
         layout: 'fullscreen',
