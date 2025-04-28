@@ -2,47 +2,52 @@ import { Meta } from '@storybook/blocks'
 
 <Meta title='EN/Themes/Customization' />
 
-# Customization
+# Customisation
 
-There are three main ways to customize a theme:
+There are three main ways to customise a theme:
 
-## CSS Variables
+## CSS variables
 
-The quickest way to customize a theme is by modifying or adding CSS variables. These can control anything from colors, typography, spacing, and other design tokens.
+The quickest way to customise a theme is to change CSS variables or add new ones. These control colours, typography and spacing, for example, as well as other design tokens.
 
-### Customizing Existing Variables
+### Change existing variables
 
-To customize variables, you have to change values in a few places depending on your target environment's requirements.
+Depending on the target environment, you will need to change values in various places.
 
 #### Development
 
-In development, you can change values in `_variables.json` to see the changes immediately.
+During development, you can change the values in the `_variables.json` file. Your changes are immediately visible.
 
 #### Formcentric Cloud
 
-Formcentric Cloud in addition to the variables in `_variables.json` requires you to adjust the variable's corresponding design parameter in the theme definition file `definition.json`.
+In Formcentric Cloud, apart from making adjustments in `_variables.json`, you will also need to adjust the corresponding design parameters in the `definition.json` file.
 
-**Note:** The variables added in `definition.json` need to be available as css variables in the theme's css output file.
+**Please note:**<br />
+The variables defined in definition.json must also be available as CSS variables in the final CSS output for the theme.
 
-#### Embedding Application with SCSS
 
-If you are embedding the theme in an application that supports SCSS, you can customize variables by adjusting their value directly in the `_variables.scss` file.
+#### Embedding in an application using SCSS
 
-**Note:** By default, `styles.scss` does not include the `_variables.scss`. Add it in the first line before the `_fc-variables.scss` file.
+If you embed the theme in an application that supports SCSS, you can adjust the variables directly within `_variables.scss`.
+
+**Please note:**  
+By default, `_variables.scss` is not imported automatically into `styles.scss`.  
+Accordingly, add it manually as the first line above `_fc-variables.scss`:
 
 ```scss
 @import './variables/_variables';
 @import './variables/_fc-variables';
 ```
 
-### Adding Variables
+### Add new variables
 
-Adding new variables is also possible. However, you have to make sure that the variable is correctly added to `_fc-variables.scss`.
+You can also add your own variables. When doing so, you must ensure that the variable is correctly included in `_fc-variables.scss`.
 
 1. Add the variable to `_variables.scss`.
-2. Add the variable to `_variables.json`.
-3. Add the variable to `definition.json` as a new design parameter (Formcentric Cloud).
-4. Add the variable to the `_fc-variables.scss` file.
+2. Edit `_variables.json` to include the variable.
+3. In `definition.json`, enter the variable as a new design parameter (relevant only for Formcentric Cloud).
+4. Edit the file `_fc-variables.scss` to include the variable.
+
 
 #### Example:
 
@@ -50,7 +55,7 @@ Adding new variables is also possible. However, you have to make sure that the v
 
 ```scss
 $scrollbarWidth: 10px;
-// add color with the suffix `Val` to enable rgba parsing later (see _fc-variables.scss)
+// Colours with the suffix Val enable later rgba parsing (see `_fc-variables.scss`)
 $newColorVal: #000;
 ```
 
@@ -87,42 +92,46 @@ $newColorVal: #000;
 
 ```scss
 $scrollbarWidth: var(--scrollbarWidth) !default;
-// uses variable added in _variables.scss if present, otherwise css variable from _variables.json
+// If available, uses existing variables from `_variables.scss`, otherwise from `_variables.json`
 $newColorVal: var(--newColor) !default;
 
-// add rgba parsing if the variable is a color
+// Implements rgba parsing for colour variables
 $newColor: rgba($newColorVal, 1);
 ```
 
-## Template Customization
+## Template customisation
 
-### Extended Themes
+### Extended Formcentric theme
 
-If you're using an extended theme, you can override specific templates while inheriting the rest from the base theme. Here's how:
+If you use an extended FC theme, you can override individual templates while inheriting the rest from the base theme. Proceed as follows:
 
-1. Create the template file in your theme's corresponding directory structure
-2. Export it with the same name as the base template you want to override (see index.js files for file and export names)
+1. Create the template file you want to use in the appropriate directory structure of your theme
+2. Export the function using the same name as in the base template (for details, see the index.js files for filenames and exports)
 
-For example, to override the template for `emailField`:
+**Example:**
+To override the template for `emailField`:
 
 ```javascript
 export const emailField = (html, props) => html`<input type="email" />`
 ```
 
-The form will now use your custom `emailField` template instead of the base theme's version, while all other templates remain inherited from the base theme.
+The form will now use your user-defined emailField template instead of the version from the base theme, while all other templates are retained from the base theme.
 
-### Full FC Theme
+### Full Formcentric theme
 
-The full FC theme is a complete copy of a Formcentric theme that includes all templates and components. To customize certain parts of it, you can simply open the relevant file and edit it.
+A full FC theme is a complete copy of a Formcentric theme, including all of its templates and components.  
+To customise specific parts of the theme, you simply open the corresponding file and edit these directly.
 
-### Custom Theme
+### Custom theme
 
-Custom themes only include theme boilerplate files. Custom versions of all templates have to be added manually.
+A custom theme contains only the underlying theme boilerplate.  
+You will need to add your own versions of all templates manually here.
 
 ## Best Practices
 
-1. Start with CSS variables for simple customizations
-2. Use SCSS partials for component-specific styles
-3. Override templates only when necessary
-4. Maintain accessibility in custom templates
-5. Test responsive behavior across breakpoints
+1. Start with CSS variables for simple customisation work
+2. Make use of SCSS partials for component-specific styles
+3. Override templates only when it is absolutely necessary
+4. Make sure to follow accessibility rules in your own templates
+5. Test to confirm responsive behaviour across various breakpoints
+

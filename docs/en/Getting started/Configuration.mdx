@@ -6,25 +6,31 @@ import { Meta } from '@storybook/blocks'
 
 <br />
 
-## Cloud Configuration
+## Cloud configuration
 
-The cloud configuration file manages settings for FC Cloud users running `pnpm dev-cloud`. Specifically, **which forms are available** to test themes.
+Use the cloud configuration file to manage settings for Formcentric Cloud, if you are working
+with `pnpm dev-cloud`. Here, you specify the forms that are available for testing the theme.
 
-## Local Configuration
+## Local configuration
 
-The local configuration file manages settings for self-hosted users running `pnpm dev-local`. Specifically, the **headless server url** and the **form definition** to use for theme testing.
+Use the local configuration file if you are working with `pnpm dev-local` as a self-hosted user.
+Here, you configure the URL of your headless server and the form definition for your theme
+tests.
 
-## Workspace Configuration
+## Workspace configuration
 
-The workspace configuration file manages your theming environment, handling file paths, theme variants, and build settings.
+You use the workspace configuration to manage your entire theme environment, including
+file paths, theme variants and build settings.
 
 ### Overview
 
-Your workspace configuration is located in `config/formcentric.config.js` and defines how your theming system behaves. Below is a breakdown of each section:
+Your configuration is located in the `config/.config.js` file and determines the functionality of
+your theming system.
+An overview of the sections is provided below.
 
 ### Path Configuration
 
-The `paths` object defines all essential directories and files in your workspace:
+You use the `paths` object to define all of the relevant directories and files in your workspace:
 
 ```ts
 paths: {
@@ -39,18 +45,20 @@ paths: {
 }
 ```
 
-### Variant Configuration
+### Variant configuration
 
-The `variants` object defines how specific files in customized Formcentric themes will be read, merged and written with their counterparts in the base theme during the build process:
+The `variants` object defines how files in modified Formcentric themes are combined together
+and processed with the corresponding files from the base theme (the standard template your
+theme is based on) during the build process.
 
 ```ts
 variants: {
     files: [
         {
             name: 'definition.json',
-            read: (filePath, baseFilePath) => ({ fileContent: {}, baseFileContent: {} }), // Custom read function
-            merge: (file, baseFile) => file, // Custom merge function
-            write: (filePath, content) => {}, // Custom write function
+            read: (filePath, baseFilePath) => ({ fileContent: {}, baseFileContent: {} }), // User-defined read function
+            merge: (file, baseFile) => file, // User-defined merge function
+            write: (filePath, content) => {}, // User-defined write function
         }
     ],
 }
@@ -58,7 +66,7 @@ variants: {
 
 ### Reset Configuration
 
-The `reset` object defines which files and directories are affected by the reset command.
+The `reset` object defines the files and directories that are reset by the reset command:
 
 ```ts
 reset: {

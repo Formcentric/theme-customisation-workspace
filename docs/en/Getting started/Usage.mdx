@@ -6,22 +6,23 @@ import { Meta } from '@storybook/blocks'
 
 <br />
 
-## For FC Cloud Users
+## For Formcentric Cloud users
 
 ```bash
 pnpm dev-cloud
 ```
 
-### Changing Forms
+### Switch forms
 
-You can change the preview form using the dropdown in the sidebar.
-If you need to test your design with a custom form, update the `./config/cloudConfig.json` file.
-The fcForms array determines which forms appear in the sidebar dropdown.
+You can use the drop-down menu in the sidebar to change the preview form.
+If you want to try out your design with your own form, then you will need to edit the file
+`./config/cloudConfig.json`.
+The fcForms array specifies the forms that appear in the drop-down.
 
 ```json
 {
-    "id":  "<form-embed-id>", // See the screenshot below
-    "name": "Contact form" // Display name used in the form dropdown
+    "id":  "<form-embed-id>", // See screenshot below
+    "name": "Contact form" // Name shown in the form drop-down
 },
 ```
 
@@ -31,9 +32,11 @@ The fcForms array determines which forms appear in the sidebar dropdown.
     width='800'
 />
 
-## For Self-hosted Users
+## For self-hosted users
 
-Verify that the URL of your headless-server matches the predefined URL in `./config/localConfig.json` (http://localhost:8080) and update it if needed.
+Make sure that the URL of your headless server matches the URL predefined in the
+`./config/localConfig.json` file (http://localhost:8080).
+If necessary, adjust to match.
 
 Start the development server:
 
@@ -41,4 +44,6 @@ Start the development server:
 pnpm dev-local
 ```
 
-Set your form definition by either: - Pasting it inside the input field of our user interface - Updating the `formDefinition` property in `./config/localConfig.json`
+Specify your form definition. You do this either by
+– adding the definition into the input field on the user interface
+– or changing the `formDefinition` property in `./config/localConfig.json`

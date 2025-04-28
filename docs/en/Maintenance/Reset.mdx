@@ -4,29 +4,30 @@ import { Meta } from '@storybook/blocks'
 
 # Reset Workspace
 
-The reset command helps you clean up your workspace by:
+You can use the reset command to clean up your workspace, as follows:
+- Remove all user-defined themes
+- Empty the directory for base themes
+- Retain important .gitkeep files
+- Re-install dependences
 
-- Removing all custom themes
-- Clearing the base themes directory
-- Preserving essential `.gitkeep` files
-- Reinstalling dependencies
+To reset the workspace, execute the following command:
 
-To reset the workspace, run:
 
 ```bash
 pnpm reset
 ```
 
-You will be prompted to confirm before proceeding with the reset operation.
+You are prompted to confirm the reset before the reset is carried out.
 
-## What Gets Reset?
+## What will be reset?
 
-The files and directories that will be affected can be configured in the `formcentric.config.js.ts` file (see [Reset Configuration](/docs/en-getting-started-configuration--docs#reset-configuration)).
+You can define the files and directories affected by configuring these in the file `formcentric.config.js` (see [reset configuration](/docs/en-getting-started-configuration--docs#reset-configuration)).
 
-## After Reset
+## After a reset
 
-After running the reset command:
+After executing the reset command:
 
-1. The workspace is restored to its initial state.
-2. Dependencies are automatically reinstalled.
-3. You can start creating new themes from scratch.
+1. The workspace is reset to its original state
+2. All dependencies are reinstalled automatically
+3. You can immediately start work on creating new themes
+

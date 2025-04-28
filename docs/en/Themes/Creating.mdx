@@ -2,31 +2,31 @@ import { Meta } from '@storybook/blocks'
 
 <Meta title='EN/Themes/Creating Themes' />
 
-# Creating a Custom Theme
+# Create your own theme
 
-Create a custom theme using:
+Create your own theme with the following command:
 
 ```bash
 pnpm create-theme
 ```
 
-## Theme Types
+## Theme types
 
-When creating a new theme, choose between three theme types:
+When you create a new theme, you can choose from one of three types:
 
 <div style={{ overflowX: 'auto' }}>
     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
             <tr>
-                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Criteria</th>
-                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Extended FC Theme</th>
-                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Full FC Theme</th>
-                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Custom Theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Criterion</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Extended FC theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Full FC theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Custom theme</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Maintenance</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Maintenance effort</td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
                     <span style={{ color: 'rgb(0, 200, 0)' }}>Low</span>
                 </td>
@@ -38,19 +38,19 @@ When creating a new theme, choose between three theme types:
                 </td>
             </tr>
             <tr>
-                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Adjustability</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Customisation level</td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
-                    <span style={{ color: 'rgb(200, 200, 0)' }}>Moderate</span>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Limited</span>
                 </td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
-                    <span style={{ color: 'rgb(200, 200, 0)' }}>Moderate</span>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Limited</span>
                 </td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
-                    <span style={{ color: 'rgb(0, 200, 0)' }}>Complete</span>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Full</span>
                 </td>
             </tr>
             <tr>
-                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Implementation Time</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Implementation time</td>
                 <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
                     <span style={{ color: 'rgb(0, 200, 0)' }}>Short</span>
                 </td>
@@ -65,21 +65,22 @@ When creating a new theme, choose between three theme types:
     </table>
 </div>
 
-### Extended FC Theme
+### Extended Formcentric theme
 
-- Best for making targeted style adjustments to an existing theme
-- Inherits most styles from the chosen base theme
-- Allows overriding specific components and variables
-- Lowest maintenance overhead
+- Ideal for targeted style adjustments to an existing theme
+- Inherits most styles from the selected base theme
+- Enables the targeted overriding of components and variables
+- Lowest maintenance effort
 
-### Full FC Theme
 
-- Complete copy of an existing theme
+### Full Formcentric theme
+
+- A complete copy of an existing theme
 - Full control over all theme components
-- Requires more maintenance when base themes are updated
-- Good balance between customization and complexity
+- Higher maintenance effort if changes made to base theme
+- Good balance between flexibility and complexity
 
-### Custom Theme
+### Custom theme
 
 <div
     style={{
@@ -113,32 +114,33 @@ When creating a new theme, choose between three theme types:
     </p>
 </div>
 
-- Start from minimal boilerplate
-- Complete freedom in design and implementation
-- Highest maintenance responsibility
-- Best for unique designs that differ significantly from existing themes
+- Starts with a minimalist boilerplate
+- Greatest level of freedom for design and technical implementation
+- Highest maintenance effort
+- Ideal for individual designs with significant differences to existing themes
 
-## Best Practices
+## Best practices
 
-1. **Modular Organization**
+1. **Modular structure**
 
-    - Split styles into logical components
-    - Use partial files for better maintainability
-    - Follow consistent naming conventions
+    - Subdivide your styles into logical components
+    - Use partials to improve maintainability
+    - Implement a uniform naming convention
 
-2. **Variable Usage**
+2. **Use of variables**
 
-    - Leverage theme variables for consistency
-    - Make styles configurable through `definition.json` (Formcentric Cloud) and the variable configuration files `_fc-variables.scss`, `_variables.scss` and `_variables.json`
-    - Use SCSS features for DRY code
+    - Use theme variables to ensure consistent styling
+    - Make your styles configurable via `definition.json` (Formcentric Cloud) and the files `_fc-variables.scss`, `_variables.scss` and `_variables.json`
+    - Use SCSS features to implement DRY principles
 
 3. **Responsive Design**
 
-    - Include mobile and desktop breakpoints
-    - Use flexible units (em) for scaling
-    - Test across different screen sizes
+    - Incorporate breakpoints for mobile devices and desktop
+    - Use flexible units such as ‘em’
+    - Run tests on various screen sizes
 
 4. **Accessibility**
-    - Include focus states
-    - Maintain sufficient color contrast
-    - Support keyboard navigation when building custom templates
+    - Take focus states into account
+    - Make sure you have adequate colour contrasts
+    - Provide keyboard navigation support for your user-defined templates
+
