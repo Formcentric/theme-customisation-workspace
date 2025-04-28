@@ -23,7 +23,7 @@ const meta: Meta<typeof ButtonFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a button element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `button` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

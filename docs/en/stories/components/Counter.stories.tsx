@@ -23,7 +23,7 @@ const meta: Meta<typeof CounterComponentTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a counter template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `counter` template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

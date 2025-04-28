@@ -17,14 +17,14 @@ const CheckBoxOptionComponentTemplate = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof CheckBoxOptionComponentTemplate> = {
-    title: 'DE/Template Attribute/Komponenten/Checkbox Option',
+    title: 'DE/Template Attribute/Komponenten/Mehrfachauswahl-Option',
     component: CheckBoxOptionComponentTemplate,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a checkbox option template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `checkBoxOption` Templates, die sich im Verzeichnis `templates/components/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },

@@ -23,7 +23,7 @@ const meta: Meta<typeof FieldSetTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a fieldset element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `fieldSet` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -34,27 +34,19 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
+        label: 'A group of form fields',
         fieldSetFields: [
             {
                 ...DefaultFieldStoryArgs.args,
-                properties: {
-                    field_width: 'mwf-m',
-                },
                 type: 'inputField',
             },
 
             {
                 ...DefaultFieldStoryArgs.args,
-                properties: {
-                    field_width: 'mwf-s',
-                },
                 type: 'numberField',
             },
             {
                 ...DefaultFieldStoryArgs.args,
-                properties: {
-                    field_width: 'mwf-m',
-                },
                 type: 'textArea',
             },
         ],

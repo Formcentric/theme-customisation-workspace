@@ -23,7 +23,7 @@ const meta: Meta<typeof ShortHint> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `shortHint` template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -35,7 +35,7 @@ export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
         properties: {
-            shortHint: 'A very short hin',
+            shortHint: 'A short hint text',
         },
     },
     argTypes: {

@@ -22,7 +22,7 @@ const meta: Meta<typeof Optin> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form view template defined in `templates/views/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form views.',
+                    'Implementation of an `optin` view template defined in `templates/views/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form views.',
             },
         },
     },

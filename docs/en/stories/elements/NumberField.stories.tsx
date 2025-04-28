@@ -23,7 +23,7 @@ const meta: Meta<typeof NumberTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a number input field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `numberInput` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -32,6 +32,15 @@ const meta: Meta<typeof NumberTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        label: 'Number',
+        properties: {
+            placeholder: 'Please enter a number',
+        },
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

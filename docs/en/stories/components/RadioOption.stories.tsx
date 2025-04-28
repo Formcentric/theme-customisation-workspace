@@ -24,7 +24,7 @@ const meta: Meta<typeof RadioOption> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `radioOption` template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

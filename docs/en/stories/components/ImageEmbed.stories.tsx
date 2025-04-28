@@ -24,7 +24,7 @@ const meta: Meta<typeof ImageEmbed> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of an `imageEmbed` template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

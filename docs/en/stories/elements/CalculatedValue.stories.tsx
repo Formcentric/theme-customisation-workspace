@@ -23,7 +23,7 @@ const meta: Meta<typeof CalculatedValueTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a calculated value field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `calculatedValue` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

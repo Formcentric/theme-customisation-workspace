@@ -17,14 +17,14 @@ const ImageEmbed = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof ImageEmbed> = {
-    title: 'DE/Template Attribute/Komponenten/Image Embed',
+    title: 'DE/Template Attribute/Komponenten/Bild',
     component: ImageEmbed,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `imageEmbed` Templates, der sich im Verzeichnis `templates/components/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },

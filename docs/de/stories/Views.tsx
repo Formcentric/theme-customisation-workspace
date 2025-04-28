@@ -45,7 +45,7 @@ export const ViewProps: ViewProps = {
             action: 'redirectAction',
             data: {
                 delay: 0,
-                note: 'Thank you! We have received your form submission and will attend to it as soon as possible.',
+                note: 'Danke, ihre Daten sind erfolgreich eingesendet worden!',
             },
         },
     ],
@@ -66,14 +66,14 @@ export const View: ViewStory = {
     },
     argTypes: {
         clientSession: {
-            description: 'Client session token',
+            description: 'Token der Client-Session',
             control: false,
             table: {
                 type: { summary: 'string' },
             },
         },
         formHash: {
-            description: 'Form hash identifier',
+            description: 'Form-Hash Identifikator',
             control: false,
             table: {
                 type: { summary: 'string' },
@@ -87,42 +87,42 @@ export const View: ViewStory = {
             },
         },
         vars: {
-            description: 'Variables',
+            description: 'Variablen',
             control: false,
             table: {
                 type: { summary: 'Record<string, string> | null' },
             },
         },
         page: {
-            description: 'Current page number',
+            description: 'Index der aktuellen Seite',
             control: 'number',
             table: {
                 type: { summary: 'number' },
             },
         },
         calculatedPage: {
-            description: 'Calculated page number based on form logic',
+            description: 'Berechnete Seitennumer basierend auf Client Logik',
             control: 'number',
             table: {
                 type: { summary: 'number' },
             },
         },
         values: {
-            description: 'Form field values',
+            description: 'Eingaben der Formularfelder',
             control: false,
             table: {
                 type: { summary: 'Record<string, string | string[] | null>' },
             },
         },
         view: {
-            description: 'Current view state',
+            description: 'View Typ',
             control: 'text',
             table: {
                 type: { summary: 'success | redirect | error | optin' },
             },
         },
         actions: {
-            description: 'Array of performed actions',
+            description: 'Array der durchgeführten Aktionen',
             control: false,
             table: {
                 type: {
@@ -140,7 +140,7 @@ export const View: ViewStory = {
             },
         },
         components: {
-            description: 'Formcentric helper components for rendering more sophisticated elements.',
+            description: 'Formcentric Helper-Komponenten, welche für komplexeren Elemente benötigt werden',
             control: false,
             table: {
                 type: {

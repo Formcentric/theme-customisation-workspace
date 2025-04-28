@@ -1,18 +1,8 @@
 import { Meta } from '@storybook/react'
 import { DefaultFieldStoryArgs } from '../Elements'
-import Template from '../../../helpers/Template'
-import React from 'react'
-import variables from '../../../helpers/theme'
-import { TemplateProps } from '../../../types/Templates'
 
-const ContentTemplate = (props: TemplateProps) => {
-    return (
-        <Template
-            template={window.formcentric.formapp.templates.content}
-            props={props}
-            variables={variables}
-        />
-    )
+const ContentTemplate = () => {
+    return null
 }
 
 const meta: Meta<typeof ContentTemplate> = {
@@ -23,7 +13,7 @@ const meta: Meta<typeof ContentTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a content element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Dieses Template verfügt über erweiterte Funktionalitäten, die auf einer Komponente basieren, die der Client an das Template übergibt. Um sie anzusehen, musst du den Workspace starten. Die `content` Komponente ist eine dynamische Komponente und befindet sich im Verzeichnis `templates/elements/`. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template-Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },

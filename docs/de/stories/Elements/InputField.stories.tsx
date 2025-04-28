@@ -23,7 +23,7 @@ const meta: Meta<typeof InputFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of an input field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `inputField` Templates, das sich im Verzeichnis `templates/elements/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },

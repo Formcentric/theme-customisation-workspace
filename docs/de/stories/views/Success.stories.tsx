@@ -22,7 +22,7 @@ const meta: Meta<typeof Success> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form view template defined in `templates/views/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form views.',
+                    'Implementierung eines `success` Templates, das sich im Verzeichnis `templates/views/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },

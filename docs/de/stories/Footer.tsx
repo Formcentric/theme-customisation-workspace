@@ -56,7 +56,7 @@ export const FooterProps: FooterProps = {
         id: '_back',
         type: 'button',
         name: '_back',
-        label: 'Back',
+        label: 'Zurück',
         onclick: () => {},
         properties: {
             enabled: true,
@@ -68,7 +68,7 @@ export const FooterProps: FooterProps = {
         id: '_cancel',
         type: 'button',
         name: '_cancel',
-        label: 'Cancel',
+        label: 'Abbrechen',
         onclick: () => {},
         properties: {
             enabled: true,
@@ -80,7 +80,7 @@ export const FooterProps: FooterProps = {
         id: '_next',
         type: 'button',
         name: '_next',
-        label: 'Next',
+        label: 'Weiter',
         onclick: () => {},
         properties: {
             enabled: true,
@@ -92,7 +92,7 @@ export const FooterProps: FooterProps = {
         id: '_finish',
         type: 'button',
         name: '_finish',
-        label: 'Submit',
+        label: 'Absenden',
         onclick: () => {},
         properties: {
             enabled: true,
@@ -115,44 +115,44 @@ export const Footer: FooterStory = {
     argTypes: {
         currentPage: {
             control: 'number',
-            description: 'Current page number',
+            description: 'Index der aktuellen Seite',
         },
         pageCount: {
             control: 'number',
-            description: 'Total number of pages',
+            description: 'Gesamtanzahl der Formularseiten',
             table: {
                 type: { summary: 'number' },
             },
         },
         translation: {
             control: false,
-            description: 'Translation function',
+            description: 'Übersetzungs-Funktion',
             table: {
                 type: { summary: 'function' },
             },
         },
         _back: {
             control: 'object',
-            description: 'Back button configuration',
+            description: 'Konfiguration des Zurück-Buttons',
             table: {
                 type: { summary: 'FooterButtonProps' },
             },
         },
         _cancel: {
             control: 'object',
-            description: 'Cancel button configuration',
+            description: 'Konfiguration des Abbrechen-Buttons',
             table: {
                 type: { summary: 'FooterButtonProps' },
             },
         },
         _next: {
             control: 'object',
-            description: 'Next button configuration',
-            table: argTypeButton
+            description: 'Konfiguration des Weiter-Buttons',
+            table: argTypeButton,
         },
         _finish: {
             control: 'object',
-            description: 'Submit button configuration',
+            description: 'Konfiguration des Absenden-Buttons',
             table: {
                 type: { summary: 'FooterButtonProps' },
             },

@@ -23,7 +23,7 @@ const meta: Meta<typeof PasswordTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a password field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `passwordField` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -32,6 +32,15 @@ const meta: Meta<typeof PasswordTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        label: 'Password input',
+        properties: {
+            placeholder: 'Enter the form password',
+        },
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

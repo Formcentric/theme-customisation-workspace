@@ -10,7 +10,7 @@ const Template = ({
     child,
     size,
 }: {
-    template: (html: unknown, props: object, child?: object) => preact.VNode
+    template: (html: unknown, props: object, child?: object | string) => preact.VNode
     variables: Record<string, string>
     props: object
     child?: object

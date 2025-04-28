@@ -17,14 +17,14 @@ const RadioOption = (props: TemplateProps) => {
 }
 
 const meta: Meta<typeof RadioOption> = {
-    title: 'DE/Template Attribute/Komponenten/Radio Option',
+    title: 'DE/Template Attribute/Komponenten/Einfachauswahl-Option',
     component: RadioOption,
     parameters: {
         layout: 'fullscreen',
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `radioOption` Templates, der sich im Verzeichnis `templates/components/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },

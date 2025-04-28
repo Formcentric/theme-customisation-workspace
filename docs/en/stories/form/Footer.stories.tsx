@@ -69,7 +69,7 @@ const meta: Meta<typeof FooterTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of the form footer template defined in `templates/forms/formFooter.js`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of navigation controls for multi-page forms.',
+                    'Implementation of a `footer` template located in `templates/forms/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of navigation controls for multi-page forms.',
             },
         },
     },

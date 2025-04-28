@@ -23,7 +23,7 @@ const meta: Meta<typeof SummaryTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a summary element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `summary` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -39,27 +39,27 @@ export const Default = {
             {
                 data: {
                     ...DefaultFieldStoryArgs.args,
-                    label: 'Summary item',
+                    label: 'Name',
                     name: 'inputField1',
-                    value: '1',
+                    value: 'John',
                     type: 'inputField',
                 },
             },
             {
                 data: {
                     ...DefaultFieldStoryArgs.args,
-                    label: 'Summary item',
+                    label: 'Last name',
                     name: 'inputField2',
-                    value: '2',
+                    value: 'Doe',
                     type: 'inputField',
                 },
             },
             {
                 data: {
                     ...DefaultFieldStoryArgs.args,
-                    label: 'Summary item',
+                    label: 'Email Address',
                     name: 'inputField3',
-                    value: '3',
+                    value: 'john@doe.com',
                     type: 'inputField',
                 },
             },

@@ -23,7 +23,7 @@ const meta: Meta<typeof EmailTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a email field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `emailField` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -32,6 +32,15 @@ const meta: Meta<typeof EmailTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        label: 'Email Address',
+        properties: {
+            placeholder: 'Please enter your email',
+        },
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

@@ -21,7 +21,7 @@ const meta: Meta<typeof PageTitle> = {
         docs: {
             description: {
                 component:
-                    'Implementation of the form footer template defined in `templates/forms/formFooter.js`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of navigation controls for multi-page forms.',
+                    'Implementierung eines `pageTitle` Templates, das sich im Verzeichnis `templates/form/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },
@@ -31,7 +31,13 @@ export default meta
 
 export const Default = {
     args: {
-        pageTitle: 'A title for a page',
+        pageTitle: 'Seitentitel',
+    },
+    argTypes: {
+        pageTitle: {
+            control: 'text',
+            description: 'Name der Forumlarseite',
+        },
     },
     name: 'Default',
 }

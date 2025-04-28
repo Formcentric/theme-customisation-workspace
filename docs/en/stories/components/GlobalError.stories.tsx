@@ -23,7 +23,7 @@ const meta: Meta<typeof GlobalErrorTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a global error template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `globalError` template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },

@@ -23,7 +23,7 @@ const meta: Meta<typeof ButtonFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a button element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `button` Templates, das sich im Verzeichnis `templates/elements/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },
@@ -34,7 +34,7 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
-        label: 'Button label',
+        label: 'Button Beschriftung',
     },
     argTypes: {
         ...DefaultFieldStoryArgs.argTypes,

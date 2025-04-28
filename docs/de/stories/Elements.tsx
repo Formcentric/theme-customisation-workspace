@@ -4,14 +4,14 @@ export const defaultProps: TemplateProps = {
     formId: 'Form',
     id: 'fc12345',
     name: 'inputField_1',
-    label: 'Label',
+    label: 'Beschriftung',
     fieldFocused: false,
     fieldSuccess: false,
     fieldError: undefined,
     value: '',
     properties: {
         style_class: '',
-        placeholder: 'Please enter a name',
+        placeholder: 'Platzhalter-Text',
         hint: '',
         shortHint: '',
         type: 'text',
@@ -47,22 +47,22 @@ export const DefaultFieldStoryArgs = {
     },
     argTypes: {
         formId: {
-            description: 'Form ID.',
+            description: 'Formular ID',
         },
         id: {
-            description: 'Field ID.',
+            description: 'Feld ID',
         },
         name: {
-            description: 'Field name.',
+            description: 'Feld Name',
         },
         label: {
-            description: 'Field label.',
+            description: 'Feld Beschriftung',
         },
         value: {
-            description: 'Field value.',
+            description: 'Feldeingabe',
         },
         properties: {
-            description: 'Field properties.',
+            description: 'Feld Attribute',
             control: 'object',
             table: {
                 type: {
@@ -86,7 +86,7 @@ export const DefaultFieldStoryArgs = {
             },
         },
         fieldError: {
-            description: 'Error state of the field.',
+            description: 'Fehler State des Felds',
             control: 'object',
             table: {
                 type: { summary: 'Object', detail: '{ defaultMessage?: string }' },
@@ -94,15 +94,15 @@ export const DefaultFieldStoryArgs = {
             },
         },
         fieldSuccess: {
-            description: 'Success state of the field.',
+            description: 'Fehler State des Felds',
             control: 'boolean',
         },
         fieldFocused: {
-            description: 'Focus state of the field.',
+            description: 'Fehler State des Felds',
             control: 'boolean',
         },
         components: {
-            description: 'Formcentric helper components.',
+            description: 'Formcentric Helper-Komponenten',
             control: false,
             table: {
                 type: {
@@ -122,7 +122,7 @@ export const DefaultFieldStoryArgs = {
         },
         translation: {
             control: false,
-            description: 'Translation function',
+            description: 'Übersetzungs-Funktion',
             table: {
                 type: {
                     summary: 'function',

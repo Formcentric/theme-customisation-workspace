@@ -23,7 +23,7 @@ const meta: Meta<typeof InputFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of an input field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of an `inputField` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -32,23 +32,29 @@ const meta: Meta<typeof InputFieldTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        label: 'Input label',
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }
 
 export const WithSuccess = {
-    ...DefaultFieldStoryArgs,
     args: {
         ...DefaultFieldStoryArgs.args,
+        label: 'Input label',
         fieldSuccess: true,
     },
     name: 'Valid input',
 }
 
 export const WithError = {
-    ...DefaultFieldStoryArgs,
     args: {
         ...DefaultFieldStoryArgs.args,
+        label: 'Input label',
         fieldError: {
             defaultMessage: 'This is an error message',
         },

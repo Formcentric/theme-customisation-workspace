@@ -23,7 +23,7 @@ const meta: Meta<typeof Label> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a form element template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `label` template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -34,7 +34,6 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
-        label: 'Label',
     },
     argTypes: {
         ...DefaultFieldStoryArgs.argTypes,

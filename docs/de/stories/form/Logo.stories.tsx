@@ -21,7 +21,7 @@ const meta: Meta<typeof Logo> = {
         docs: {
             description: {
                 component:
-                    'Implementation of the logo template defined in `templates/forms/formFooter.js`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of navigation controls for multi-page forms.',
+                    'Implementierung eines `logo` Templates, das sich im Verzeichnis `templates/form/` befindet. An dieses Template werden keine Eigenschaften weitergereicht.',
             },
         },
     },

@@ -23,7 +23,7 @@ const meta: Meta<typeof LayoutTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a layout element template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `layout` Templates, das sich im Verzeichnis `templates/elements/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },
@@ -37,15 +37,23 @@ export const Default = {
         layoutFields: [
             {
                 ...DefaultFieldStoryArgs.args,
+                properties: {
+                    field_width: 'mwf-m',
+                },
                 type: 'inputField',
             },
+
             {
                 ...DefaultFieldStoryArgs.args,
-                type: 'textArea',
+                properties: {
+                    field_width: 'mwf-m',
+                },
+                type: 'numberField',
             },
             {
                 ...DefaultFieldStoryArgs.args,
-                type: 'numberField',
+                properties: {},
+                type: 'textArea',
             },
         ],
     },

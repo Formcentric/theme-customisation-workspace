@@ -23,7 +23,7 @@ const meta: Meta<typeof PhoneFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a phone field template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementation of a `phoneField` template located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
             },
         },
     },
@@ -32,6 +32,15 @@ const meta: Meta<typeof PhoneFieldTemplate> = {
 export default meta
 
 export const Default = {
-    ...DefaultFieldStoryArgs,
+    args: {
+        ...DefaultFieldStoryArgs.args,
+        label: 'Phone number',
+        properties: {
+            placeholder: 'Please enter your phone number',
+        },
+    },
+    argTypes: {
+        ...DefaultFieldStoryArgs.argTypes,
+    },
     name: 'Default',
 }

@@ -23,7 +23,7 @@ const meta: Meta<typeof CounterComponentTemplate> = {
         docs: {
             description: {
                 component:
-                    'Implementation of a counter template located in `templates/components/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Implementierung eines `counter` Templates, der sich im Verzeichnis `templates/components/` befindet. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
             },
         },
     },
@@ -34,7 +34,8 @@ export default meta
 export const Default = {
     args: {
         ...DefaultFieldStoryArgs.args,
-        value: 'John',
+        value: 'Lorem ipsum',
+        label: 'Feld mit maximaler Zeichananzahl',
         properties: {
             maxlength: 100,
             readonly: true,
