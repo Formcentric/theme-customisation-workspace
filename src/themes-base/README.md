@@ -14,7 +14,7 @@ To create custom themes:
 
 1. Run `pnpm create-theme`
 2. Modify the desired theme files in the configured target directory.
-3. Follow the theming documentation for proper customization procedures.
+3. Follow the theming documentation for proper customisation procedures.
 
 ## Documentation
 

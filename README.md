@@ -1,8 +1,8 @@
-# Formcentric Theme Customization Workspace
+# Formcentric Theme Customisation Workspace
 
-Welcome to the Formcentric Theme Customization Workspace! This toolkit allows you to customize Formcentric themes by modifying existing ones or creating your own. 
+Welcome to the Formcentric Theme Customisation Workspace! This toolkit allows you to customize Formcentric themes by modifying existing ones or creating your own. 
 Adjust theme variables, SCSS partials, and JavaScript templates to tailor the design, markup, and styling of your forms. 
-You can also add fonts and images and export your customizations for different target environments.
+You can also add fonts and images and export your customisations for different target environments.
 
 ## What You Can Do
 
@@ -16,7 +16,7 @@ Start from scratch, customize or extend existing themes to match your brand iden
 
 ### 🛠️ Customize With Ease
 
-Make your theme unique with multiple customization options:
+Make your theme unique with multiple customisation options:
 
 - CSS Variables
 - SCSS Partials

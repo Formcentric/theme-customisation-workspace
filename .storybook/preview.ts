@@ -18,7 +18,7 @@ const preview: Preview = {
                         'Getting started',
                         ['Installation', 'Usage', 'Configuration'],
                         'Themes',
-                        ['Creating Themes', 'Structure', 'Customization'],
+                        ['Creating Themes', 'Structure', 'Customisation'],
                     ],
                     'DE',
                     [
