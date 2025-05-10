@@ -14,8 +14,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@formcentric/client": "3.3.0-DEV.6",
-    "@formcentric/utils": "0.0.1-DEV.1",
+    "@formcentric/client": "3.4.0",
+    "@formcentric/utils": "0.0.1",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",

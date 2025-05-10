@@ -9,10 +9,10 @@ interface FormPreviewP {
 }
 
 const FormWrapper = styled.div`
-    margin: 2rem 0;
     grid-column: 3/4;
     border-radius: 6px;
     position: relative;
+    flex: 1;
 
     @media (max-width: 1024px) {
         grid-column: 1/4;
@@ -35,6 +35,9 @@ const Form = styled.div`
     z-index: 2;
     max-width: 60rem;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 100vh;
 
     @media (max-width: 768px) {
         width: 100%;
@@ -83,13 +86,23 @@ export const FormPreview = ({ selectedTheme, selectedForm, clientAttributes }: F
                 <div
                     ref={form}
                     style={{
+                        background: '#fff',
                         boxShadow: '0 20px 60px rgba(10, 0, 82, 0.2)',
                         borderRadius: 6,
                         overflow: 'hidden',
-                        background: '#fff',
+                        height: '90vh',
+                        width: '100%',
+                        maxWidth: '60rem',
                     }}
-                    {...clientAttributes}
-                />
+                >
+                    <div
+                        style={{
+                            overflow: 'hidden',
+                            height: '90vh',
+                        }}
+                        {...clientAttributes}
+                    />
+                </div>
             </Form>
         </FormWrapper>
     )
