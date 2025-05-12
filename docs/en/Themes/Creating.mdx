@@ -1,0 +1,146 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='EN/Themes/Creating Themes' />
+
+# Create your own theme
+
+Create your own theme with the following command:
+
+```bash
+pnpm create-theme
+```
+
+## Theme types
+
+When you create a new theme, you can choose from one of three types:
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Criterion</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Extended FC theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Full FC theme</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Custom theme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Maintenance effort</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Low</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>High</span>
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Customisation level</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Limited</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Limited</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Full</span>
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Implementation time</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Short</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span>
+                </td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>Long</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+### Extended Formcentric theme
+
+- Ideal for targeted style adjustments to an existing theme
+- Inherits most styles from the selected base theme
+- Enables the targeted overriding of components and variables
+- Lowest maintenance effort
+
+
+### Full Formcentric theme
+
+- A complete copy of an existing theme
+- Full control over all theme components
+- Higher maintenance effort if changes made to base theme
+- Good balance between flexibility and complexity
+
+### Custom theme
+
+<div
+    style={{
+        backgroundColor: '#F4A553',
+        borderRadius: 12,
+        padding: '0.5rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+    }}
+>
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='24'
+        height='24'
+        viewBox='0 0 24 24'
+        fill='none'
+        stroke='currentColor'
+        stroke-width='2'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+        class='lucide lucide-octagon-alert-icon lucide-octagon-alert'
+    >
+        <path d='M12 16h.01' />
+        <path d='M12 8v4' />
+        <path d='M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z' />
+    </svg>
+    <p>
+        Creating a custom theme while the development server is running will cause an error. You will have to add all
+        the needed templates inside your custom theme in order to run the server.
+    </p>
+</div>
+
+- Starts with a minimalist boilerplate
+- Greatest level of freedom for design and technical implementation
+- Highest maintenance effort
+- Ideal for individual designs with significant differences to existing themes
+
+## Best practices
+
+1. **Modular structure**
+
+    - Subdivide your styles into logical components
+    - Use partials to improve maintainability
+    - Implement a uniform naming convention
+
+2. **Use of variables**
+
+    - Use theme variables to ensure consistent styling
+    - Make your styles configurable via `definition.json` (Formcentric Cloud) and the files `_fc-variables.scss`, `_variables.scss` and `_variables.json`
+    - Use SCSS features to implement DRY principles
+
+3. **Responsive Design**
+
+    - Incorporate breakpoints for mobile devices and desktop
+    - Use flexible units such as ‘em’
+    - Run tests on various screen sizes
+
+4. **Accessibility**
+    - Take focus states into account
+    - Make sure you have adequate colour contrasts
+    - Provide keyboard navigation support for your user-defined templates
+

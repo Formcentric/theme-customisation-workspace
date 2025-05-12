@@ -1,0 +1,75 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='EN/Getting started/Configuration' />
+
+# Configuration
+
+<br />
+
+## Cloud configuration
+
+Use the cloud configuration file to manage settings for Formcentric Cloud, if you are working
+with `pnpm dev-cloud`. Here, you specify the forms that are available for testing the theme.
+
+## Local configuration
+
+Use the local configuration file if you are working with `pnpm dev-local` as a self-hosted user.
+Here, you configure the URL of your headless server and the form definition for your theme
+tests.
+
+## Workspace configuration
+
+You use the workspace configuration to manage your entire theme environment, including
+file paths, theme variants and build settings.
+
+### Overview
+
+Your configuration is located in the `config/.config.js` file and determines the functionality of
+your theming system.
+An overview of the sections is provided below.
+
+### Path Configuration
+
+You use the `paths` object to define all of the relevant directories and files in your workspace:
+
+```ts
+paths: {
+    rootPath: '.',
+    configPath: 'config/cli.config.tson',
+    moduelPath: 'node_modules/@formcentric/client/dist/themes',
+    basePath: 'src/themes-base',
+    targetPath: 'src/themes',
+    utilsPath: 'node_modules/@formcentric/client/dist/themes/utils',
+    prettierConfigPath: '.prettierrc',
+    output: 'dist',
+}
+```
+
+### Variant configuration
+
+The `variants` object defines how files in modified Formcentric themes are combined together
+and processed with the corresponding files from the base theme (the standard template your
+theme is based on) during the build process.
+
+```ts
+variants: {
+    files: [
+        {
+            name: 'definition.json',
+            read: (filePath, baseFilePath) => ({ fileContent: {}, baseFileContent: {} }), // User-defined read function
+            merge: (file, baseFile) => file, // User-defined merge function
+            write: (filePath, content) => {}, // User-defined write function
+        }
+    ],
+}
+```
+
+### Reset Configuration
+
+The `reset` object defines the files and directories that are reset by the reset command:
+
+```ts
+reset: {
+    files: [],
+}
+```

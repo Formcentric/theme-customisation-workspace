@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='EN/Maintenance/Updating Themes' />
+
+# Updating themes
+
+To update the base themes in your workspace – i.e. the standard templates your theme is based on – execute the following command:
+
+```bash
+pnpm update-theme
+```
+
+This command updates all of the base themes in the `themes-base` directory to the latest versions from the Formcentric module.
+
+
+## Impact of an update by theme type
+
+<div style={{ overflowX: 'auto' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+            <tr>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Theme type</th>
+                <th style={{ textAlign: 'left', padding: '8px', borderBottom: '2px solid #ddd' }}>Update impact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Extended Formcentric theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(0, 200, 0)' }}>Typically Low</span> - Most changes are applied automatically. In some cases, however, templates will need to be adjusted.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Full Formcentric theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 200, 0)' }}>Medium</span> - Changes will need to be checked manually and integrated.
+                </td>
+            </tr>
+            <tr>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>Custom theme</td>
+                <td style={{ padding: '8px', borderBottom: '1px solid #ddd' }}>
+                    <span style={{ color: 'rgb(200, 0, 0)' }}>High</span> - Manual checking and integration as well as compatibility testing with new functions will be required.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+### Post-update checklist
+
+1. **Extended Formcentric themes**
+    - Style customisations with variables will normally work as before.
+    - If you have overridden templates, check to see whether new attributes or functions are necessary.
+
+2. **Full and custom themes**
+    - Check the changes made to the updated base themes.
+    - Integrate any necessary adjustments manually.
+
+3. **Always test!**
+    - After each update, test your theme to ensure that it works as expected with the updated components.

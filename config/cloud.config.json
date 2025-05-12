@@ -1,0 +1,25 @@
+{
+    "fcForms": [
+        {
+            "id": "4f0b07af-9e57-4bac-81a2-1fd612712754",
+            "name": "Contact"
+        },
+        {
+            "id": "1033d0aa-c6b7-4755-913e-7d3658f741c1",
+            "name": "Event"
+        },
+        {
+            "id": "ef158e1f-8299-4b7d-922d-9011d5231f41",
+            "name": "Newsletter"
+        },        
+        {
+            "id": "1b0c84df-f259-4bd7-959c-e892fc744496",
+            "name": "Application"
+        },
+        {
+            "id": "e37943f4-c7b6-4f11-8464-69343b34e575",
+            "name": "Example form"
+        }
+    ],
+    "fcUrl": "https://form.formcentric.com/headless-server/"
+}

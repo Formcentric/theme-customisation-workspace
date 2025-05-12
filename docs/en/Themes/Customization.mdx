@@ -1,0 +1,137 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='EN/Themes/Customisation' />
+
+# Customisation
+
+There are three main ways to customise a theme:
+
+## CSS variables
+
+The quickest way to customise a theme is to change CSS variables or add new ones. These control colours, typography and spacing, for example, as well as other design tokens.
+
+### Change existing variables
+
+Depending on the target environment, you will need to change values in various places.
+
+#### Development
+
+During development, you can change the values in the `_variables.json` file. Your changes are immediately visible.
+
+#### Formcentric Cloud
+
+In Formcentric Cloud, apart from making adjustments in `_variables.json`, you will also need to adjust the corresponding design parameters in the `definition.json` file.
+
+**Please note:**<br />
+The variables defined in definition.json must also be available as CSS variables in the final CSS output for the theme.
+
+
+#### Embedding in an application using SCSS
+
+If you embed the theme in an application that supports SCSS, you can adjust the variables directly within `_variables.scss`.
+
+**Please note:**  
+By default, `_variables.scss` is not imported automatically into `styles.scss`.  
+Accordingly, add it manually as the first line above `_fc-variables.scss`:
+
+```scss
+@import './variables/_variables';
+@import './variables/_fc-variables';
+```
+
+### Add new variables
+
+You can also add your own variables. When doing so, you must ensure that the variable is correctly included in `_fc-variables.scss`.
+
+1. Add the variable to `_variables.scss`.
+2. Edit `_variables.json` to include the variable.
+3. In `definition.json`, enter the variable as a new design parameter (relevant only for Formcentric Cloud).
+4. Edit the file `_fc-variables.scss` to include the variable.
+
+
+#### Example:
+
+##### `_variables.scss`
+
+```scss
+$scrollbarWidth: 10px;
+// Colours with the suffix Val enable later rgba parsing (see `_fc-variables.scss`)
+$newColorVal: #000;
+```
+
+##### `_variables.json`
+
+```json
+{
+    "scrollBarWidth": "10px",
+    "newColor": "#000"
+}
+```
+
+##### `definition.json`
+
+```json
+{
+  "type": "TEXT",
+  "required": false,
+  "labels": { "en": "Scrollbar width" },
+  "name": "scrollbarWidth",
+  "value": "10px"
+}
+
+{
+    "type": "COLOR",
+    "required": false,
+    "labels": { "en": "New color" },
+    "name": "newColor",
+    "value": "#000"
+}
+```
+
+##### `_fc-variables.scss`
+
+```scss
+$scrollbarWidth: var(--scrollbarWidth) !default;
+// If available, uses existing variables from `_variables.scss`, otherwise from `_variables.json`
+$newColorVal: var(--newColor) !default;
+
+// Implements rgba parsing for colour variables
+$newColor: rgba($newColorVal, 1);
+```
+
+## Template customisation
+
+### Extended Formcentric theme
+
+If you use an extended FC theme, you can override individual templates while inheriting the rest from the base theme. Proceed as follows:
+
+1. Create the template file you want to use in the appropriate directory structure of your theme
+2. Export the function using the same name as in the base template (for details, see the index.js files for filenames and exports)
+
+**Example:**
+To override the template for `emailField`:
+
+```javascript
+export const emailField = (html, props) => html`<input type="email" />`
+```
+
+The form will now use your user-defined emailField template instead of the version from the base theme, while all other templates are retained from the base theme.
+
+### Full Formcentric theme
+
+A full FC theme is a complete copy of a Formcentric theme, including all of its templates and components.  
+To customise specific parts of the theme, you simply open the corresponding file and edit these directly.
+
+### Custom theme
+
+A custom theme contains only the underlying theme boilerplate.  
+You will need to add your own versions of all templates manually here.
+
+## Best Practices
+
+1. Start with CSS variables for simple customisation work
+2. Make use of SCSS partials for component-specific styles
+3. Override templates only when it is absolutely necessary
+4. Make sure to follow accessibility rules in your own templates
+5. Test to confirm responsive behaviour across various breakpoints
+

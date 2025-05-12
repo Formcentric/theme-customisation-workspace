@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='EN/Themes/Structure' />
+
+# Theme structure
+
+A typical theme consists of the following core files and directories:
+
+## Core files
+
+```
+themes/[theme-name]/
+├── _variables.json     # Defines theme-specific variables
+├── definition.json     # Configures the theme and its parameters
+├── script.js           # Imports all template functions from templates/
+├── styles.scss         # Imports all partials from partials/
+├── fonts/              # Contains fonts
+├── img/                # Contains images
+├── partials/           # Contains SCSS components for styling
+├── templates/          # Contains template files
+└── variables/          # Defines theme-specific variables
+```
+
+## Core components
+
+1. **_variables.json**
+    - Contains theme-specific default values as CSS variables, which are injected programmatically into the form at runtime
+    - Defines basic styling variables, such as:
+        - Colours (primary colour, secondary colour, text, etc.)
+        - Typography (font families, sizes)
+        - Spacings and layout values
+        - Component-specific settings
+
+2. **definition.json (Formcentric Cloud)**
+    - Defines theme metadata, parameters and configuration
+    - Specifies customisable options such as colours, fonts and spacings
+    - Configures language-specific labels and descriptions
+    - Lists required assets
+
+3. **script.js**
+    - Entry point for template functions
+    - Contains import instructions for all template functions
+    - When the theme is built, this script is packaged into an individual file and added to the form at runtime
+
+4. **styles.scss**
+    - Entry point for styles
+    - Contains import instructions for all partials
+    - When the theme is built, the file is compiled into an individual CSS file and added to the form at runtime
+    - Optionally, the SCSS file can be imported directly into the style sheet of the embedding application
+
+5. **partials/**
+    - Contains modular SCSS files for form components
+    - Is imported by `styles.scss`
+
+6. **templates/**
+    - Contains template files for form components
+    - Is imported by `script.js`
+
+7. **variables/**
+    - Contains variable files for form components:
+        - **_fc-variables.scss**
+            - Core configuration file for theme variables
+            - During the build, checks whether variables have already been declared (see `_variables.scss`)
+            - Otherwise, uses the CSS variables from `_variables.json` injected at runtime
+        - **_variables.scss**
+            - SCSS variables with identical values to `_variables.json`
+            - Is not imported by default into `styles.scss`
+            - Must be imported manually, so as to be used instead of the CSS variables from `_variables.json`

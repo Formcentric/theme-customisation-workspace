@@ -1,0 +1,78 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Themes/Struktur' />
+
+# Theme-Struktur
+
+Ein typisches Theme besteht aus den folgenden zentralen Dateien und Verzeichnissen:
+
+## Zentrale Dateien
+
+```
+themes/[theme-name]/
+├── _variables.json     # Definiert theme-spezifische Variablen
+├── definition.json     # Konfiguriert das Theme und seine Parameter
+├── script.js           # Importiert alle Template-Funktionen aus templates/
+├── styles.scss         # Importiert alle Partials aus partials/
+├── fonts/              # Enthält Schriftarten
+├── img/                # Enthält Bilder
+├── partials/           # Enthält SCSS-Komponenten für das Styling
+├── templates/          # Enthält Template-Dateien
+└── variables/          # Definiert theme-spezifische Variablen
+```
+
+## Zentrale Komponenten
+
+1. **\_variables.json**
+
+    - Enthält theme-spezifische Standardwerte als CSS-Variablen, die zur Laufzeit programmatisch ins Formular injiziert werden
+    - Definiert grundlegende Styling-Variablen wie:
+        - Farben (Primärfarbe, Sekundärfarbe, Text, etc.)
+        - Typografie (Schriftfamilien, Größen)
+        - Abstände und Layout-Werte
+        - Komponenten-spezifische Einstellungen
+
+2. **definition.json (Formcentric Cloud)**
+
+    - Definiert Theme-Metadaten, Parameter und Konfiguration
+    - Legt anpassbare Optionen wie Farben, Schriftarten und Abstände fest
+    - Konfiguriert sprachspezifische Labels und Beschreibungen
+    - Listet erforderliche Assets auf
+
+3. **script.js**
+
+    - Einstiegspunkt für Template-Funktionen
+    - Enthält Import-Anweisungen für alle Template-Funktionen
+    - Beim Build des Themes wird dieses Skript in eine einzelne Datei gebündelt und zur Laufzeit dem Formular hinzugefügt
+
+4. **styles.scss**
+
+    - Einstiegspunkt für Styles
+    - Enthält Import-Anweisungen für alle Partials
+    - Beim Build wird die Datei in eine einzelne CSS-Datei kompiliert und dem Formular zur Laufzeit hinzugefügt
+    - Optional kann die SCSS-Datei direkt in das Stylesheet der einbettenden Anwendung importiert werden
+
+5. **partials/**
+
+    - Beinhaltet modulare SCSS-Dateien für Formular-Komponenten
+    - Wird von `styles.scss` importiert
+
+6. **templates/**
+
+    - Enthält Template-Dateien für Formular-Komponenten
+    - Wird von `script.js` importiert
+
+7. **variables/**
+
+    - Beinhaltet Variablen-Dateien für Formular-Komponenten:
+
+        - **\_fc-variables.scss**
+
+            - Zentrale Konfigurationsdatei für Theme-Variablen
+            - Prüft beim Build, ob Variablen bereits deklariert wurden (siehe `_variables.scss`)
+            - Verwendet andernfalls die zur Laufzeit injizierten CSS-Variablen aus `_variables.json`
+
+        - **\_variables.scss**
+            - SCSS-Variablen mit denselben Werten wie `_variables.json`
+            - Wird standardmäßig **nicht** in `styles.scss` eingebunden
+            - Muss manuell importiert werden, um anstelle der CSS-Variablen aus `_variables.json` verwendet zu werden
