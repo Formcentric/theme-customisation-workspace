@@ -47,6 +47,13 @@ export const Default = {
                     field: '',
                 },
             ],
+            pageErrors: [
+                {
+                    codes: '',
+                    defaultMessage: 'Error 3',
+                    field: '',
+                },
+            ],
         },
     },
     argTypes: {
