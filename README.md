@@ -6,7 +6,7 @@ You can also add fonts and images and export your customisations for different t
 
 ## Requirements
 - Use the node version specified in `.nvmrc`
-- Install `pnpm`
+- [Install pnpm](https://pnpm.io/installation)
 - Install dependencies using:
 
 ```bash
