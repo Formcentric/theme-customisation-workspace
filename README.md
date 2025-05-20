@@ -13,6 +13,8 @@ You can also add fonts and images and export your customisations for different t
 pnpm i
 ```
 
+**Note: If you're using Windows, we highly recommend running a Linux virtual machine or using the Windows Subsystem for Linux (WSL). Currently, the Workspace is not actively tested or officially supported on Windows.**
+
 ## Usage with Formcentric-Cloud
 - Start the development server using
 ```bash
@@ -42,6 +44,11 @@ Start from scratch, customise or extend existing themes to match your brand iden
 - Extended FC Theme
 - Full FC Theme
 - Custom Theme
+
+Create a custom theme using the following command:
+ ```bash
+pnpm create-theme
+```
 
 ### 🛠️ Customise With Ease
 
