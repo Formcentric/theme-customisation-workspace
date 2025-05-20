@@ -4,6 +4,35 @@ Welcome to the Formcentric Theme Customisation Workspace! This toolkit allows yo
 Adjust theme variables, SCSS partials, and JavaScript templates to tailor the design, markup, and styling of your forms. 
 You can also add fonts and images and export your customisations for different target environments.
 
+## Requirements
+- Use the node version specified in `.nvmrc`
+- Install `pnpm`
+- Install dependencies using:
+
+```bash
+pnpm i
+```
+
+## Usage with Formcentric-Cloud
+- Start the development server using
+```bash
+pnpm dev-cloud
+```
+
+## Usage with a self-hosted headless server
+- Start the development server using
+```bash
+pnpm dev-local
+```
+
+## Documentation
+
+The documentation is available in the `docs` folder. To open it run:
+
+```bash
+pnpm storybook
+```
+
 ## What You Can Do
 
 ### 🎨 Create Custom Themes
@@ -37,10 +66,3 @@ Test your changes in real-time with:
 - **Professional**: Built on official Formcentric themes.
 - **Efficient**: Live preview and hot reloading for faster development.
 
-## Documentation
-
-The documentation is available in the `docs` folder. To open it run:
-
-```bash
-pnpm storybook
-```
