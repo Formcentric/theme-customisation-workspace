@@ -388,7 +388,7 @@ const Sidebar = ({ selectedTheme, formOptions, handleThemeChange, handleFormChan
                 </Themes>
                 <Divider />
                 <Menu>
-                    <Title>Ressources</Title>
+                    <Title>Resources</Title>
                     <MenuItem
                         href='https://help.formcentric.com/en/cloud/quick-start/'
                         target='_blank'
