@@ -8,7 +8,7 @@ This directory contains base theme files that are managed by the system. **DO NO
 - Manual changes could break functionality
 - Your changes may be lost in future updates
 
-## How to Customize Themes
+## How to Customise Themes
 
 To create custom themes:
 
