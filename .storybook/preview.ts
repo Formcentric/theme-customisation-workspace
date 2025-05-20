@@ -12,6 +12,7 @@ const preview: Preview = {
         options: {
             storySort: {
                 order: [
+                    'Start here',
                     'EN',
                     [
                         'Introduction',
@@ -27,6 +28,8 @@ const preview: Preview = {
                         ['Installation', 'Nutzung', 'Configuration'],
                         'Themes',
                         ['Themes erstellen', 'Struktur', 'Anpassung'],
+                        'Wartung',
+                        'Template Attribute', ['Komponenten', 'Elemente', 'Views', 'Formular']
                     ],
                 ],
             },
