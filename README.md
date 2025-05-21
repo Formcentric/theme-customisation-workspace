@@ -45,7 +45,7 @@ Start from scratch, customise or extend existing themes to match your brand iden
 - Full FC Theme
 - Custom Theme
 
-Create a custom theme using the following command:
+Create a custom theme using
  ```bash
 pnpm create-theme
 ```
