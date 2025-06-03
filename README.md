@@ -16,13 +16,25 @@ pnpm i
 **Note: If you're using Windows, we highly recommend running a Linux virtual machine or using the Windows Subsystem for Linux (WSL). Currently, the Workspace is not actively tested or officially supported on Windows.**
 
 ## Usage with Formcentric-Cloud
-- Start the development server using
+Start the development server using
 ```bash
 pnpm dev-cloud
 ```
 
 ## Usage with a self-hosted headless server
-- Start the development server using
+
+
+Make sure that the URL of your headless server matches the URL defined in the
+`./config/local.config.json` file (initially set to http://localhost:8080).
+If necessary, adjust to match.
+
+
+Specify your form definition. You do this either by: <br>
+– adding the definition into the input field on the user interface <br>
+– or changing the `formDefinition` property in `./config/local.config.json`
+
+Start the development server using:
+
 ```bash
 pnpm dev-local
 ```

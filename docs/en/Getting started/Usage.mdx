@@ -14,10 +14,7 @@ pnpm dev-cloud
 
 ### Switch forms
 
-You can use the drop-down menu in the sidebar to change the preview form.
-If you want to try out your design with your own form, then you will need to edit the file
-`./config/cloudConfig.json`.
-The fcForms array specifies the forms that appear in the drop-down.
+You can use the drop-down menu in the sidebar to change the preview form. If you want to try out your design with your own form, then you will need to edit the file `./config/cloud.config.json`. The fcForms array specifies the forms that appear in the drop-down.
 
 ```json
 {
@@ -34,9 +31,7 @@ The fcForms array specifies the forms that appear in the drop-down.
 
 ## For self-hosted users
 
-Make sure that the URL of your headless server matches the URL predefined in the
-`./config/localConfig.json` file (http://localhost:8080).
-If necessary, adjust to match.
+Make sure that the URL of your headless server matches the URL predefined in the `./config/local.config.json` file (http://localhost:8080). If necessary, adjust to match.
 
 Start the development server:
 
@@ -46,4 +41,4 @@ pnpm dev-local
 
 Specify your form definition. You do this either by
 – adding the definition into the input field on the user interface
-– or changing the `formDefinition` property in `./config/localConfig.json`
+– or changing the `formDefinition` property in `./config/local.config.json`
