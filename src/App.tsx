@@ -110,7 +110,7 @@ function App() {
 
                         const image = await import(
                             /* @vite-ignore */
-                            `${modulePath}/themes/${themeName}/img/preview-image.png`
+                            `${modulePath}/themes/${themeName}/img/preview-image.jpg`
                         )
 
                         return {
