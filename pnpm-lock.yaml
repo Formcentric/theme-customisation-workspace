@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@formcentric/client':
-        specifier: 3.4.0
-        version: 3.4.0
+        specifier: 3.6.1
+        version: 3.6.1
       '@formcentric/utils':
         specifier: 0.0.1
         version: 0.0.1(@types/node@22.15.19)(vite@5.4.19(@types/node@22.15.19)(sass@1.89.0))
@@ -605,8 +605,8 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@formcentric/client@3.4.0':
-    resolution: {integrity: sha512-Hcfia/l1BPwGfIiBE8y7sykYMG+97UOn9NHDKgKFFUIi0Px7kwPW76rkNiwTAAixgj9xPTXMHfeka7nxa1i7Vg==}
+  '@formcentric/client@3.6.1':
+    resolution: {integrity: sha512-WPko47S5pYxIhZVtYojDXqwnbGEFU/d7bBapDmugoc2WgkrVjqoWRr2IzpWoAuXUo+X6YQqLZwl4AsduX1VFJQ==}
     hasBin: true
 
   '@formcentric/utils@0.0.1':
@@ -3456,7 +3456,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@formcentric/client@3.4.0': {}
+  '@formcentric/client@3.6.1': {}
 
   '@formcentric/utils@0.0.1(@types/node@22.15.19)(vite@5.4.19(@types/node@22.15.19)(sass@1.89.0))':
     dependencies:
