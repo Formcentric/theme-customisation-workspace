@@ -13,7 +13,7 @@ const meta: Meta<typeof DateFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Dieses Template verfügt über erweiterte Funktionalitäten, die auf einer Komponente basieren, die der Client an das Template übergibt. Um sie anzusehen, musst du den Workspace starten. Die `dateField` Komponente ist eine dynamische Komponente und befindet sich im Verzeichnis `templates/elements/`. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template-Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
+                    'Intern verwendet die Komponente [React Datepicker](https://reactdatepicker.com/) um einen Datepicker zu rendern und mehrsprachige Datetimeformate zu generieren. Alle properties des Datepickers und dessen Eingabefeld können über das Template überschrieben werden. Eine vollständige Liste aller verfügbaren props ist unter dem zuvor genannten Link einsehbar.\n\n## Verwendung\n\nUm den Datepicker zu verwenden oder dessen Verhalten anzupassen, rufen Sie `props.components.datePicker()` im Template auf.\n\n### Beispiel: Setzen des minimal auswählbaren Datums auf das aktuelle Datum und Hinzufügen eines aria-labels am Inputfeld\n\n```js\nprops.components.datePicker({ ...props, datePickerProps: { minDate: new Date() }, datepickerInputProps: { "aria-label": "Datum auswählen" } })\n```',
             },
         },
     },

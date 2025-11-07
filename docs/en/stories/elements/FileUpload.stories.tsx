@@ -1,18 +1,8 @@
-import React from 'react'
 import { Meta } from '@storybook/react'
 import { DefaultFieldStoryArgs } from '../Elements'
-import { TemplateProps } from '../../../types/Templates'
-import variables from '../../../helpers/theme'
-import Template from '../../../helpers/Template'
 
-const FileUploadTemplate = (props: TemplateProps) => {
-    return (
-        <Template
-            template={window.formcentric.formapp.templates.hiddenField}
-            props={props}
-            variables={variables}
-        />
-    )
+const FileUploadTemplate = () => {
+    return null
 }
 const meta: Meta<typeof FileUploadTemplate> = {
     title: 'En/Template Properties/Elements/File Upload',
