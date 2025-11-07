@@ -1,5 +1,7 @@
 import React from 'react'
 import { StoryObj } from '@storybook/react'
+import { Dispatch, StateUpdater } from 'preact/hooks'
+import { TemplateProps } from '../../types/Templates'
 
 export type FooterButtonProps = {
     id: string
@@ -37,21 +39,56 @@ export const argTypeButton = {
 }
 
 export type FooterProps = {
+    formId: string
+    formName: string
+    customStates: [Record<string, unknown>, Dispatch<StateUpdater<Record<string, unknown>>>]
+    pageTitle: string
+    pageTitles: string[]
+    currentPageIndex: number
+    currentPageFull: number
     currentPage: number
     pageCount: number
+    pageCountFull: number
+    hiddenPages: number[]
+    resetForm: () => void
     translation: (key: string, _params?: Record<string, string>) => string
+    pageButtonProps: {
+        onclick: () => void
+        label: string | number
+        disabled: boolean
+        'aria-current': string
+    }[]
     _back: FooterButtonProps
     _cancel: FooterButtonProps
     _next: FooterButtonProps
     _finish: FooterButtonProps
+    components: TemplateProps['components']
 }
 
 export const FooterProps: FooterProps = {
+    formId: '1234',
+    formName: 'test',
+    customStates: [{}, () => {}],
+    pageTitle: 'Page 1',
+    pageTitles: ['Page 1', 'Page 2'],
+    currentPageIndex: 0,
+    currentPageFull: 1,
+    pageCountFull: 3,
     currentPage: 1,
     pageCount: 2,
-    translation: (key, params = {}) => {
+    hiddenPages: [2],
+    resetForm: () => {},
+    translation: key => {
         return key
     },
+    pageButtonProps: [
+        {
+            onclick: () => {},
+            label: '1',
+            disabled: false,
+            'aria-current': 'page',
+        },
+    ],
     _back: {
         id: '_back',
         type: 'button',
@@ -100,6 +137,16 @@ export const FooterProps: FooterProps = {
             hidden: true,
         },
     },
+    components: {
+        captcha: () => null,
+        fileUploader: () => null,
+        comboBox: () => null,
+        suggestions: () => null,
+        hint: () => null,
+        datePicker: () => null,
+        markdown: props => props.markdown,
+        siganture: () => null,
+    },
 }
 
 export type FooterStory = StoryObj<
@@ -113,22 +160,84 @@ export const Footer: FooterStory = {
         ...FooterProps,
     },
     argTypes: {
+        formId: {
+            control: 'text',
+            description: 'Form ID',
+        },
+        formName: {
+            control: 'text',
+            description: 'Form name',
+        },
+        customStates: {
+            control: false,
+            description: 'Custom states for persisting template data between renders',
+            table: {
+                type: { summary: '[Record<string, unknown>, Dispatch<StateUpdater<Record<string, unknown>>>]' },
+            },
+        },
+        pageTitle: {
+            control: 'text',
+            description: 'Current page title',
+        },
+        pageTitles: {
+            control: 'object',
+            description: 'Array of all page titles',
+            table: {
+                type: { summary: 'string[]' },
+            },
+        },
+        currentPageIndex: {
+            control: 'number',
+            description: 'Current page index (0-based)',
+        },
+        currentPageFull: {
+            control: 'number',
+            description: 'Current page (1-based, including hidden pages)',
+        },
         currentPage: {
             control: 'number',
-            description: 'Current page number',
+            description: 'Actual current page (1-based, excluding hidden pages)',
         },
         pageCount: {
             control: 'number',
-            description: 'Total number of pages',
+            description: 'Number of visible pages (1-based, conditionally hidden pages are not counted)',
+        },
+        pageCountFull: {
+            control: 'number',
+            description: 'Total number of all pages (including hidden pages)',
+        },
+        hiddenPages: {
+            control: 'object',
+            description: 'Array of hidden page indices',
             table: {
-                type: { summary: 'number' },
+                type: { summary: 'number[]' },
+            },
+        },
+        resetForm: {
+            control: false,
+            description: 'Function to reset the form',
+            table: {
+                type: { summary: '() => void' },
+            },
+        },
+        pageButtonProps: {
+            control: 'object',
+            description: 'Button properties for full form navigation bar (see Seattle formHeader.js)',
+            table: {
+                type: {
+                    summary:
+                        'Array<{ onclick: () => void, label: string | number, disabled: boolean, "aria-current": string }>',
+                },
             },
         },
         translation: {
             control: false,
             description: 'Translation function',
             table: {
-                type: { summary: 'function' },
+                type: {
+                    summary: 'function',
+                    detail: `translation(key: string, params?: Record<string, string>) => string`,
+                },
             },
         },
         _back: {
@@ -148,13 +257,32 @@ export const Footer: FooterStory = {
         _next: {
             control: 'object',
             description: 'Next button configuration',
-            table: argTypeButton
+            table: argTypeButton,
         },
         _finish: {
             control: 'object',
             description: 'Submit button configuration',
             table: {
                 type: { summary: 'FooterButtonProps' },
+            },
+        },
+        components: {
+            control: false,
+            description: 'Formcentric helper components',
+            table: {
+                type: {
+                    summary: 'Object',
+                    detail: `{
+    captcha: () => React.ReactNode,
+    fileUploader: (props: TemplateProps & { dashboardProps: UppyDashboardProps, buttonProps: UppyDashboardButtonProps }) => React.ReactNode,
+    comboBox: (props: TemplateProps & { inlineSelected: boolean }) => React.ReactNode,
+    suggestions: (props: TemplateProps) => React.ReactNode,
+    hint: (props: TemplateProps & { additionalClosureButton: boolean }) => React.ReactNode,
+    markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode,
+    datePicker: (props: TemplateProps & { datePickerProps: ReactDatePickerProps, datePickerInputProps: ReactDatePickerInputProps }) => React.ReactNode,
+    siganture: (props: TemplateProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
+}`,
+                },
             },
         },
     },
