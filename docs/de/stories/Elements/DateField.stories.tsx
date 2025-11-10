@@ -13,7 +13,7 @@ const meta: Meta<typeof DateFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'Intern verwendet die Komponente [React Datepicker](https://reactdatepicker.com/) um einen Datepicker zu rendern und mehrsprachige Datetimeformate zu generieren. Alle properties des Datepickers und dessen Eingabefeld können über das Template überschrieben werden. Eine vollständige Liste aller verfügbaren props ist unter dem zuvor genannten Link einsehbar.\n\n## Verwendung\n\nUm den Datepicker zu verwenden oder dessen Verhalten anzupassen, rufen Sie `props.components.datePicker()` im Template auf.\n\n### Beispiel: Setzen des minimal auswählbaren Datums auf das aktuelle Datum und Hinzufügen eines aria-labels am Inputfeld\n\n```js\nprops.components.datePicker({ ...props, datePickerProps: { minDate: new Date() }, datepickerInputProps: { "aria-label": "Datum auswählen" } })\n```',
+                    'Intern verwendet die Komponente [React Datepicker](https://reactdatepicker.com/), um einen Datepicker zu rendern und mehrsprachige Datetimeformate zu generieren. Alle properties des Datepickers und dessen Eingabefeld können über das Template überschrieben werden. Eine vollständige Liste aller verfügbaren Props finden Sie in der verlinkten Dokumentation.\n\n## Verwendung\n\nUm den Datepicker zu verwenden oder dessen Verhalten anzupassen, rufen Sie `props.components.datePicker()` im Template auf.\n\n### Beispiel: Setzen des minimal auswählbaren Datums auf das aktuelle Datum und Hinzufügen eines aria-labels am Inputfeld\n\n```js\nprops.components.datePicker({ ...props, datePickerProps: { minDate: new Date() }, datepickerInputProps: { "aria-label": "Datum auswählen" } })\n```',
             },
         },
     },

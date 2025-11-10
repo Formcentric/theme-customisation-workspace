@@ -13,7 +13,7 @@ const meta: Meta<typeof SignatureTemplate> = {
         docs: {
             description: {
                 component:
-                    'Dieses Template verfügt über erweiterte Funktionalitäten, die auf einer Komponente basieren, die der Client an das Template übergibt. Um sie anzusehen, müssen Sie den Workspace starten. Die `signature` Komponente ist eine dynamische Komponente und befindet sich im Verzeichnis `templates/elements/`. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template-Funktion, wodurch eine dynamische Darstellung von Formularelementen in verschiedenen Zuständen ermöglicht wird.',
+                    'Diese Komponente nutzt erweiterte Funktionalitäten durch eine dynamische React-Komponente, die der Client übergibt. Um diese zu testen, starten Sie den Workspace. Die `signature`-Komponente befindet sich im Verzeichnis `templates/elements/`. Der Formcentric-Client übergibt die aufgelisteten Eigenschaften als zweites Argument an die Template-Funktion. Dies ermöglicht die dynamische Darstellung von Formularelementen in verschiedenen Zuständen.',
             },
         },
     },
