@@ -55,9 +55,6 @@ export default defineConfig(() => {
                     pollInterval: 100,
                 },
             },
-            optimizeDeps: {
-                exclude: ['@formcentric/client/dist//formapp.js'], // prevent Vite from pre-bundling
-            },
             ...(fcEnv === 'cloud' && {
                 proxy: {
                     '/headless-server': {
