@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import { defineConfig, Plugin } from 'vite'
+import { defineConfig } from 'vite'
 import { sync } from 'glob'
 import path from 'path'
 import cloudConfig from './config/cloud.config.json'
@@ -30,12 +30,12 @@ export default defineConfig(() => {
                 output: {
                     format: 'cjs' as never,
                     entryFileNames: '[name].js',
-                    plugins: [fcIIFE() as Plugin],
+                    plugins: [fcIIFE()],
                 },
                 external: (id: string) => id.startsWith(config.paths.moduelPath),
             },
         },
-        plugins: [react(), fcThemeWatcher() as Plugin, fcThemeBuilder() as Plugin],
+        plugins: [react(), fcThemeWatcher(), fcThemeBuilder()],
         define: {
             FC_ENV: JSON.stringify(fcEnv),
         },

@@ -13,7 +13,7 @@ const meta: Meta<typeof DateFieldTemplate> = {
         docs: {
             description: {
                 component:
-                    'This component has extended functionality which is based on a component the client passes to the template. To view it you will have to start the workspace. The `dateField` component is a dynamic component located in `templates/elements/`. Formcentric client passes the listed properties as the second argument to the template function, enabling dynamic rendering of form elements in various states.',
+                    'Internally the component uses [React Datepicker](https://reactdatepicker.com/) to render a datepicker and generate multilingual datetime formats. All properties of the datepicker and its input field can be overridden via the template. A complete list of all available props can be found in the linked documentation.\n\n## Usage\n\nTo use the datepicker or customize its behavior, call `props.components.datePicker()` in the template.\n\n### Example: Setting the minimum selectable date to the current date and adding an aria-label to the input field\n\n```js\nprops.components.datePicker({ ...props, datePickerProps: { minDate: new Date() }, datepickerInputProps: { "aria-label": "Select date" } })\n```',
             },
         },
     },
