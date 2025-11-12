@@ -109,12 +109,12 @@ export const DefaultFieldStoryArgs = {
                     summary: 'Object',
                     detail: `{
     captcha: () => React.ReactNode,
-    fileUploader: (props: TemplateProps) => React.ReactNode,
-    comboBox: (props: TemplateProps) => React.ReactNode,
+    fileUploader: (props: TemplateProps & { dashboardProps: UppyDashboardProps, buttonProps: UppyDashboardButtonProps }) => React.ReactNode,
+    comboBox: (props: TemplateProps & { inlineSelected: boolean }) => React.ReactNode,
     suggestions: (props: TemplateProps) => React.ReactNode,
     hint: (props: TemplateProps & { additionalClosureButton: boolean }) => React.ReactNode,
     markdown: (props: { markdown: string; data?: Record<string, string> }) => React.ReactNode,
-    datePicker: (props: TemplateProps) => React.ReactNode,
+    datePicker: (props: TemplateProps & { datePickerProps: ReactDatePickerProps, datePickerInputProps: ReactDatePickerInputProps }) => React.ReactNode,
     siganture: (props: TemplateProps & { colors: { applyFromTheme: boolean } }) => React.ReactNode
 }`,
                 },

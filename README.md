@@ -39,6 +39,7 @@ Start the development server using:
 pnpm dev-local
 ```
 
+
 ## Documentation
 
 The documentation is available in the `docs` folder. To open it run:
