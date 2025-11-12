@@ -13,6 +13,7 @@ import config from '../config/formcentric.config.js'
 import { generateUid, removeUid } from './helpers/uid'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import '@formcentric/client/dist/formapp.js'
 
 declare global {
     interface Window {
@@ -110,7 +111,7 @@ function App() {
 
                         const image = await import(
                             /* @vite-ignore */
-                            `${modulePath}/themes/${themeName}/img/preview-image.png`
+                            `${modulePath}/themes/${themeName}/img/preview-image.jpg`
                         )
 
                         return {
@@ -219,7 +220,6 @@ function App() {
     const localFormDefinition = formDefinition ? formDefinition : localConfig.fcFormDefinition
 
     const commonProps = {
-        'data-fc-formapp-url': modulePath + '/formapp.js',
         'data-fc-theme-dir': themeDir,
         'data-fc-theme': removeUid(selectedTheme),
     }
