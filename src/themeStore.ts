@@ -9,6 +9,7 @@ export interface ThemeData {
     name: string
     description: string
     previewImageSrc: string
+    deprecated?: boolean
 }
 
 interface ThemeStore {

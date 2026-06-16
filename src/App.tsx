@@ -119,6 +119,7 @@ function App() {
                             name: definition.labels.en,
                             description: definition.descriptions.en,
                             previewImageSrc: image.default,
+                            deprecated: definition?.deprecated || false,
                         }
                     } catch (error) {
                         console.error(`Error loading definition.json for theme ${themeName}`, error)
@@ -128,7 +129,9 @@ function App() {
             )
 
             // Filter out any null results (failed imports)
-            const filteredThemes = loadedThemes.filter(theme => theme !== null)
+            const filteredThemes = loadedThemes
+                .filter(theme => theme !== null)
+                .sort((a, b) => (a.deprecated ? 1 : b.deprecated ? -1 : 0))
 
             setThemeData(filteredThemes)
         }

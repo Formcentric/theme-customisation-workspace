@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useThemeStore } from '../themeStore'
+import { ThemeData, useThemeStore } from '../themeStore'
 
 const Themes = styled.div`
     display: grid;
@@ -61,6 +61,57 @@ const PreviewImg = styled.img`
     margin-top: 1rem;
 `
 
+const StatusBadge = styled.div<{ color?: string }>`
+    font-family: 'ArchivoExpanded';
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 8px 12px;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 0.875rem;
+    background-color: ${({ color }) => {
+        switch (color) {
+            case 'red':
+                return '#ffe6e6'
+            case 'yellow':
+                return '#fff8e1'
+            case 'green':
+                return '#e6ffed'
+            default:
+                return '#f0f0f0'
+        }
+    }};
+    color: ${({ color }) => {
+        switch (color) {
+            case 'red':
+                return '#d32f2f'
+            case 'yellow':
+                return '#f9a825'
+            case 'green':
+                return '#2e7d32'
+            default:
+                return '#000'
+        }
+    }};
+    cursor: default;
+`
+
+const getThemeStatus = (theme: ThemeData) => {
+    const isDeprecated = theme?.deprecated
+
+    if (isDeprecated) {
+        return {
+            color: 'red',
+            label: 'Deprecated',
+        }
+    }
+
+    // Add other statuses if needed
+    return null
+}
+
 interface ThemesPreviewP {
     handleThemeChange: (themeName: string, custom?: boolean) => void
 }
@@ -74,21 +125,26 @@ export const ThemesPreview = ({ handleThemeChange }: ThemesPreviewP) => {
 
     return (
         <Themes>
-            {themeData.map(theme => (
-                <ThemeCard
-                    key={theme.id}
-                    onClick={() => handleThemeClick(theme.id, false)}
-                >
-                    <ThemeInfo>
-                        <h2>{theme.name}</h2>
-                        <p>{theme.description}</p>
-                    </ThemeInfo>
-                    <PreviewImg
-                        src={theme.previewImageSrc}
-                        alt=''
-                    />
-                </ThemeCard>
-            ))}
+            {themeData.map(theme => {
+                const status = getThemeStatus(theme)
+
+                return (
+                    <ThemeCard
+                        key={theme.id}
+                        onClick={() => handleThemeClick(theme.id, false)}
+                    >
+                        <ThemeInfo>
+                            <h2>{theme.name}</h2>
+                            <p>{theme.description}</p>
+                            {status && <StatusBadge color={status.color}>{status.label}</StatusBadge>}
+                        </ThemeInfo>
+                        <PreviewImg
+                            src={theme.previewImageSrc}
+                            alt=''
+                        />
+                    </ThemeCard>
+                )
+            })}
         </Themes>
     )
 }
