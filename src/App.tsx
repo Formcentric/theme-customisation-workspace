@@ -11,6 +11,7 @@ import localConfig from '../config/local.config.json'
 import { ThemesPreview } from './components/ThemesPreview'
 import config from '../config/formcentric.config.js'
 import { generateUid, removeUid } from './helpers/uid'
+import { getPreviewImageLoader } from './util/themePreviewImages'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import '@formcentric/client/dist/formapp.js'
@@ -109,10 +110,9 @@ function App() {
                             `${modulePath}/themes/${themeName}/definition.json`
                         )
 
-                        const image = await import(
-                            /* @vite-ignore */
-                            `${modulePath}/themes/${themeName}/img/preview-image.jpg`
-                        )
+                        const imageLoader = getPreviewImageLoader(themeName)
+                        if (!imageLoader) throw new Error(`No preview image found for theme ${themeName}`)
+                        const image = await imageLoader()
 
                         return {
                             id: generateUid(definition.theme),

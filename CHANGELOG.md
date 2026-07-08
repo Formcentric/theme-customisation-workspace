@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.2.0] - 2026-07-08
+
+### Added
+
+- Formcentric Client update to version 4.2.0 (see `@formcentric/client/CHANGELOG.md`)
+
 ## [3.7.0] - 2025-12-15
 
 ### Added

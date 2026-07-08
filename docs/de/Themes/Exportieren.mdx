@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title='DE/Themes/Exportieren' />
+
+# Theme bauen und einbetten
+
+Nachdem Sie Ihr Theme im Workspace fertiggestellt haben, können Sie es für den Produktiveinsatz bauen und in Ihre Website oder Anwendung einbinden.
+
+## Theme bauen
+
+Führen Sie folgenden Befehl aus, um alle Themes im Verzeichnis `src/themes/` zu bauen:
+
+```bash
+pnpm build
+```
+
+Dieser Befehl kompiliert Ihre SCSS-Dateien und bündelt Ihre JavaScript-Templates zu statischen Dateien, die im `dist/`-Verzeichnis abgelegt werden.
+
+## Der dist/-Ordner
+
+Nach einem erfolgreichen Build enthält der `dist/`-Ordner ein Unterverzeichnis für jedes Ihrer Themes:
+
+```
+dist/
+└── [theme-name]/
+    ├── styles.css        # Kompiliertes CSS
+    ├── script.js         # Gebündelte JavaScript-Templates
+    └── _variables.json   # CSS-Variablen-Definitionen
+```
+
+## Theme hosten
+
+Kopieren Sie den Ordner `dist/[theme-name]/` in das Public- oder Static-Assets-Verzeichnis Ihrer Website oder Anwendung, damit die Dateien per HTTP(S) erreichbar sind.
+
+Wenn Ihr Public-Verzeichnis z. B. `/public` heißt, sollte das Ergebnis wie folgt aussehen:
+
+```
+/public/
+└── themes/
+    └── [theme-name]/
+        ├── styles.css
+        ├── script.js
+        └── _variables.json
+```
+
+## Allgemeine HTML-Einbettung
+
+Sobald die Theme-Dateien gehostet sind, konfigurieren Sie den Formcentric-Client über die Attribute `data-fc-theme-dir` und `data-fc-theme` am Formular-Container:
+
+```html
+<script src="https://form.formcentric.com/form/formapp.js"></script>
+<script src="https://form.formcentric.com/form/formcentric.js"></script>
+
+<div
+    data-fc-id="<form-id>"
+    data-fc-src-url="https://form.formcentric.com"
+    data-fc-theme-dir="/themes"
+    data-fc-theme="[theme-name]"
+></div>
+```
+
+Der Formcentric-Client lädt automatisch `styles.css`, `script.js` und `_variables.json` aus dem Pfad `[data-fc-theme-dir]/[data-fc-theme]/`.
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribut</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>data-fc-theme-dir</code></td>
+      <td>Pfad zum Verzeichnis, das Ihre Theme-Ordner enthält</td>
+    </tr>
+    <tr>
+      <td><code>data-fc-theme</code></td>
+      <td>Name des zu ladenden Theme-Ordners</td>
+    </tr>
+  </tbody>
+</table>
+
+Eine vollständige Liste aller verfügbaren Attribute – einschließlich Attributen zur individuellen Konfiguration einzelner Dateipfade – finden Sie in der [Formcentric-Attribut-Dokumentation](https://help.formcentric.com/en/cloud/development/configuration/attributes/).
+
+## Framework-spezifische Einbettung
+
+Wenn Sie das Formular in eine Single-Page-Application einbinden, lesen Sie die Framework-spezifische Dokumentation. Sie enthält Beispiele zum direkten Import von Theme-Ressourcen in den Build-Prozess der Anwendung, wodurch separate HTTP-Anfragen für Theme-Dateien zur Laufzeit vermieden werden:
+
+- [React](https://help.formcentric.com/en/cloud/development/embedding-forms/react/)
+- [Angular](https://help.formcentric.com/en/cloud/development/embedding-forms/angular/)
+- [Vue](https://help.formcentric.com/en/cloud/development/embedding-forms/vue/)
